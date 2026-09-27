@@ -1,3 +1,7 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -1181,6 +1185,14 @@ app.get('/api/state', (_req: Request, res: Response) => {
 app.post('/api/state', (req: Request, res: Response) => {
   const updated = saveStoredState(req.body);
   res.json(updated);
+});
+
+const distPath = path.resolve(__dirname, '../dist');
+
+app.use(express.static(distPath));
+
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
