@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { CanvasChart } from '../components/common/CanvasChart';
-import { DollarSign, TrendingUp, PieChart, Sparkles } from 'lucide-react';
+import { DollarSign, TrendingUp, PieChart, Sparkles, ArrowRight, ShieldCheck, Download } from 'lucide-react';
+import { 
+  PageHeader, Card, CardHeader, CardTitle, CardDescription, 
+  CardContent, CardFooter, Button, Badge, Table, Column, Alert 
+} from '../components/ui';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
+
+interface DistrictBudgetItem {
+  district: string;
+  allocation: string;
+  spent: string;
+  utilization: number;
+  priorityProject: string;
+}
+
+const DISTRICT_BUDGET_ROWS: DistrictBudgetItem[] = [
+  { district: 'Pune Hub', allocation: '₹14.2 cr', spent: '₹9.8 cr', utilization: 69, priorityProject: 'EV & Smart Mobility Center of Excellence' },
+  { district: 'Mumbai & Konkan', allocation: '₹12.6 cr', spent: '₹8.4 cr', utilization: 67, priorityProject: 'FinTech & Cloud Computing Lab Expansion' },
+  { district: 'Nashik Cluster', allocation: '₹6.8 cr', spent: '₹4.2 cr', utilization: 62, priorityProject: 'Industrial IoT & Automation Testbed' },
+  { district: 'Nagpur & Vidarbha', allocation: '₹7.5 cr', spent: '₹4.9 cr', utilization: 65, priorityProject: 'Rooftop Solar & High-Voltage Labs' },
+  { district: 'Chhatrapati Sambhajinagar', allocation: '₹4.2 cr', spent: '₹2.9 cr', utilization: 69, priorityProject: 'CNC Machine Tool Upgrades' },
+  { district: 'Kolhapur', allocation: '₹2.7 cr', spent: '₹1.8 cr', utilization: 67, priorityProject: 'Foundry & Metallurgy Simulator' },
+];
 
 export const BudgetPlanningPage: React.FC = () => {
-  const { showToast } = useApp();
+  const { showToast, navigate } = useApp();
   const [scenarioRun, setScenarioRun] = useState(false);
 
   const budgetDistData = [34, 18, 25, 11, 14];
@@ -15,179 +37,204 @@ export const BudgetPlanningPage: React.FC = () => {
 
   const handleRunCapacity = () => {
     setScenarioRun(true);
-    showToast('20% capacity increase projection calculated.');
+    showToast('20% capacity increase fiscal projection calculated.');
   };
 
-  return (
-    <div className="space-y-6">
-      {/* Head */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight flex items-center gap-2">
-            <DollarSign className="w-5 h-5 text-emerald-600" />
-            <span>Statewide Workforce Budget Planning</span>
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            FY 2026–27 State allocation, committed expenditure, and regional training investment scenarios.
-          </p>
-        </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          DEMO DATA • FY 2026–27
+  const columns: Column<DistrictBudgetItem>[] = [
+    {
+      key: 'district',
+      header: 'District / Regional Hub',
+      sortable: true,
+      render: (r) => (
+        <span className="font-bold text-slate-900 dark:text-slate-100 block">
+          {r.district}
         </span>
-      </div>
+      )
+    },
+    {
+      key: 'allocation',
+      header: 'Sanctioned Budget',
+      align: 'right',
+      render: (r) => (
+        <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">
+          {r.allocation}
+        </span>
+      )
+    },
+    {
+      key: 'spent',
+      header: 'Disbursed / Spent',
+      align: 'right',
+      render: (r) => (
+        <span className="font-medium text-slate-700 dark:text-slate-300 tabular-nums">
+          {r.spent}
+        </span>
+      )
+    },
+    {
+      key: 'utilization',
+      header: 'Fund Utilization',
+      align: 'center',
+      sortable: true,
+      render: (r) => (
+        <div className="flex flex-col items-center gap-1">
+          <Badge
+            variant={r.utilization >= 65 ? 'success' : 'warning'}
+            size="xs"
+            dot
+          >
+            {r.utilization}%
+          </Badge>
+          <div className="w-20 h-1.5 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+            <div className="h-full bg-emerald-600 rounded-full" style={{ width: `${r.utilization}%` }} />
+          </div>
+        </div>
+      )
+    },
+    {
+      key: 'priorityProject',
+      header: 'Priority Capital Project',
+      render: (r) => (
+        <span className="text-slate-600 dark:text-slate-400">
+          {r.priorityProject}
+        </span>
+      )
+    }
+  ];
+
+  return (
+    <div className="space-y-5">
+      {/* Standardized Page Header */}
+      <PageHeader
+        title="Statewide Workforce Budget Planning &amp; Allocation"
+        description="FY 2026–27 State financial envelope, committed expenditure, and regional training investment scenarios aligned to market skill shortages."
+        badge={<Badge variant="primary" size="xs">FY 2026–27</Badge>}
+        breadcrumbs={[
+          { label: 'Home', onClick: () => navigate('home') },
+          { label: 'Resource Planning' },
+          { label: 'Budget Planning', isCurrent: true },
+        ]}
+      />
 
       {/* 4 Budget Envelope KPIs */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border-t-4 border-t-[#173a5e] border border-slate-200 dark:border-slate-800 shadow-xs">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Allocated Budget</span>
-          <strong className="block text-2xl font-extrabold text-slate-900 dark:text-slate-100 my-1">₹48.0 cr</strong>
-          <small className="text-[11px] text-slate-500">Approved state envelope</small>
-        </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <Card accentTop="primary" className="p-3.5 sm:p-4">
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+            Allocated State Envelope
+          </span>
+          <strong className="block text-2xl font-extrabold text-[#102c49] dark:text-slate-100 tabular-nums">
+            <AnimatedNumber value="₹48.0 cr" />
+          </strong>
+          <small className="text-[11px] text-slate-500">Approved FY 2026–27 ceiling</small>
+        </Card>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border-t-4 border-t-sky-600 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Committed Funds</span>
-          <strong className="block text-2xl font-extrabold text-slate-900 dark:text-slate-100 my-1">₹32.4 cr</strong>
-          <small className="text-[11px] text-sky-600 font-semibold">67.5% of allocation</small>
-        </div>
+        <Card accentTop="info" className="p-3.5 sm:p-4">
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+            Committed Funds
+          </span>
+          <strong className="block text-2xl font-extrabold text-sky-700 dark:text-sky-300 tabular-nums">
+            <AnimatedNumber value="₹32.4 cr" />
+          </strong>
+          <small className="text-[11px] text-sky-600 font-semibold">67.5% of total envelope</small>
+        </Card>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border-t-4 border-t-amber-500 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Disbursed / Spent</span>
-          <strong className="block text-2xl font-extrabold text-slate-900 dark:text-slate-100 my-1">₹21.8 cr</strong>
-          <small className="text-[11px] text-amber-600 font-semibold">45.4% of allocation</small>
-        </div>
+        <Card accentTop="warning" className="p-3.5 sm:p-4">
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+            Disbursed Expenditure
+          </span>
+          <strong className="block text-2xl font-extrabold text-[#b45309] dark:text-amber-300 tabular-nums">
+            <AnimatedNumber value="₹21.8 cr" />
+          </strong>
+          <small className="text-[11px] text-amber-700 font-semibold">45.4% progressive spend</small>
+        </Card>
 
-        <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border-t-4 border-t-emerald-600 border border-slate-200 dark:border-slate-800 shadow-xs">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Remaining Balance</span>
-          <strong className="block text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 my-1">₹26.2 cr</strong>
-          <small className="text-[11px] text-emerald-600 font-semibold">Unspent liquidity</small>
-        </div>
+        <Card accentTop="success" className="p-3.5 sm:p-4">
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+            Uncommitted Balance
+          </span>
+          <strong className="block text-2xl font-extrabold text-emerald-700 dark:text-emerald-400 tabular-nums">
+            <AnimatedNumber value="₹26.2 cr" />
+          </strong>
+          <small className="text-[11px] text-emerald-600 font-semibold">Available for targeted gap interventions</small>
+        </Card>
       </div>
 
       {/* Row: Charts for Distribution & Monthly Spend */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs space-y-3">
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-            <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-              Budget Distribution by Category
-            </h2>
-            <p className="text-xs text-slate-500">
-              ₹ crore • FY 2026–27 synthetic program allocation
-            </p>
-          </div>
-          <CanvasChart type="bar" data={budgetDistData} labels={budgetDistLabels} height={240} />
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <Card className="lg:col-span-6 flex flex-col justify-between">
+          <CardHeader>
+            <div>
+              <CardTitle>Budget Distribution by Program Area</CardTitle>
+              <CardDescription>
+                Proportion of expenditure allocated across infrastructure, equipment, and curriculum
+              </CardDescription>
+            </div>
+            <Badge variant="neutral" size="xs">₹ Crore</Badge>
+          </CardHeader>
 
-        <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs space-y-3">
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-            <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-              Monthly Cumulative Expenditure
-            </h2>
-            <p className="text-xs text-slate-500">
-              ₹ crore • Apr–Sep 2026 progressive disbursements
-            </p>
-          </div>
-          <CanvasChart type="line" data={monthlySpendData} labels={monthlyLabels} height={240} />
-        </div>
+          <CardContent>
+            <CanvasChart type="bar" data={budgetDistData} labels={budgetDistLabels} height={230} color="#102c49" />
+          </CardContent>
+
+          <CardFooter>
+            <span>Equipment and lab modernization represents 34% of current fiscal priority</span>
+          </CardFooter>
+        </Card>
+
+        <Card className="lg:col-span-6 flex flex-col justify-between">
+          <CardHeader>
+            <div>
+              <CardTitle>Cumulative Monthly Disbursements</CardTitle>
+              <CardDescription>
+                Apr–Sep 2026 progressive state treasury disbursements
+              </CardDescription>
+            </div>
+            <Badge variant="neutral" size="xs">FY 2026 H1</Badge>
+          </CardHeader>
+
+          <CardContent>
+            <CanvasChart type="line" data={monthlySpendData} labels={monthlyLabels} height={230} color="#15803d" />
+          </CardContent>
+
+          <CardFooter>
+            <span>Tracks milestone-based release against verified ITI enrollment registries</span>
+          </CardFooter>
+        </Card>
       </div>
 
       {/* District Allocation Table */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs space-y-3">
-        <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-          <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-            District Fund Utilization
-          </h2>
-          <p className="text-xs text-slate-500">
-            Breakdown across major administrative divisions
-          </p>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/60 border-b text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                <th className="p-3">District</th>
-                <th className="p-3">Allocated</th>
-                <th className="p-3">Committed</th>
-                <th className="p-3">Spent</th>
-                <th className="p-3">Remaining</th>
-                <th className="p-3 text-right">Fund Utilization</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-              {[
-                ['Pune', '₹5.8 cr', '₹4.4 cr', '₹3.2 cr', '₹2.6 cr', '55%'],
-                ['Mumbai', '₹5.2 cr', '₹3.9 cr', '₹2.8 cr', '₹2.4 cr', '54%'],
-                ['Nashik', '₹3.6 cr', '₹2.3 cr', '₹1.5 cr', '₹2.1 cr', '42%'],
-                ['Nagpur', '₹3.9 cr', '₹2.6 cr', '₹1.7 cr', '₹2.2 cr', '44%'],
-              ].map((row, i) => (
-                <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                  <td className="p-3 font-bold text-slate-900 dark:text-slate-100">{row[0]}</td>
-                  <td className="p-3 font-semibold">{row[1]}</td>
-                  <td className="p-3 text-slate-600 dark:text-slate-400">{row[2]}</td>
-                  <td className="p-3 text-slate-600 dark:text-slate-400">{row[3]}</td>
-                  <td className="p-3 text-emerald-600 font-semibold">{row[4]}</td>
-                  <td className="p-3 text-right font-bold text-[#173a5e] dark:text-sky-300">{row[5]}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* 20% Capacity Increase Scenario Box */}
-      <div className="bg-[#102c49] text-white rounded-xl p-6 shadow-md border-l-4 border-l-amber-500 space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <Card>
+        <CardHeader>
           <div>
-            <span className="text-[10px] font-bold text-amber-300 uppercase tracking-widest block mb-1">
-              SCENARIO PROJECTION • NOT GUARANTEED RESULTS
-            </span>
-            <h3 className="text-xl font-bold">
-              What happens if statewide training capacity increases by 20%?
-            </h3>
-            <p className="text-xs text-slate-300 max-w-2xl mt-0.5">
-              Illustrative planning model grounded in statewide baseline capacity. No budget is automatically allocated.
-            </p>
+            <CardTitle>District Fund Allocation &amp; Utilization</CardTitle>
+            <CardDescription>
+              Sanctioned funds and project disbursement status across key regional hubs
+            </CardDescription>
           </div>
+          <Badge variant="neutral" size="xs">6 Regional Hubs</Badge>
+        </CardHeader>
 
-          <button
-            type="button"
-            onClick={handleRunCapacity}
-            className="px-4 py-2 bg-amber-600 text-white rounded-lg font-bold text-xs hover:bg-amber-700 shrink-0 shadow-sm"
+        <Table<DistrictBudgetItem>
+          columns={columns}
+          data={DISTRICT_BUDGET_ROWS}
+          keyExtractor={r => r.district}
+          stickyHeader
+        />
+
+        <CardFooter>
+          <span>All budget line items are subject to statutory Accountant General (AG) audit</span>
+          <Button
+            variant="outline"
+            size="xs"
+            onClick={() => {
+              showToast('Exporting financial utilization statement.');
+            }}
+            leftIcon={<Download className="w-3.5 h-3.5" />}
           >
-            Calculate 20% Scenario
-          </button>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-2">
-          <div className="p-3 rounded-lg bg-white/10">
-            <strong className="block text-xl font-bold text-amber-300">
-              {scenarioRun ? '18' : '—'}
-            </strong>
-            <span className="text-slate-300 text-[11px]">Additional Trainers Needed</span>
-          </div>
-
-          <div className="p-3 rounded-lg bg-white/10">
-            <strong className="block text-xl font-bold text-white">
-              {scenarioRun ? '42' : '—'}
-            </strong>
-            <span className="text-slate-300 text-[11px]">Equipment Sets Needed</span>
-          </div>
-
-          <div className="p-3 rounded-lg bg-white/10">
-            <strong className="block text-xl font-bold text-emerald-400">
-              {scenarioRun ? '₹6.8 cr' : '—'}
-            </strong>
-            <span className="text-slate-300 text-[11px]">Estimated Capital Cost</span>
-          </div>
-
-          <div className="p-3 rounded-lg bg-white/10">
-            <strong className="block text-xl font-bold text-sky-300">
-              {scenarioRun ? '2,480' : '—'}
-            </strong>
-            <span className="text-slate-300 text-[11px]">Additional Annual Seats</span>
-          </div>
-        </div>
-      </div>
+            Export Statement
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 };

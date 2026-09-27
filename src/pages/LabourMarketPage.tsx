@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { CanvasChart } from '../components/common/CanvasChart';
 import { DISTRICTS_DATA } from '../data/mockData';
-import { TrendingUp, ArrowUpRight, ArrowDownRight, Filter, MapPin } from 'lucide-react';
+import { TrendingUp, ArrowUpRight, ArrowDownRight, Filter, MapPin, Sparkles } from 'lucide-react';
+import { 
+  PageHeader, Card, CardHeader, CardTitle, CardDescription, 
+  CardContent, CardFooter, Button, Badge, Select, FilterBar 
+} from '../components/ui';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
 
 export const LabourMarketPage: React.FC = () => {
   const { navigate, showToast } = useApp();
@@ -33,6 +38,18 @@ export const LabourMarketPage: React.FC = () => {
     showToast(`Filters applied: ${district} • ${industry} • ${rangeLabels[range]}`);
   };
 
+  const handleReset = () => {
+    setDistrict('All Maharashtra');
+    setIndustry('All industries');
+    setRange('365');
+    setAppliedFilters({
+      district: 'All Maharashtra',
+      industry: 'All industries',
+      range: '12 months'
+    });
+    showToast('Labour market filters reset to default.');
+  };
+
   // Seeded line data based on filters
   const seed = (district.length + industry.length + Number(range)) % 13;
   const lineData = [42, 48, 46, 55, 61, 67, 64, 72, 79, 77, 86, 92].map(
@@ -43,216 +60,216 @@ export const LabourMarketPage: React.FC = () => {
   const topSkillsLabels = ['Python', 'Data Analytics', 'EV Systems', 'PLC', 'Power BI', 'AWS'];
 
   return (
-    <div className="space-y-6">
-      {/* Page Title */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight">
-            Labour Market Intelligence Engine
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Explore synthetic workforce demand across Maharashtra districts, economic sectors, and evolving skill domains.
-          </p>
-        </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          DEMO DATA
-        </span>
-      </div>
+    <div className="space-y-5">
+      {/* Standardized Page Header */}
+      <PageHeader
+        title="Labour Market Intelligence Engine"
+        description="Analyze synthetic workforce demand trends across Maharashtra districts, economic sectors, and emerging industrial skill competencies."
+        badge={<Badge variant="primary" size="xs">Demand Analytics</Badge>}
+        breadcrumbs={[
+          { label: 'Home', onClick: () => navigate('home') },
+          { label: 'Market Intelligence' },
+          { label: 'Labour Market Demand', isCurrent: true },
+        ]}
+      />
 
       {/* Filter Bar */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs flex flex-wrap items-end gap-3 text-xs">
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
-            District
-          </label>
-          <select
+      <FilterBar
+        title="Market Segment & Temporal Filters"
+        onApply={handleApply}
+        onReset={handleReset}
+      >
+        <div className="w-48">
+          <Select
+            label="District"
             value={district}
             onChange={e => setDistrict(e.target.value)}
-            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-1.5 text-slate-800 dark:text-slate-200"
-          >
-            <option>All Maharashtra</option>
-            <option>Pune</option>
-            <option>Mumbai</option>
-            <option>Nagpur</option>
-            <option>Nashik</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
-            Industry Sector
-          </label>
-          <select
-            value={industry}
-            onChange={e => setIndustry(e.target.value)}
-            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-1.5 text-slate-800 dark:text-slate-200"
-          >
-            <option>All industries</option>
-            <option>Information Technology</option>
-            <option>Manufacturing</option>
-            <option>Automotive</option>
-            <option>Renewable Energy</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
-            Time Range
-          </label>
-          <select
-            value={range}
-            onChange={e => setRange(e.target.value)}
-            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-3 py-1.5 text-slate-800 dark:text-slate-200"
-          >
-            <option value="7">7 days</option>
-            <option value="30">30 days</option>
-            <option value="90">3 months</option>
-            <option value="180">6 months</option>
-            <option value="365">12 months</option>
-            <option value="730">24 months</option>
-          </select>
-        </div>
-
-        <button
-          type="button"
-          onClick={handleApply}
-          className="px-4 py-2 rounded-md bg-[#173a5e] text-white font-semibold hover:bg-[#102c49] transition-colors flex items-center gap-1.5"
-        >
-          <Filter className="w-3.5 h-3.5" />
-          <span>Apply Filters</span>
-        </button>
-      </div>
-
-      {/* Row 1: Line Trend & Emerging/Declining List */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs space-y-3">
-          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-            <div>
-              <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-                Job Demand Over Time
-              </h2>
-              <span className="text-xs text-slate-500">
-                {appliedFilters.range} • {appliedFilters.district} • {appliedFilters.industry} • Postings Index
-              </span>
-            </div>
-            <span className="text-[10px] text-slate-400 font-bold bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
-              DEMO DATA
-            </span>
-          </div>
-
-          <CanvasChart type="line" data={lineData} height={250} />
-        </div>
-
-        <div className="lg:col-span-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col justify-between">
-          <div>
-            <div className="border-b border-slate-100 dark:border-slate-800 pb-3 mb-3">
-              <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-                Emerging vs. Declining
-              </h2>
-              <p className="text-xs text-slate-500">
-                Synthetic directional signals across validated employer records
-              </p>
-            </div>
-
-            <div className="space-y-2 text-xs">
-              <div className="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <span className="font-semibold text-slate-800 dark:text-slate-200">
-                  Electric Vehicle Technology
-                </span>
-                <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-0.5">
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                  <span>28%</span>
-                </span>
-              </div>
-
-              <div className="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <span className="font-semibold text-slate-800 dark:text-slate-200">
-                  Industrial IoT
-                </span>
-                <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-0.5">
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                  <span>22%</span>
-                </span>
-              </div>
-
-              <div className="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <span className="font-semibold text-slate-800 dark:text-slate-200">
-                  Power BI Analytics
-                </span>
-                <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-0.5">
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                  <span>17%</span>
-                </span>
-              </div>
-
-              <div className="p-2.5 rounded bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 flex items-center justify-between">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
-                  Manual data entry
-                </span>
-                <span className="text-rose-700 dark:text-rose-400 font-bold flex items-center gap-0.5">
-                  <ArrowDownRight className="w-3.5 h-3.5" />
-                  <span>12%</span>
-                </span>
-              </div>
-
-              <div className="p-2.5 rounded bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 flex items-center justify-between">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
-                  Legacy desktop support
-                </span>
-                <span className="text-rose-700 dark:text-rose-400 font-bold flex items-center gap-0.5">
-                  <ArrowDownRight className="w-3.5 h-3.5" />
-                  <span>8%</span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
-            Signals indicate changes in job requirement frequency. Human verification recommended.
-          </div>
-        </div>
-      </div>
-
-      {/* Row 2: Top Skills in Selected Market & District Comparison Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs space-y-3">
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
-            <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-              Top Skills in Selected Market
-            </h2>
-            <p className="text-xs text-slate-500">
-              Share of synthetic job records demanding each competence
-            </p>
-          </div>
-
-          <CanvasChart
-            type="bar"
-            data={topSkillsData}
-            labels={topSkillsLabels}
-            height={240}
+            options={['All Maharashtra', 'Pune', 'Mumbai', 'Nagpur', 'Nashik']}
           />
         </div>
 
-        <div className="lg:col-span-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col justify-between">
-          <div>
-            <div className="border-b border-slate-100 dark:border-slate-800 pb-3 mb-3 flex items-center justify-between">
+        <div className="w-56">
+          <Select
+            label="Industry Sector"
+            value={industry}
+            onChange={e => setIndustry(e.target.value)}
+            options={['All industries', 'Information Technology', 'Manufacturing', 'Automotive', 'Renewable Energy']}
+          />
+        </div>
+
+        <div className="w-44">
+          <Select
+            label="Time Window"
+            value={range}
+            onChange={e => setRange(e.target.value)}
+            options={[
+              { value: '7', label: '7 days' },
+              { value: '30', label: '30 days' },
+              { value: '90', label: '3 months' },
+              { value: '180', label: '6 months' },
+              { value: '365', label: '12 months' },
+              { value: '730', label: '24 months' },
+            ]}
+          />
+        </div>
+      </FilterBar>
+
+      {/* Row 1: Line Trend & Emerging/Declining List */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <Card className="lg:col-span-8 flex flex-col justify-between">
+          <CardHeader>
+            <div>
+              <CardTitle>Job Postings Demand Over Time</CardTitle>
+              <CardDescription>
+                {appliedFilters.range} • {appliedFilters.district} • {appliedFilters.industry} • Postings Velocity Index
+              </CardDescription>
+            </div>
+            <Badge variant="neutral" size="xs">Synthetic Sample</Badge>
+          </CardHeader>
+
+          <CardContent>
+            <CanvasChart type="line" data={lineData} height={250} />
+          </CardContent>
+
+          <CardFooter>
+            <span>Time-series index calculated against verified employment records</span>
+            <span className="font-mono text-[10px]">INDEX SCALE: 0-100</span>
+          </CardFooter>
+        </Card>
+
+        <Card className="lg:col-span-4 flex flex-col justify-between">
+          <CardHeader>
+            <div>
+              <CardTitle>Emerging vs. Declining</CardTitle>
+              <CardDescription>
+                Directional skill trajectory across employer vacancy notices
+              </CardDescription>
+            </div>
+            <Badge variant="saffron" size="xs">Trajectories</Badge>
+          </CardHeader>
+
+          <CardContent className="space-y-2 text-xs">
+            <div className="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <div>
-                <h2 className="text-base font-bold text-slate-800 dark:text-slate-100">
-                  District Comparison Matrix
-                </h2>
-                <p className="text-xs text-slate-500">
-                  Select a district to view regional intelligence
-                </p>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 block">
+                  Electric Vehicle Technology
+                </span>
+                <span className="text-[10px] text-slate-400">Automotive &amp; Transport</span>
               </div>
-              <button
-                type="button"
-                onClick={() => navigate('districtintel')}
-                className="text-xs font-semibold text-sky-600 hover:underline"
-              >
-                Pune Deep Dive
-              </button>
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-0.5 tabular-nums">
+                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>+28%</span>
+              </span>
             </div>
 
+            <div className="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 block">
+                  Industrial IoT
+                </span>
+                <span className="text-[10px] text-slate-400">Smart Manufacturing</span>
+              </div>
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-0.5 tabular-nums">
+                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>+22%</span>
+              </span>
+            </div>
+
+            <div className="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 block">
+                  Power BI Analytics
+                </span>
+                <span className="text-[10px] text-slate-400">Services &amp; Logistics</span>
+              </div>
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-0.5 tabular-nums">
+                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>+17%</span>
+              </span>
+            </div>
+
+            <div className="p-2.5 rounded bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 flex items-center justify-between">
+              <div>
+                <span className="font-semibold text-slate-700 dark:text-slate-300 block">
+                  Manual data entry
+                </span>
+                <span className="text-[10px] text-slate-400">Clerical &amp; Operations</span>
+              </div>
+              <span className="text-rose-700 dark:text-rose-400 font-bold flex items-center gap-0.5 tabular-nums">
+                <ArrowDownRight className="w-3.5 h-3.5" />
+                <span>-12%</span>
+              </span>
+            </div>
+
+            <div className="p-2.5 rounded bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/60 flex items-center justify-between">
+              <div>
+                <span className="font-semibold text-slate-700 dark:text-slate-300 block">
+                  Legacy desktop support
+                </span>
+                <span className="text-[10px] text-slate-400">Generic IT support</span>
+              </div>
+              <span className="text-rose-700 dark:text-rose-400 font-bold flex items-center gap-0.5 tabular-nums">
+                <ArrowDownRight className="w-3.5 h-3.5" />
+                <span>-8%</span>
+              </span>
+            </div>
+          </CardContent>
+
+          <CardFooter>
+            <span className="text-[11px] text-slate-400">
+              Signals indicate changes in requirements frequency; human review recommended.
+            </span>
+          </CardFooter>
+        </Card>
+      </div>
+
+      {/* Row 2: Top Skills in Selected Market & District Comparison Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <Card className="lg:col-span-6 flex flex-col justify-between">
+          <CardHeader>
+            <div>
+              <CardTitle>Top Skills in Selected Market</CardTitle>
+              <CardDescription>
+                Share of synthetic job records demanding each competence
+              </CardDescription>
+            </div>
+            <Badge variant="primary" size="xs">Prevalence</Badge>
+          </CardHeader>
+
+          <CardContent>
+            <CanvasChart
+              type="bar"
+              data={topSkillsData}
+              labels={topSkillsLabels}
+              height={230}
+            />
+          </CardContent>
+
+          <CardFooter>
+            <span className="text-[11px] text-slate-400">
+              Extracted via natural language processing of employer skill requirement sections
+            </span>
+          </CardFooter>
+        </Card>
+
+        <Card className="lg:col-span-6 flex flex-col justify-between">
+          <CardHeader>
+            <div>
+              <CardTitle>District Comparison Matrix</CardTitle>
+              <CardDescription>
+                Select a district below to inspect regional intelligence
+              </CardDescription>
+            </div>
+            <Button
+              variant="outline"
+              size="xs"
+              onClick={() => navigate('districtintel')}
+            >
+              Pune Deep Dive
+            </Button>
+          </CardHeader>
+
+          <CardContent>
             <div className="grid grid-cols-3 gap-2 text-xs">
               {DISTRICTS_DATA.map((d, i) => (
                 <button
@@ -265,37 +282,37 @@ export const LabourMarketPage: React.FC = () => {
                       showToast(`District ${d.name}: ${d.jobs.toLocaleString('en-IN')} postings. Top skill: ${d.topSkill}`);
                     }
                   }}
-                  className={`p-2.5 rounded-lg border text-left transition-colors ${
+                  className={`p-2.5 rounded border text-left transition-colors cursor-pointer ${
                     d.name === 'Pune'
-                      ? 'border-amber-400 bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 font-bold'
+                      ? 'border-[#b45309] bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 font-bold'
                       : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 hover:bg-slate-100'
                   }`}
                 >
                   <strong className="block text-xs text-slate-800 dark:text-slate-200">
                     {d.name}
                   </strong>
-                  <span className="block text-[11px] text-slate-500">
-                    {d.jobs.toLocaleString('en-IN')} jobs
+                  <span className="block text-[11px] text-slate-500 tabular-nums">
+                    <AnimatedNumber value={d.jobs} /> jobs
                   </span>
-                  <span className="block text-[10px] text-sky-600 dark:text-sky-400 truncate">
+                  <span className="block text-[10px] text-[#102c49] dark:text-sky-400 truncate">
                     {d.topSkill}
                   </span>
                 </button>
               ))}
             </div>
-          </div>
+          </CardContent>
 
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 flex items-center justify-between">
-            <span>Illustrative district grid; not an official geographic map.</span>
-            <button
-              type="button"
+          <CardFooter>
+            <span>Schematic district distribution overview</span>
+            <Button
+              variant="ghost"
+              size="xs"
               onClick={() => navigate('districtintel')}
-              className="text-[#173a5e] dark:text-sky-400 font-semibold hover:underline"
             >
               Open Pune District Page →
-            </button>
-          </div>
-        </div>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   );

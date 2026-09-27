@@ -65,8 +65,20 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [route, setRoute] = useState<RouteId>('home');
   const [role, setRoleState] = useState<Role>('State Admin');
-  const [language, setLanguageState] = useState<'en' | 'mr' | 'hi'>('en');
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [language, setLanguageState] = useState<'en' | 'mr' | 'hi'>(() => {
+    try {
+      const saved = localStorage.getItem('ms_lmip_lang');
+      if (saved === 'mr' || saved === 'hi' || saved === 'en') return saved;
+    } catch (_) {}
+    return 'en';
+  });
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('ms_lmip_theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+    } catch (_) {}
+    return 'light';
+  });
   const [isPresentation, setIsPresentation] = useState<boolean>(false);
   const [isLargeText, setIsLargeText] = useState<boolean>(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
@@ -76,6 +88,26 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastTimer, setToastTimer] = useState<NodeJS.Timeout | null>(null);
+
+  // Synchronize Dark Theme to DOM elements and storage
+  useEffect(() => {
+    const isDark = theme === 'dark';
+    document.documentElement.classList.toggle('dark', isDark);
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.classList.toggle('dark', isDark);
+    document.body.classList.toggle('theme-dark', isDark);
+    try {
+      localStorage.setItem('ms_lmip_theme', theme);
+    } catch (_) {}
+  }, [theme]);
+
+  // Synchronize Language to HTML attribute and storage
+  useEffect(() => {
+    document.documentElement.lang = language;
+    try {
+      localStorage.setItem('ms_lmip_lang', language);
+    } catch (_) {}
+  }, [language]);
 
   const [jobs, setJobs] = useState<JobRecord[]>(INITIAL_JOBS);
   const [selectedJobId, setSelectedJobId] = useState<number | null>(1);
@@ -126,10 +158,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setLanguageState(lang);
     showToast(
       lang === 'mr' 
-        ? 'मुख्य नेव्हिगेशन मराठीत दाखवले आहे.' 
+        ? 'भाषा बदलली: मराठी (MR)' 
         : lang === 'hi' 
-        ? 'मुख्य नेविगेशन हिंदी में दिखाया गया है।' 
-        : 'Interface language set to English.'
+        ? 'भाषा बदली गई: हिंदी (HI)' 
+        : 'Interface language set to: English (EN)'
     );
   };
 
@@ -140,8 +172,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const toggleTheme = () => {
     setTheme(prev => {
       const next = prev === 'light' ? 'dark' : 'light';
-      document.body.classList.toggle('theme-dark', next === 'dark');
-      showToast(`${next === 'dark' ? 'Dark' : 'Light'} theme activated.`);
+      showToast(
+        language === 'mr'
+          ? `${next === 'dark' ? 'गडद (Dark)' : 'हलकी (Light)'} थीम सक्रिय केली.`
+          : language === 'hi'
+          ? `${next === 'dark' ? 'डार्क (Dark)' : 'लाइट (Light)'} थीम सक्रिय की गई।`
+          : `${next === 'dark' ? 'Dark' : 'Light'} theme activated.`
+      );
       return next;
     });
   };

@@ -1,5 +1,7 @@
 import React from 'react';
-import { HeartPulse, CheckCircle2, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { HeartPulse, CheckCircle2, AlertTriangle, ShieldCheck, Activity } from 'lucide-react';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
+import { KpiCard } from '../components/common/KpiCard';
 
 export const SystemHealthPage: React.FC = () => {
   return (
@@ -20,6 +22,35 @@ export const SystemHealthPage: React.FC = () => {
         </span>
       </div>
 
+      {/* Summary KPI strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <KpiCard
+          label="Pipeline Availability"
+          value="99.94%"
+          subtext="High-availability SLA"
+          accent="success"
+          trend="up"
+        />
+        <KpiCard
+          label="Mean Query Latency"
+          value="42 ms"
+          subtext="Optimized index lookups"
+          accent="primary"
+        />
+        <KpiCard
+          label="Synchronized Batches"
+          value="1,234"
+          subtext="Verified ingested files"
+          accent="saffron"
+        />
+        <KpiCard
+          label="Operational Nodes"
+          value="5 / 5"
+          subtext="All clusters operational"
+          accent="info"
+        />
+      </div>
+
       {/* 5 Health Status Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 text-xs">
         <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-2">
@@ -31,8 +62,8 @@ export const SystemHealthPage: React.FC = () => {
           </div>
           <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t">
             <div><strong>Last Check:</strong> 2 mins ago</div>
-            <div><strong>Latency:</strong> 42 ms</div>
-            <div><strong>Errors:</strong> 0</div>
+            <div><strong>Latency:</strong> <AnimatedNumber value="42 ms" /></div>
+            <div><strong>Errors:</strong> <AnimatedNumber value={0} /></div>
           </div>
         </div>
 
@@ -45,8 +76,8 @@ export const SystemHealthPage: React.FC = () => {
           </div>
           <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t">
             <div><strong>Last Check:</strong> 1 min ago</div>
-            <div><strong>Latency:</strong> 118 ms</div>
-            <div><strong>Errors:</strong> 2 demo requests</div>
+            <div><strong>Latency:</strong> <AnimatedNumber value="118 ms" /></div>
+            <div><strong>Errors:</strong> <AnimatedNumber value="2 demo requests" /></div>
           </div>
         </div>
 
@@ -59,8 +90,8 @@ export const SystemHealthPage: React.FC = () => {
           </div>
           <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t">
             <div><strong>Last Run:</strong> 18 mins ago</div>
-            <div><strong>Processed:</strong> 1,234 records</div>
-            <div><strong>Errors:</strong> 3 flagged</div>
+            <div><strong>Processed:</strong> <AnimatedNumber value="1,234 records" /></div>
+            <div><strong>Errors:</strong> <AnimatedNumber value="3 flagged" /></div>
           </div>
         </div>
 
@@ -73,8 +104,8 @@ export const SystemHealthPage: React.FC = () => {
           </div>
           <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t">
             <div><strong>Last Run:</strong> 24 mins ago</div>
-            <div><strong>Completed:</strong> 18 of 20</div>
-            <div><strong>Delayed:</strong> 2 demo jobs</div>
+            <div><strong>Completed:</strong> <AnimatedNumber value="18 of 20" /></div>
+            <div><strong>Delayed:</strong> <AnimatedNumber value="2 demo jobs" /></div>
           </div>
         </div>
 
@@ -86,9 +117,9 @@ export const SystemHealthPage: React.FC = () => {
             </span>
           </div>
           <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t">
-            <div><strong>Waiting:</strong> 14 records</div>
+            <div><strong>Waiting:</strong> <AnimatedNumber value="14 records" /></div>
             <div><strong>Oldest:</strong> 6 mins</div>
-            <div><strong>Failed:</strong> 0</div>
+            <div><strong>Failed:</strong> <AnimatedNumber value={0} /></div>
           </div>
         </div>
       </div>

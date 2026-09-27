@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { RouteId } from '../../types';
 import { useApp } from '../../context/AppContext';
+import { TrendingUp, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { AnimatedNumber } from './AnimatedNumber';
 
-interface KpiCardProps {
+export interface KpiCardProps {
   label: string;
   value: string;
   subtext?: string;
   targetRoute?: RouteId;
   borderTopColor?: string;
+  accent?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'saffron';
+  trend?: 'up' | 'down' | 'neutral';
+  tooltip?: string;
+  loading?: boolean;
 }
 
 export const KpiCard: React.FC<KpiCardProps> = ({
@@ -15,53 +21,31 @@ export const KpiCard: React.FC<KpiCardProps> = ({
   value,
   subtext,
   targetRoute,
-  borderTopColor = 'border-t-[#173a5e]'
+  borderTopColor,
+  accent = 'primary',
+  trend,
+  tooltip,
+  loading = false,
 }) => {
   const { navigate } = useApp();
-  const [displayValue, setDisplayValue] = useState(value);
-
-  // Smooth counter animation if it's a numeric metric
-  useEffect(() => {
-    const rawDigits = value.replace(/[^0-9.]/g, '');
-    const num = parseFloat(rawDigits);
-    if (!isNaN(num) && num > 0 && num < 500000) {
-      let start = 0;
-      const duration = 650;
-      const startTime = performance.now();
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        const currentNum = Math.round(num * ease);
-
-        if (value.includes(',')) {
-          setDisplayValue(currentNum.toLocaleString('en-IN'));
-        } else if (value.includes('%')) {
-          setDisplayValue(`${currentNum}%`);
-        } else {
-          setDisplayValue(String(currentNum));
-        }
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setDisplayValue(value);
-        }
-      };
-
-      const animId = requestAnimationFrame(animate);
-      return () => cancelAnimationFrame(animId);
-    } else {
-      setDisplayValue(value);
-    }
-  }, [value]);
 
   const handleClick = () => {
     if (targetRoute) {
       navigate(targetRoute);
     }
   };
+
+  const accentBorderStyles: Record<string, string> = {
+    primary: 'border-t-3 border-t-[#102c49]',
+    success: 'border-t-3 border-t-[#15803d]',
+    warning: 'border-t-3 border-t-[#b45309]',
+    danger: 'border-t-3 border-t-[#b91c1c]',
+    info: 'border-t-3 border-t-[#0284c7]',
+    saffron: 'border-t-3 border-t-[#c2410c]',
+  };
+
+  // Determine top border style with fallback to custom borderTopColor if passed
+  const topBorderClass = borderTopColor || accentBorderStyles[accent];
 
   return (
     <div
@@ -74,20 +58,35 @@ export const KpiCard: React.FC<KpiCardProps> = ({
       }}
       tabIndex={targetRoute ? 0 : undefined}
       role={targetRoute ? 'button' : undefined}
-      className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 border-t-4 ${borderTopColor} p-4 rounded-lg shadow-sm transition-all duration-200 ${
-        targetRoute ? 'cursor-pointer hover:-translate-y-0.5 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700' : ''
-      }`}
+      title={tooltip}
+      className={`
+        bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+        ${topBorderClass}
+        p-3.5 sm:p-4 rounded-lg shadow-2xs transition-all duration-150 relative overflow-hidden group
+        ${targetRoute ? 'cursor-pointer hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-xs focus-visible:outline-2 focus-visible:outline-amber-600' : ''}
+      `}
     >
-      <small className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-        {label}
-      </small>
-      <strong className="block text-2xl lg:text-3xl font-bold text-[#142033] dark:text-slate-100 tracking-tight my-1">
-        {displayValue}
-      </strong>
-      {subtext && (
-        <span className="block text-xs font-medium text-emerald-700 dark:text-emerald-400 mt-1 flex items-center gap-1">
-          {subtext}
+      <div className="flex items-center justify-between gap-1 mb-1">
+        <span className="block text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">
+          {label}
         </span>
+        {targetRoute && (
+          <ArrowUpRight className="w-3 h-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+        )}
+      </div>
+
+      <div className="flex items-baseline gap-2 my-1">
+        <strong className="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#102c49] dark:text-slate-100 tracking-tight tabular-nums">
+          <AnimatedNumber value={value} loading={loading} />
+        </strong>
+      </div>
+
+      {subtext && (
+        <div className="flex items-center gap-1 text-[11px] font-medium text-emerald-700 dark:text-emerald-400 mt-1">
+          {trend === 'up' && <TrendingUp className="w-3 h-3 shrink-0" />}
+          {trend === 'down' && <ArrowDownRight className="w-3 h-3 shrink-0 text-rose-600 dark:text-rose-400" />}
+          <span className="truncate">{subtext}</span>
+        </div>
       )}
     </div>
   );

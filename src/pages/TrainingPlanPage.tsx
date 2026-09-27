@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Calendar, Download, ShieldAlert, CheckSquare } from 'lucide-react';
+import { Calendar, Download, ShieldAlert, CheckSquare, ArrowRight } from 'lucide-react';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
+import { 
+  PageHeader, Card, CardHeader, CardTitle, CardDescription, 
+  CardContent, CardFooter, Button, Badge, Input, Select, Table, Column, Alert 
+} from '../components/ui';
+
+interface PlanRow {
+  course: string;
+  seats: number;
+  trainers: string;
+  equipment: string;
+  cost: string;
+  priority: string;
+  timeline: string;
+}
 
 export const TrainingPlanPage: React.FC = () => {
-  const { showToast } = useApp();
+  const { showToast, navigate } = useApp();
   const [district, setDistrict] = useState('Pune');
   const [period, setPeriod] = useState('Oct 2026–Mar 2027');
   const [budget, setBudget] = useState(180);
@@ -11,7 +26,27 @@ export const TrainingPlanPage: React.FC = () => {
     'EV Service Technician',
     'Industrial IoT Technician'
   ]);
-  const [generatedPlan, setGeneratedPlan] = useState<any[] | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedPlan, setGeneratedPlan] = useState<PlanRow[] | null>(() => [
+    {
+      course: 'EV Diagnostics & Safety',
+      seats: 360,
+      trainers: '12 trainers',
+      equipment: '6 diagnostic rigs',
+      cost: '₹34.6 lakh',
+      priority: 'High',
+      timeline: 'Oct–Dec 2026'
+    },
+    {
+      course: 'Industrial IoT Practice',
+      seats: 280,
+      trainers: '9 trainers',
+      equipment: '12 Arduino kits; 4 PLC trainers',
+      cost: '₹31.4 lakh',
+      priority: 'High',
+      timeline: 'Nov 2026–Feb 2027'
+    }
+  ]);
 
   const templates: Record<string, [string, number, number, string, string, string]> = {
     'EV Service Technician': ['EV Diagnostics & Safety', 360, 12, '6 diagnostic rigs', 'High', 'Oct–Dec 2026'],
@@ -27,23 +62,27 @@ export const TrainingPlanPage: React.FC = () => {
       return;
     }
 
-    const perOcc = Math.round((budget / occupations.length) * 10) / 10;
-    const rows = occupations.map((occ, i) => {
-      const t = templates[occ];
-      const cost = Math.min(perOcc, Math.round((t[1] * 0.045 + t[2] * 1.2 + (i + 1) * 4) * 10) / 10);
-      return {
-        course: t[0],
-        seats: t[1],
-        trainers: `${t[2]} trainers`,
-        equipment: t[3],
-        cost: `₹${cost.toFixed(1)} lakh`,
-        priority: t[4],
-        timeline: t[5]
-      };
-    });
+    setIsGenerating(true);
+    setTimeout(() => {
+      const perOcc = Math.round((budget / occupations.length) * 10) / 10;
+      const rows: PlanRow[] = occupations.map((occ, i) => {
+        const t = templates[occ];
+        const cost = Math.min(perOcc, Math.round((t[1] * 0.045 + t[2] * 1.2 + (i + 1) * 4) * 10) / 10);
+        return {
+          course: t[0],
+          seats: t[1],
+          trainers: `${t[2]} trainers`,
+          equipment: t[3],
+          cost: `₹${cost.toFixed(1)} lakh`,
+          priority: t[4],
+          timeline: t[5]
+        };
+      });
 
-    setGeneratedPlan(rows);
-    showToast(`District training plan generated for ${district} (${period}).`);
+      setGeneratedPlan(rows);
+      setIsGenerating(false);
+      showToast(`District training plan generated for ${district} (${period}).`);
+    }, 280);
   };
 
   const handleToggleOcc = (val: string) => {
@@ -52,199 +91,272 @@ export const TrainingPlanPage: React.FC = () => {
     );
   };
 
-  return (
-    <div className="space-y-6">
-      {/* Head */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-amber-500" />
-            <span>District Training Plan Generator</span>
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Translate district demand signals into a reviewable training-capacity scenario for government officers.
-          </p>
-        </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          SYNTHETIC DEMO DATA
+  const planColumns: Column<PlanRow>[] = [
+    {
+      key: 'course',
+      header: 'Course / Trade Module',
+      render: (r) => (
+        <span className="font-bold text-slate-900 dark:text-slate-100 block">
+          {r.course}
         </span>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Input Parameters Form */}
-        <form 
-          onSubmit={handleGenerate} 
-          className="lg:col-span-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs space-y-4 text-xs"
+      )
+    },
+    {
+      key: 'seats',
+      header: 'Target Intake',
+      align: 'right',
+      render: (r) => (
+        <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums">
+          <AnimatedNumber value={`${r.seats} seats`} loading={isGenerating} />
+        </span>
+      )
+    },
+    {
+      key: 'trainers',
+      header: 'Trainers Required',
+      render: (r) => (
+        <span className="text-slate-700 dark:text-slate-300">
+          {r.trainers}
+        </span>
+      )
+    },
+    {
+      key: 'equipment',
+      header: 'Lab Equipment Requirement',
+      render: (r) => (
+        <span className="text-slate-600 dark:text-slate-400">
+          {r.equipment}
+        </span>
+      )
+    },
+    {
+      key: 'cost',
+      header: 'Budget Est.',
+      align: 'right',
+      render: (r) => (
+        <span className="font-bold text-emerald-700 dark:text-emerald-400 tabular-nums">
+          <AnimatedNumber value={r.cost} loading={isGenerating} />
+        </span>
+      )
+    },
+    {
+      key: 'priority',
+      header: 'Priority',
+      align: 'center',
+      render: (r) => (
+        <Badge
+          variant={r.priority === 'High' ? 'danger' : 'warning'}
+          size="xs"
         >
-          <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">
-            Plan Parameters
-          </h2>
+          {r.priority}
+        </Badge>
+      )
+    },
+    {
+      key: 'timeline',
+      header: 'Deployment Window',
+      align: 'right',
+      render: (r) => (
+        <span className="text-slate-500 tabular-nums whitespace-nowrap">
+          {r.timeline}
+        </span>
+      )
+    }
+  ];
 
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Target District *
-            </label>
-            <select
-              value={district}
-              onChange={e => setDistrict(e.target.value)}
-              className="w-full p-2 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
-            >
-              <option>Pune</option>
-              <option>Nashik</option>
-              <option>Nagpur</option>
-              <option>Kolhapur</option>
-            </select>
-          </div>
+  return (
+    <div className="space-y-5">
+      {/* Standardized Page Header */}
+      <PageHeader
+        title="District Training Plan Generator"
+        description="Translate district demand signals into reviewable training-capacity proposals for government officers and institutional heads."
+        badge={<Badge variant="primary" size="xs">Workforce Planning</Badge>}
+        breadcrumbs={[
+          { label: 'Home', onClick: () => navigate('home') },
+          { label: 'Curriculum & Training' },
+          { label: 'Training Plans', isCurrent: true },
+        ]}
+      />
 
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Planning Window *
-            </label>
-            <select
-              value={period}
-              onChange={e => setPeriod(e.target.value)}
-              className="w-full p-2 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
-            >
-              <option>Oct 2026–Mar 2027</option>
-              <option>Jan–Jun 2027</option>
-              <option>FY 2027–28</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-2">
-              Target Priority Occupations
-            </label>
-            <div className="space-y-2">
-              {[
-                'EV Service Technician',
-                'Industrial IoT Technician',
-                'Frontend Application Developer',
-                'Solar Installation Supervisor'
-              ].map((occ, i) => (
-                <label key={i} className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={occupations.includes(occ)}
-                    onChange={() => handleToggleOcc(occ)}
-                    className="rounded text-[#173a5e] focus:ring-amber-500"
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        {/* Input Parameters Form */}
+        <div className="lg:col-span-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Plan Scenario Parameters</CardTitle>
+            </CardHeader>
+            <form onSubmit={handleGenerate}>
+              <CardContent className="space-y-3.5 text-xs">
+                <div>
+                  <Select
+                    label="Target District *"
+                    value={district}
+                    onChange={e => setDistrict(e.target.value)}
+                    options={['Pune', 'Nashik', 'Nagpur', 'Kolhapur', 'Chhatrapati Sambhajinagar']}
                   />
-                  <span className="text-slate-700 dark:text-slate-300">{occ}</span>
-                </label>
-              ))}
-            </div>
-          </div>
+                </div>
 
-          <div>
-            <div className="flex justify-between items-center mb-1">
-              <label className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
-                Available Budget Envelope
-              </label>
-              <span className="font-bold text-[#173a5e] dark:text-sky-300">₹{budget} lakh</span>
-            </div>
-            <input
-              type="range"
-              min="20"
-              max="1000"
-              step="10"
-              value={budget}
-              onChange={e => setBudget(Number(e.target.value))}
-              className="w-full accent-[#173a5e]"
-            />
-          </div>
+                <div>
+                  <Select
+                    label="Implementation Window *"
+                    value={period}
+                    onChange={e => setPeriod(e.target.value)}
+                    options={[
+                      { value: 'Oct 2026–Mar 2027', label: 'Oct 2026–Mar 2027 (H2 Plan)' },
+                      { value: 'Apr 2027–Sep 2027', label: 'Apr 2027–Sep 2027 (H1 Plan)' },
+                      { value: 'FY 2027–28', label: 'Full Year FY 2027–28' }
+                    ]}
+                  />
+                </div>
 
-          <button
-            type="submit"
-            className="w-full py-2.5 rounded-lg bg-[#173a5e] text-white font-bold text-xs hover:bg-[#102c49] shadow-sm"
-          >
-            Generate District Plan
-          </button>
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+                    Indicative Budget Envelope: ₹{budget} Lakh
+                  </label>
+                  <input
+                    type="range"
+                    min="50"
+                    max="500"
+                    step="10"
+                    value={budget}
+                    onChange={e => setBudget(Number(e.target.value))}
+                    className="w-full accent-[#102c49] dark:accent-sky-400 cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-400 mt-0.5">
+                    <span>₹50L</span>
+                    <span>₹250L</span>
+                    <span>₹500L</span>
+                  </div>
+                </div>
 
-          <p className="text-[10px] text-slate-400">
-            Generation uses rule-based synthesis. All proposals must undergo District Officer review before authorization.
-          </p>
-        </form>
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Target Priority Occupations *
+                  </label>
+                  <div className="space-y-1.5 bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded border border-slate-200 dark:border-slate-800">
+                    {[
+                      'EV Service Technician',
+                      'Industrial IoT Technician',
+                      'Frontend Application Developer',
+                      'Solar Installation Supervisor'
+                    ].map((occ, idx) => (
+                      <label key={idx} className="flex items-center gap-2 cursor-pointer select-none text-slate-700 dark:text-slate-300">
+                        <input
+                          type="checkbox"
+                          checked={occupations.includes(occ)}
+                          onChange={() => handleToggleOcc(occ)}
+                          className="rounded border-slate-300 text-[#102c49] focus:ring-amber-500"
+                        />
+                        <span className="font-medium text-xs">{occ}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
 
-        {/* Output Panel */}
-        <div className="lg:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col justify-between space-y-4">
-          <div>
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 mb-3">
+                <Alert
+                  variant="info"
+                  title="Scenario Advisory"
+                >
+                  Proposals are rule-derived based on district vacancy ratios and do not constitute authorized procurement orders.
+                </Alert>
+              </CardContent>
+
+              <CardFooter>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="sm"
+                  fullWidth
+                >
+                  Generate Plan Scenario
+                </Button>
+              </CardFooter>
+            </form>
+          </Card>
+        </div>
+
+        {/* Plan Output Presentation */}
+        <div className="lg:col-span-8 space-y-4">
+          <Card>
+            <CardHeader>
               <div>
-                <span className="text-[10px] font-bold text-amber-600 uppercase">GENERATED SCENARIO</span>
-                <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">
-                  {district} • {period} Capacity Plan
-                </h2>
+                <CardTitle>Synthesized District Workforce Plan</CardTitle>
+                <CardDescription>
+                  {district} District • {period} • Budget Cap: ₹{budget} lakh
+                </CardDescription>
               </div>
+              <Badge variant="neutral" size="xs">
+                {generatedPlan ? `${generatedPlan.length} Trades Included` : 'Pending Generation'}
+              </Badge>
+            </CardHeader>
 
-              {generatedPlan && (
-                <div className="flex items-center gap-2 text-xs">
-                  <button
-                    type="button"
-                    onClick={() => showToast('Prototype PDF export requested. File generation simulated.')}
-                    className="px-2.5 py-1 rounded border border-slate-300 hover:bg-slate-50 flex items-center gap-1"
-                  >
-                    <Download className="w-3 h-3" />
-                    <span>PDF</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => showToast('Prototype Excel export requested. Data package simulated.')}
-                    className="px-2.5 py-1 rounded border border-slate-300 hover:bg-slate-50 flex items-center gap-1"
-                  >
-                    <Download className="w-3 h-3" />
-                    <span>Excel</span>
-                  </button>
+            <CardContent>
+              {generatedPlan ? (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-2.5 text-xs">
+                    <div className="p-3 rounded bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+                      <span className="text-[10px] text-slate-500 font-bold uppercase block">Total Target Seats</span>
+                      <strong className="text-xl font-extrabold text-[#102c49] dark:text-sky-300 tabular-nums">
+                        <AnimatedNumber value={generatedPlan.reduce((acc, curr) => acc + curr.seats, 0)} loading={isGenerating} />
+                      </strong>
+                    </div>
+                    <div className="p-3 rounded bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+                      <span className="text-[10px] text-slate-500 font-bold uppercase block">Trainer Headcount</span>
+                      <strong className="text-xl font-extrabold text-slate-800 dark:text-slate-200 tabular-nums">
+                        <AnimatedNumber value={`${generatedPlan.reduce((acc, curr) => acc + parseInt(curr.trainers, 10), 0)} instructors`} loading={isGenerating} />
+                      </strong>
+                    </div>
+                    <div className="p-3 rounded bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+                      <span className="text-[10px] text-slate-500 font-bold uppercase block">Total Cost Estimate</span>
+                      <strong className="text-xl font-extrabold text-emerald-700 dark:text-emerald-400 tabular-nums">
+                        <AnimatedNumber value={`₹${generatedPlan.reduce((acc, curr) => acc + parseFloat(curr.cost.replace(/[^0-9.]/g, '')), 0).toFixed(1)} L`} loading={isGenerating} />
+                      </strong>
+                    </div>
+                  </div>
+
+                  <Table<PlanRow>
+                    columns={planColumns}
+                    data={generatedPlan}
+                    keyExtractor={r => r.course}
+                  />
+                </div>
+              ) : (
+                <div className="p-10 text-center text-slate-400 space-y-2 border border-dashed border-slate-200 dark:border-slate-800 rounded-lg">
+                  <Calendar className="w-8 h-8 mx-auto text-slate-300 stroke-[1.5]" />
+                  <p className="text-xs font-semibold text-slate-600 dark:text-slate-400">
+                    No district training plan currently generated
+                  </p>
+                  <p className="text-[11px] text-slate-400">
+                    Configure your parameters in the left panel and click "Generate Plan Scenario".
+                  </p>
                 </div>
               )}
-            </div>
+            </CardContent>
 
-            {generatedPlan ? (
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs border-collapse">
-                  <thead>
-                    <tr className="bg-slate-50 dark:bg-slate-800/60 border-b text-[11px] font-bold text-slate-500 uppercase">
-                      <th className="p-3">Recommended Course</th>
-                      <th className="p-3">Seats</th>
-                      <th className="p-3">Trainers</th>
-                      <th className="p-3">Equipment Needs</th>
-                      <th className="p-3">Est. Cost</th>
-                      <th className="p-3">Priority</th>
-                      <th className="p-3">Timeline</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                    {generatedPlan.map((row, idx) => (
-                      <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                        <td className="p-3 font-bold text-slate-900 dark:text-slate-100">{row.course}</td>
-                        <td className="p-3 font-semibold">{row.seats}</td>
-                        <td className="p-3 text-slate-600 dark:text-slate-300">{row.trainers}</td>
-                        <td className="p-3 text-slate-600 dark:text-slate-300">{row.equipment}</td>
-                        <td className="p-3 font-bold text-emerald-600">{row.cost}</td>
-                        <td className="p-3">
-                          <span className="px-2 py-0.5 rounded bg-rose-100 text-rose-800 text-[10px] font-bold">
-                            {row.priority}
-                          </span>
-                        </td>
-                        <td className="p-3 text-slate-500 whitespace-nowrap">{row.timeline}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="py-16 text-center text-slate-400 space-y-2">
-                <p className="font-semibold text-sm">Select planning parameters and click Generate Plan</p>
-                <p className="text-xs">Produces a reviewable capacity roadmap with seats, trainers, tooling, and budgets.</p>
-              </div>
+            {generatedPlan && (
+              <CardFooter className="justify-between">
+                <Button
+                  variant="secondary"
+                  size="xs"
+                  onClick={() => {
+                    showToast('Exporting district training plan dossier in CSV/PDF format.');
+                  }}
+                  leftIcon={<Download className="w-3.5 h-3.5" />}
+                >
+                  Export Plan Dossier
+                </Button>
+
+                <Button
+                  variant="primary"
+                  size="xs"
+                  onClick={() => navigate('budget')}
+                  rightIcon={<ArrowRight className="w-3.5 h-3.5" />}
+                >
+                  Proceed to Budget Allocation
+                </Button>
+              </CardFooter>
             )}
-          </div>
-
-          <div className="p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 rounded-lg text-xs text-amber-900 dark:text-amber-200 flex items-start gap-2">
-            <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-            <span>
-              <strong>Officer Review Required:</strong> Recommendations do not autonomously commit government budget or course approvals.
-            </span>
-          </div>
+          </Card>
         </div>
       </div>
     </div>

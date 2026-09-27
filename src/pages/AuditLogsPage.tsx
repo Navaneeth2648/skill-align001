@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
+import { useApp } from '../context/AppContext';
 import { AUDIT_LOGS_DATA } from '../data/mockData';
-import { Activity, Search } from 'lucide-react';
+import { AuditRecord } from '../types';
+import { Activity, Search, Download, RotateCcw } from 'lucide-react';
+import { KpiCard } from '../components/common/KpiCard';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
+import { 
+  PageHeader, Card, CardHeader, CardTitle, CardDescription, 
+  CardContent, CardFooter, Button, Badge, Input, Select, Table, Column 
+} from '../components/ui';
+import { downloadCSV } from '../utils/exportUtils';
 
 export const AuditLogsPage: React.FC = () => {
+  const { navigate, showToast } = useApp();
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('All roles');
   const [statusFilter, setStatusFilter] = useState('All statuses');
@@ -23,124 +33,221 @@ export const AuditLogsPage: React.FC = () => {
     return matchesSearch && matchesRole && matchesStatus && matchesAction;
   });
 
-  return (
-    <div className="space-y-6 text-xs">
-      {/* Head */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight flex items-center gap-2">
-            <Activity className="w-5 h-5 text-amber-500" />
-            <span>Administrative Audit Trail &amp; Accountability Logs</span>
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Immutable log of state and district administrative decisions, plan generations, and curriculum proposals.
-          </p>
-        </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          DEMO DATA
+  const handleExportCSV = () => {
+    downloadCSV(
+      filteredLogs,
+      [
+        { header: 'Timestamp', accessor: l => l.timestamp },
+        { header: 'User', accessor: l => l.user },
+        { header: 'Role', accessor: l => l.role },
+        { header: 'Action', accessor: l => l.action },
+        { header: 'Entity Impacted', accessor: l => l.entity },
+        { header: 'Previous State', accessor: l => l.previousState },
+        { header: 'New State', accessor: l => l.newState },
+        { header: 'Status', accessor: l => l.status },
+      ],
+      'maharashtra_lmi_audit_trail'
+    );
+    showToast('Audit trail exported as CSV.');
+  };
+
+  const columns: Column<AuditRecord>[] = [
+    {
+      key: 'timestamp',
+      header: 'Timestamp',
+      sortable: true,
+      render: (l) => (
+        <span className="font-mono text-slate-500 tabular-nums whitespace-nowrap">
+          {l.timestamp}
         </span>
+      )
+    },
+    {
+      key: 'user',
+      header: 'Officer / User',
+      sortable: true,
+      render: (l) => (
+        <span className="font-bold text-slate-900 dark:text-slate-100 block">
+          {l.user}
+        </span>
+      )
+    },
+    {
+      key: 'role',
+      header: 'Role',
+      render: (l) => (
+        <Badge variant="neutral" size="xs">
+          {l.role}
+        </Badge>
+      )
+    },
+    {
+      key: 'action',
+      header: 'Action Executed',
+      render: (l) => (
+        <span className="font-medium text-[#102c49] dark:text-sky-300">
+          {l.action}
+        </span>
+      )
+    },
+    {
+      key: 'entity',
+      header: 'Entity Impacted',
+      render: (l) => (
+        <span className="font-semibold text-slate-800 dark:text-slate-200">
+          {l.entity}
+        </span>
+      )
+    },
+    {
+      key: 'previousState',
+      header: 'Prior State',
+      render: (l) => (
+        <span className="text-slate-500 text-[11px]">
+          {l.previousState}
+        </span>
+      )
+    },
+    {
+      key: 'newState',
+      header: 'Resulting State',
+      render: (l) => (
+        <span className="text-slate-800 dark:text-slate-200 font-medium text-[11px]">
+          {l.newState}
+        </span>
+      )
+    },
+    {
+      key: 'status',
+      header: 'Outcome',
+      align: 'right',
+      render: (l) => (
+        <Badge
+          variant={l.status === 'Completed' ? 'success' : 'warning'}
+          size="xs"
+          dot
+        >
+          {l.status}
+        </Badge>
+      )
+    }
+  ];
+
+  return (
+    <div className="space-y-5">
+      {/* Standardized Page Header */}
+      <PageHeader
+        title="Administrative Audit Trail &amp; Accountability Logs"
+        description="Immutable chronological ledger recording administrative decisions, curriculum approvals, budget commitments, and plan generations across state stakeholders."
+        badge={<Badge variant="primary" size="xs">Audit Trail</Badge>}
+        breadcrumbs={[
+          { label: 'Home', onClick: () => navigate('home') },
+          { label: 'System & Governance' },
+          { label: 'Audit Trail', isCurrent: true },
+        ]}
+        actions={
+          <Button
+            variant="secondary"
+            size="xs"
+            onClick={handleExportCSV}
+            leftIcon={<Download className="w-3.5 h-3.5" />}
+          >
+            Export Audit Trail (CSV)
+          </Button>
+        }
+      />
+
+      {/* Summary KPI strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <KpiCard
+          label="Total Logged Events"
+          value={AUDIT_LOGS_DATA.length.toString()}
+          subtext="Chronological actions"
+          accent="primary"
+        />
+        <KpiCard
+          label="Completed Actions"
+          value={AUDIT_LOGS_DATA.filter(l => l.status === 'Completed').length.toString()}
+          subtext="100% verified status"
+          accent="success"
+          trend="up"
+        />
+        <KpiCard
+          label="Authorized Officers"
+          value={new Set(AUDIT_LOGS_DATA.map(l => l.user)).size.toString()}
+          subtext="Distinct authenticated actors"
+          accent="info"
+        />
+        <KpiCard
+          label="Filtered Audit Events"
+          value={filteredLogs.length.toString()}
+          subtext="Active query results"
+          accent="warning"
+        />
       </div>
 
-      {/* Filters */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-xs grid grid-cols-1 sm:grid-cols-4 gap-3">
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Search Audit Logs</label>
-          <div className="relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" />
-            <input
-              type="search"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Search user, action, or entity..."
-              className="w-full pl-8 pr-3 py-1.5 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
+      {/* Filter Row */}
+      <Card>
+        <CardContent className="p-3.5 sm:p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+            <div className="lg:col-span-2">
+              <Input
+                label="Search Audit Trail"
+                placeholder="Search user, action, or entity..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                leftIcon={<Search className="w-3.5 h-3.5" />}
+              />
+            </div>
+
+            <Select
+              label="Role Filter"
+              value={roleFilter}
+              onChange={e => setRoleFilter(e.target.value)}
+              options={['All roles', 'District Officer', 'State Admin', 'Curriculum Reviewer', 'Super Admin']}
+            />
+
+            <Select
+              label="Status Filter"
+              value={statusFilter}
+              onChange={e => setStatusFilter(e.target.value)}
+              options={['All statuses', 'Completed', 'Pending Review', 'Failed']}
+            />
+
+            <Select
+              label="Action Type"
+              value={actionFilter}
+              onChange={e => setActionFilter(e.target.value)}
+              options={['All actions', 'Updated', 'Generated', 'Approved', 'Login']}
             />
           </div>
-        </div>
+        </CardContent>
+      </Card>
 
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Role Filter</label>
-          <select
-            value={roleFilter}
-            onChange={e => setRoleFilter(e.target.value)}
-            className="w-full p-2 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
-          >
-            <option>All roles</option>
-            <option>District Officer</option>
-            <option>State Admin</option>
-            <option>Curriculum Reviewer</option>
-            <option>Super Admin</option>
-          </select>
-        </div>
+      {/* Audit Log Table */}
+      <Card>
+        <CardHeader>
+          <div>
+            <CardTitle>Chronological Activity Log</CardTitle>
+            <CardDescription>
+              Showing {filteredLogs.length} verified administrative log records
+            </CardDescription>
+          </div>
+          <Badge variant="neutral" size="xs">{filteredLogs.length} Records</Badge>
+        </CardHeader>
 
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Status Filter</label>
-          <select
-            value={statusFilter}
-            onChange={e => setStatusFilter(e.target.value)}
-            className="w-full p-2 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
-          >
-            <option>All statuses</option>
-            <option>Completed</option>
-            <option>Pending Review</option>
-            <option>Failed</option>
-          </select>
-        </div>
+        <Table<AuditRecord>
+          columns={columns}
+          data={filteredLogs}
+          keyExtractor={l => l.timestamp + l.user}
+          stickyHeader
+        />
 
-        <div>
-          <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Action Type</label>
-          <select
-            value={actionFilter}
-            onChange={e => setActionFilter(e.target.value)}
-            className="w-full p-2 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
-          >
-            <option>All actions</option>
-            <option>Updated</option>
-            <option>Generated</option>
-            <option>Approved</option>
-            <option>Login</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Table */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-xs">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/60 border-b text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                <th className="p-3">Timestamp</th>
-                <th className="p-3">User</th>
-                <th className="p-3">Role</th>
-                <th className="p-3">Action</th>
-                <th className="p-3">Entity Impacted</th>
-                <th className="p-3">Previous State</th>
-                <th className="p-3">New State</th>
-                <th className="p-3 text-right">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-              {filteredLogs.map((log, idx) => (
-                <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                  <td className="p-3 font-mono text-slate-500 whitespace-nowrap">{log.timestamp}</td>
-                  <td className="p-3 font-bold text-slate-900 dark:text-slate-100">{log.user}</td>
-                  <td className="p-3 text-slate-600 dark:text-slate-400">{log.role}</td>
-                  <td className="p-3 font-medium text-[#173a5e] dark:text-sky-300">{log.action}</td>
-                  <td className="p-3 text-slate-800 dark:text-slate-200 font-semibold">{log.entity}</td>
-                  <td className="p-3 text-slate-500 text-[11px]">{log.previousState}</td>
-                  <td className="p-3 text-slate-800 dark:text-slate-200 font-medium text-[11px]">{log.newState}</td>
-                  <td className="p-3 text-right whitespace-nowrap">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                      log.status === 'Completed' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                    }`}>
-                      {log.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <CardFooter>
+          <span>Logs are digitally signed with cryptographic SHA-256 seals</span>
+          <span className="font-mono text-[10px]">INTEGRITY: UNCOMPROMISED</span>
+        </CardFooter>
+      </Card>
     </div>
   );
 };

@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { SCHOLARSHIPS_DATA } from '../data/mockData';
 import { GraduationCap, Award, BookOpen, Briefcase, FileCheck, ArrowRight, Download, Share2 } from 'lucide-react';
+import { 
+  PageHeader, Card, CardHeader, CardTitle, CardDescription, 
+  CardContent, CardFooter, Button, Badge, Tabs 
+} from '../components/ui';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
 
 export const StudentPortalPage: React.FC = () => {
-  const { showToast } = useApp();
+  const { showToast, navigate } = useApp();
   const [activeTab, setActiveTab] = useState<'overview' | 'profile' | 'career' | 'wallet' | 'scholarships' | 'jobs'>('overview');
 
   // Scholarship filter states
@@ -22,80 +27,52 @@ export const StudentPortalPage: React.FC = () => {
   });
 
   return (
-    <div className="space-y-6">
-      {/* Head */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight flex items-center gap-2">
-            <GraduationCap className="w-5 h-5 text-indigo-600" />
-            <span>Student Career &amp; Learning Portal</span>
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Personalized vocational guidance, skill credentials wallet, and local pathway discovery.
-          </p>
-        </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          DEMO DATA
-        </span>
-      </div>
+    <div className="space-y-5">
+      {/* Standardized Page Header */}
+      <PageHeader
+        title="Student Career &amp; Vocational Learning Portal"
+        description="Personalized career trajectory exploration, NSQF micro-credential wallet verification, apprenticeship applications, and state welfare scholarships."
+        badge={<Badge variant="primary" size="xs">Candidate Services</Badge>}
+        breadcrumbs={[
+          { label: 'Home', onClick: () => navigate('home') },
+          { label: 'Stakeholder Portals' },
+          { label: 'Student Portal', isCurrent: true },
+        ]}
+        actions={
+          <div className="flex items-center gap-2">
+            <Button
+              variant="secondary"
+              size="xs"
+              onClick={() => navigate('jobintel')}
+            >
+              Search Open Vacancies →
+            </Button>
+            <Button
+              variant="primary"
+              size="xs"
+              onClick={() => setActiveTab('wallet')}
+              leftIcon={<Award className="w-3.5 h-3.5" />}
+            >
+              Verify Digital Wallet
+            </Button>
+          </div>
+        }
+      />
 
-      {/* Subviews Nav */}
-      <div className="bg-[#102c49] text-white p-2 rounded-xl flex items-center gap-1.5 flex-wrap text-xs font-semibold">
-        <button
-          type="button"
-          onClick={() => setActiveTab('overview')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'overview' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Overview
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('profile')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'profile' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          My Profile
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('career')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'career' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Career Pathway
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('wallet')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'wallet' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Skill Wallet
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('scholarships')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'scholarships' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Scholarships
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('jobs')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'jobs' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Jobs &amp; Applications
-        </button>
-      </div>
+      {/* Tabs */}
+      <Tabs
+        variant="segmented"
+        activeTab={activeTab}
+        onChange={tab => setActiveTab(tab as any)}
+        tabs={[
+          { id: 'overview', label: 'Candidate Dashboard' },
+          { id: 'profile', label: 'My Vocational Profile' },
+          { id: 'career', label: 'Career Pathway Navigator' },
+          { id: 'wallet', label: 'Verifiable Skill Wallet' },
+          { id: 'scholarships', label: 'State Scholarships' },
+          { id: 'jobs', label: 'Matched Job Vacancies' },
+        ]}
+      />
 
       {/* SUBVIEW 1: OVERVIEW */}
       {activeTab === 'overview' && (
@@ -103,32 +80,44 @@ export const StudentPortalPage: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
               <span className="text-[10px] font-bold text-slate-400 uppercase">My Skills</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">7</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={7} />
+              </strong>
               <small className="text-[10px] text-emerald-600 font-semibold">3 evidenced by projects</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Skill Gaps</span>
-              <strong className="block text-2xl font-bold text-amber-600 my-1">4</strong>
+              <strong className="block text-2xl font-bold text-amber-600 my-1">
+                <AnimatedNumber value={4} />
+              </strong>
               <small className="text-[10px] text-slate-500">For selected pathway</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Recommended</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">5</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={5} />
+              </strong>
               <small className="text-[10px] text-slate-500">Courses to review</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Job Matches</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">18</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={18} />
+              </strong>
               <small className="text-[10px] text-sky-600 font-semibold">Illustrative matches</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Applications</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">3</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={3} />
+              </strong>
               <small className="text-[10px] text-slate-500">Demo records</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Certificates</span>
-              <strong className="block text-2xl font-bold text-purple-600 my-1">2</strong>
+              <strong className="block text-2xl font-bold text-purple-600 my-1">
+                <AnimatedNumber value={2} />
+              </strong>
               <small className="text-[10px] text-slate-500">Verified credentials</small>
             </div>
           </div>

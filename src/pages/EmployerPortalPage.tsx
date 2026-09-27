@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { CANDIDATES_DATA } from '../data/mockData';
-import { Building2, Plus, Users, Award, MessageSquare, Briefcase, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Building2, Plus, Users, Award, MessageSquare, Briefcase, CheckCircle2, ChevronRight, ArrowRight } from 'lucide-react';
 import { JobRecord } from '../types';
+import { 
+  PageHeader, Card, CardHeader, CardTitle, CardDescription, 
+  CardContent, CardFooter, Button, Badge, Tabs 
+} from '../components/ui';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
 
 export const EmployerPortalPage: React.FC = () => {
-  const { addJob, showToast } = useApp();
+  const { addJob, showToast, navigate } = useApp();
   const [activeTab, setActiveTab] = useState<'overview' | 'post' | 'candidates' | 'partners' | 'apprentice' | 'feedback'>('overview');
 
   // Post Job Wizard State
@@ -104,80 +109,52 @@ export const EmployerPortalPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Head */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-emerald-600" />
-            <span>Employer Collaboration Workspace</span>
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Sahyadri Digital Systems • Verified Demonstration Employer Workspace
-          </p>
-        </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          DEMO DATA
-        </span>
-      </div>
+    <div className="space-y-5">
+      {/* Standardized Page Header */}
+      <PageHeader
+        title="Employer Collaboration Workspace"
+        description="Sahyadri Digital Systems • Verified enterprise employer portal connecting industry demand requisitions, apprentice placement, and institutional feedback loops."
+        badge={<Badge variant="success" size="xs">Verified Industry Partner</Badge>}
+        breadcrumbs={[
+          { label: 'Home', onClick: () => navigate('home') },
+          { label: 'Stakeholder Portals' },
+          { label: 'Employer Portal', isCurrent: true },
+        ]}
+        actions={
+          <div className="flex items-center gap-2">
+            <Button
+              variant="secondary"
+              size="xs"
+              onClick={() => navigate('jobintel')}
+            >
+              Job Market Engine →
+            </Button>
+            <Button
+              variant="primary"
+              size="xs"
+              onClick={() => setActiveTab('post')}
+              leftIcon={<Plus className="w-3.5 h-3.5" />}
+            >
+              Post Vacancy
+            </Button>
+          </div>
+        }
+      />
 
-      {/* Subviews Nav */}
-      <div className="bg-[#102c49] text-white p-2 rounded-xl flex items-center gap-1.5 flex-wrap text-xs font-semibold">
-        <button
-          type="button"
-          onClick={() => setActiveTab('overview')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'overview' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Dashboard
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('post')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'post' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Post a Job
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('candidates')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'candidates' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Candidates
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('partners')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'partners' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Training Partners
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('apprentice')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'apprentice' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Apprenticeships
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveTab('feedback')}
-          className={`px-3 py-1.5 rounded-lg transition-colors ${
-            activeTab === 'feedback' ? 'bg-white text-[#102c49]' : 'text-slate-200 hover:bg-white/10'
-          }`}
-        >
-          Feedback
-        </button>
-      </div>
+      {/* Tabs */}
+      <Tabs
+        variant="segmented"
+        activeTab={activeTab}
+        onChange={tab => setActiveTab(tab as any)}
+        tabs={[
+          { id: 'overview', label: 'Overview & Funnel' },
+          { id: 'post', label: 'Post Vacancy (NLP Wizard)' },
+          { id: 'candidates', label: 'Candidate Match Ledger' },
+          { id: 'partners', label: 'Vocational Training Partners' },
+          { id: 'apprentice', label: 'Apprenticeships & Stagiaires' },
+          { id: 'feedback', label: 'Curricular Feedback' },
+        ]}
+      />
 
       {/* SUBVIEW 1: OVERVIEW */}
       {activeTab === 'overview' && (
@@ -185,27 +162,37 @@ export const EmployerPortalPage: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Active Jobs</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">6</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={6} />
+              </strong>
               <small className="text-[10px] text-amber-600 font-semibold">2 awaiting validation</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Applicants</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">84</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={84} />
+              </strong>
               <small className="text-[10px] text-emerald-600 font-semibold">27 assessed</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Skill Requirements</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">18</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={18} />
+              </strong>
               <small className="text-[10px] text-sky-600 font-semibold">Human-validated</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Training Partners</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">4</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={4} />
+              </strong>
               <small className="text-[10px] text-slate-500">Across Pune district</small>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Apprenticeships</span>
-              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">12</strong>
+              <strong className="block text-2xl font-bold text-slate-800 dark:text-slate-100 my-1">
+                <AnimatedNumber value={12} />
+              </strong>
               <small className="text-[10px] text-emerald-600 font-semibold">8 positions open</small>
             </div>
           </div>

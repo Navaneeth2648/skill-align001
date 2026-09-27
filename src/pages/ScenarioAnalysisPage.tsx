@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Sliders, ShieldAlert } from 'lucide-react';
+import { AnimatedNumber } from '../components/common/AnimatedNumber';
 
 export const ScenarioAnalysisPage: React.FC = () => {
   const { showToast } = useApp();
@@ -152,7 +153,7 @@ export const ScenarioAnalysisPage: React.FC = () => {
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 mb-4">
               <span className="text-slate-500 font-semibold block text-xs">Potential Annual Capacity (Unconstrained)</span>
               <strong className="block text-3xl font-extrabold text-[#102c49] dark:text-sky-300 my-1">
-                {seats.toLocaleString('en-IN')} seats
+                <AnimatedNumber value={seats} /> seats
               </strong>
               <small className="text-slate-400">Total theoretical intake before applying resource bottlenecks</small>
             </div>
@@ -160,26 +161,34 @@ export const ScenarioAnalysisPage: React.FC = () => {
             <div className="divide-y divide-slate-100 dark:divide-slate-800">
               <div className="py-2.5 flex justify-between">
                 <span className="text-slate-600 dark:text-slate-400 font-medium">Trainer Requirement:</span>
-                <span className="font-bold text-slate-800 dark:text-slate-200">{requiredTrainers} trainer positions</span>
+                <span className="font-bold text-slate-800 dark:text-slate-200">
+                  <AnimatedNumber value={requiredTrainers} /> trainer positions
+                </span>
               </div>
               <div className="py-2.5 flex justify-between">
                 <span className="text-slate-600 dark:text-slate-400 font-medium">Available Trainers with {trainerAvail}% staffing:</span>
-                <span className="font-bold text-amber-600">{availableTrainers} equivalent positions</span>
+                <span className="font-bold text-amber-600">
+                  <AnimatedNumber value={availableTrainers} /> equivalent positions
+                </span>
               </div>
               <div className="py-2.5 flex justify-between">
                 <span className="text-slate-600 dark:text-slate-400 font-medium">Required Lab Tooling Sets:</span>
-                <span className="font-bold text-slate-800 dark:text-slate-200">{labSets} course sets</span>
+                <span className="font-bold text-slate-800 dark:text-slate-200">
+                  <AnimatedNumber value={labSets} /> course sets
+                </span>
               </div>
               <div className="py-2.5 flex justify-between">
                 <span className="text-slate-600 dark:text-slate-400 font-medium">Estimated Financial Commitment:</span>
-                <span className="font-bold text-emerald-600">₹{(costLakh / 100).toFixed(2)} crore</span>
+                <span className="font-bold text-emerald-600">
+                  <AnimatedNumber value={`₹${(costLakh / 100).toFixed(2)} crore`} />
+                </span>
               </div>
               <div className="py-3 flex justify-between items-center bg-amber-50/50 dark:bg-amber-950/20 px-3 rounded-lg border border-amber-200 dark:border-amber-800/60 mt-2">
                 <span className="font-bold text-amber-900 dark:text-amber-200">
                   Constraint-Adjusted Capacity:
                 </span>
                 <strong className="text-lg font-black text-amber-800 dark:text-amber-300">
-                  {adjustedCapacity.toLocaleString('en-IN')} seats
+                  <AnimatedNumber value={adjustedCapacity} /> seats
                 </strong>
               </div>
             </div>
