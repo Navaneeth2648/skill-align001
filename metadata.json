@@ -1,0 +1,6 @@
+{
+  "name": "Maharashtra Skill & Labour Market Intelligence Platform",
+  "description": "An evidence-driven government workforce intelligence platform connecting labour demand, skill gap analysis, and training curriculum alignment across Maharashtra.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

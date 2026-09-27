@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --navy: #173a5e;
+    --navy-dark: #102c49;
+    --navy-deep: #0b2239;
+    --gold: #c96a0a;
+    --gold-soft: #fff5e8;
+    --green: #267653;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #142033;
+    background-color: #f5f7fa;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body.theme-dark {
+    color: #edf3fa;
+    background-color: #0b1725;
+  }
+
+  body.large-text {
+    font-size: 17px;
+  }
+
+  body.large-text h1 {
+    font-size: 2.5rem;
+  }
+
+  body.large-text h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Custom subtle scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Focus styles for high accessibility */
+*:focus-visible {
+  outline: 2px solid #e6a23c !important;
+  outline-offset: 2px !important;
+}
+
+/* Animations */
+@keyframes bounceSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
