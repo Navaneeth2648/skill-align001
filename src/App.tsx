@@ -13,6 +13,8 @@ import { Toast } from './components/common/Toast';
 import { SearchModal } from './components/common/SearchModal';
 import { NotificationDrawer } from './components/common/NotificationDrawer';
 import { ProfileMenu } from './components/common/ProfileMenu';
+import { IntelligenceAssistantModal } from './components/common/IntelligenceAssistantModal';
+import { LinkedInIntegrationModal } from './components/common/LinkedInIntegrationModal';
 
 // Page components
 import { HomePage } from './pages/HomePage';
@@ -30,6 +32,7 @@ import { TrainerManagementPage } from './pages/TrainerManagementPage';
 import { EquipmentPlanningPage } from './pages/EquipmentPlanningPage';
 import { EmployerPortalPage } from './pages/EmployerPortalPage';
 import { StudentPortalPage } from './pages/StudentPortalPage';
+import { ResumeAnalyzerPage } from './pages/ResumeAnalyzerPage';
 import { TrainingPlanPage } from './pages/TrainingPlanPage';
 import { BudgetPlanningPage } from './pages/BudgetPlanningPage';
 import { ScenarioAnalysisPage } from './pages/ScenarioAnalysisPage';
@@ -52,7 +55,7 @@ import {
 } from './pages/OverviewHubs';
 
 const MainContent: React.FC = () => {
-  const { route, isPresentation } = useApp();
+  const { route, isPresentation, isLinkedInModalOpen, closeLinkedInModal } = useApp();
 
   const renderCurrentPage = () => {
     switch (route) {
@@ -73,6 +76,7 @@ const MainContent: React.FC = () => {
       case 'equipment': return <EquipmentPlanningPage />;
       case 'employers': return <EmployersOverviewPage />;
       case 'employerportal': return <EmployerPortalPage />;
+      case 'resumeanalyzer': return <ResumeAnalyzerPage />;
       case 'students':
       case 'studentportal': return <StudentPortalPage />;
       case 'trainingplan': return <TrainingPlanPage />;
@@ -113,6 +117,8 @@ const MainContent: React.FC = () => {
 
       {/* Global Overlay Drawers & Menus */}
       <SearchModal />
+      <IntelligenceAssistantModal />
+      <LinkedInIntegrationModal isOpen={isLinkedInModalOpen} onClose={closeLinkedInModal} />
       <NotificationDrawer />
       <ProfileMenu />
       <Toast />
@@ -126,10 +132,10 @@ const MainContent: React.FC = () => {
           tabIndex={-1} 
           className={`flex-1 min-w-0 ${
             isPresentation 
-              ? 'p-6 max-w-7xl mx-auto w-full' 
+              ? 'p-6 w-full' 
               : route === 'home' 
-              ? 'pb-16 md:pb-0' 
-              : 'p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full pb-20 md:pb-8'
+              ? 'pb-16 md:pb-0 w-full' 
+              : 'px-3 sm:px-4 lg:px-6 py-4 w-full pb-20 md:pb-8'
           }`}
         >
           {renderCurrentPage()}

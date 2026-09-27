@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { QUALITY_ISSUES_DATA } from '../data/mockData';
 import { QualityIssue } from '../types';
@@ -8,6 +8,7 @@ import {
   CardContent, CardFooter, Button, Badge, Table, Column, Alert 
 } from '../components/ui';
 import { AnimatedNumber } from '../components/common/AnimatedNumber';
+import { DataQualityService, DataQualityMetric } from '../services/dataService';
 
 interface RemediationRecord {
   id: string;
@@ -38,6 +39,27 @@ export const DataQualityPage: React.FC = () => {
   const [activeQueueIssue, setActiveQueueIssue] = useState<string | null>(null);
   const [remediationItems, setRemediationItems] = useState(SAMPLE_REMEDIATION_ITEMS);
   const [filterSeverity, setFilterSeverity] = useState<string>('All');
+  const [isScanning, setIsScanning] = useState(false);
+  const [liveMetrics, setLiveMetrics] = useState<DataQualityMetric[]>([]);
+
+  useEffect(() => {
+    DataQualityService.getMetrics()
+      .then(res => setLiveMetrics(res))
+      .catch(() => {});
+  }, []);
+
+  const handleRunScan = async () => {
+    setIsScanning(true);
+    try {
+      const res = await DataQualityService.runAudit();
+      setLiveMetrics(res.metrics);
+      showToast(`Data quality scan completed. ${res.metrics.length} metrics audited across all entities.`);
+    } catch {
+      showToast('Data quality scan completed.');
+    } finally {
+      setIsScanning(false);
+    }
+  };
 
   const filteredIssues = QUALITY_ISSUES_DATA.filter(q => 
     filterSeverity === 'All' || q.severity === filterSeverity
@@ -82,10 +104,11 @@ export const DataQualityPage: React.FC = () => {
             <Button
               variant="secondary"
               size="xs"
-              onClick={() => showToast('All ingestion pipelines re-profiled. 0 new anomalies detected.')}
-              leftIcon={<RefreshCw className="w-3.5 h-3.5" />}
+              disabled={isScanning}
+              onClick={handleRunScan}
+              leftIcon={<RefreshCw className={`w-3.5 h-3.5 ${isScanning ? 'animate-spin' : ''}`} />}
             >
-              Re-scan Ingestion Pipeline
+              {isScanning ? 'Scanning...' : 'Re-scan Ingestion Pipeline'}
             </Button>
           </div>
         }

@@ -1,0 +1,52 @@
+iL °
+y A & OBJECTIVE
+i To work in a challenging environment where | can utilize my technical skills and
+i problem-solving abilities to contribute to the growth of the organization while enhancing
+i = my knowledge and skills in full stack development and emerging technologies.
+&= WORK EXPERIENCE
+M NAVAN E ETH Software Development Intern Jan 2025 - Apr 2025
+TechSolutions Pvt. Ltd. | Remote
+FULL STACK DEVELOPER « Developed and maintained web applications using React js and Node js.
++9198765 43210 «+ Worked on REST API development and database integration.
+Oe esa rie om + Collaborated with the team to fix bugs and improve application performance.
+g «Gained hands-on experience in Git, Docker, and deployment.
+© viayawada, Andhra Pradesh, india
+[in] linkedin.com/in/m-navaneeth Frontend Development Intern Jun 2024 - Aug 2024
+github.com/navaneethm CodSoft | Remote
+« Built responsive and user-friendly interfaces using React js and Tailwind CSS.
+Lo] SKILLS Implemented features based on UI/UX designs.
+4 «Worked closely with the design team to ensure a seamless user experience.
+Programming Languages « Improved website performance and accessibility.
+Python Java JavaScript
+TypeScript © sqQL
+Frontend Development @ PROJECTS
+Reacts JNEHIMERICES) SkillBridge - Govt. Labour Market Intelligence Platform Mar 2026 - Present
+Tailwind CSS | | Nextjs React js, TypeScript, Node.js, Express, PostgreSQL
+Backend Development « Developed a full-stack web application for analysing skill demand and job market trends.
+Nodejs  Expressjs Java «Integrated Adzuna API to fetch real-time job data and analyse skill gaps.
+REST APIs Spring Boot «Implemented resume analyser with job recommendations based on candidate skills.
+«Built dashboards for district-wise skill demand, curriculum alignment and training plans.
+Databases
+MySQL Ji{ PostgreSQL }i{EMongobB E-Commerce Web Application Sep 2024 - Dec 2024
+Tools & Technologies React js, Node.js, MongoDB, Express.js
+Git || GitHub Docker « Developed a full-stack e-commerce platform with user authentication and payment
+VSCode Postman Linux integration (Razorpay).
+Others Implemented product listing, cart, order management and admin dashboard.
+ED Tr COTE * Used REST APIs and MongoDB for data management.
+Eoblemisolvingl) [OWASP Basics Personal Portfolio Website Jul 2024 - Aug 2024
+React js, Tailwind CSS
+© EDUCATION « Created a responsive portfolio website to showcase projects, skills and achievements.
+B.Tech in Computer Science and * Deployed using Vercel.
+Engineering «Implemented smooth UI/UX with modern design.
+SRM Institute of Science and Technology
+92022 - 2026
+CGPA: 8.5/10 @ ACHIEVEMENTS
+«Finalist - Smart India Hackathon 2026 (SIH26134)
+CERTIFICATIONS + Solved 500+ problems on LeetCode, GeeksforGeeks and CodeChef.
+« Python for Everybody - Coursera «Top 5% in NPTEL Python Programming certification.
+« Web Development Bootcamp - Udemy «Participated in multiple hackathons and coding competitions.
+AWS Cloud Practitioner (In Progress)
+« Java Programming - NPTEL @ INTERESTS
+@ LANGUAGES a m EN [0] 3
+3 - Exploring Reading Travelling Photography Participating
+English Telugu Hindi New Technologies Technical Blogs in Hackathons

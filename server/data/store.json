@@ -1,0 +1,3504 @@
+{
+  "userProfile": {
+    "id": "user-default-candidate",
+    "personal": {
+      "name": "M Navaneeth",
+      "email": "m.navaneeth@example.edu.in",
+      "phone": "+91 98765 43210",
+      "location": "Vijayawada, Andhra Pradesh, India",
+      "district": "Pune",
+      "state": "Maharashtra",
+      "profilePhoto": ""
+    },
+    "professional": {
+      "currentJobTitle": "Full Stack Developer",
+      "targetJobTitle": "Software Engineer / Python Developer",
+      "yearsOfExperience": 1,
+      "employmentStatus": "Employed",
+      "preferredEmploymentType": "Full-time",
+      "preferredLocations": [
+        "Pune",
+        "Mumbai",
+        "Bangalore",
+        "Hyderabad"
+      ],
+      "expectedSalary": "₹8,50,000 / year",
+      "noticePeriod": "Immediate"
+    },
+    "skills": {
+      "technicalSkills": [
+        "Python",
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Express.js",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "AWS",
+        "Docker",
+        "Git",
+        "Linux",
+        "REST APIs",
+        "Tailwind CSS"
+      ],
+      "softSkills": [
+        "Problem Solving",
+        "Agile Teamwork",
+        "Technical Documentation",
+        "Communication"
+      ],
+      "skillProficiency": {
+        "Python": "Advanced",
+        "React": "Advanced",
+        "Node.js": "Advanced",
+        "TypeScript": "Intermediate",
+        "PostgreSQL": "Intermediate",
+        "AWS": "Intermediate",
+        "Docker": "Intermediate"
+      },
+      "certifications": [
+        "Python for Everybody - Coursera",
+        "AWS Cloud Practitioner (In Progress)",
+        "NPTEL Python Programming (Top 5%)"
+      ],
+      "languages": [
+        "English",
+        "Telugu",
+        "Hindi"
+      ]
+    },
+    "education": [
+      {
+        "degree": "B.Tech in Computer Science and Engineering",
+        "institution": "SRM Institute of Science and Technology",
+        "fieldOfStudy": "Computer Science",
+        "year": "2026",
+        "cgpa": "8.8 / 10"
+      }
+    ],
+    "experience": [
+      {
+        "title": "Full Stack Engineering Intern",
+        "company": "SkillBridge Tech Labs",
+        "duration": "6 months",
+        "location": "Pune, Maharashtra",
+        "description": "Engineered high-performance real-time labour market analysis workflows using React, TypeScript, and Node.js.",
+        "responsibilities": [
+          "Built automated OCR extraction pipeline for scanned PDF resumes.",
+          "Integrated Adzuna job search API and deterministic skill-matching calculation."
+        ],
+        "skillsUsed": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
+        ]
+      }
+    ],
+    "certifications": [
+      {
+        "id": "cert-1",
+        "certificateName": "Python for Everybody Specialization",
+        "issuingOrganization": "Coursera / University of Michigan",
+        "issueDate": "2025-06-15",
+        "credentialId": "COURSERA-PY-8842",
+        "credentialUrl": "https://coursera.org/verify/COURSERA-PY-8842"
+      },
+      {
+        "id": "cert-2",
+        "certificateName": "AWS Certified Cloud Practitioner",
+        "issuingOrganization": "Amazon Web Services",
+        "issueDate": "2025-11-20",
+        "credentialId": "AWS-CCP-9921",
+        "credentialUrl": "https://aws.amazon.com/verification"
+      }
+    ],
+    "links": {
+      "linkedinUrl": "https://linkedin.com/in/m-navaneeth",
+      "githubUrl": "https://github.com/navaneethm",
+      "portfolioUrl": "https://navaneeth.dev",
+      "otherUrls": [
+        "https://leetcode.com/u/navaneethm"
+      ]
+    },
+    "dataSourceLabel": "Imported from verified resume",
+    "updatedAt": "2026-09-27T18:49:34.763Z"
+  },
+  "savedJobIds": [],
+  "jobApplications": [
+    {
+      "id": "app-1",
+      "jobId": "emp-job-1",
+      "jobTitle": "Senior Frontend Engineer (React/TypeScript)",
+      "company": "Sahyadri Digital Systems",
+      "district": "Pune",
+      "applicantName": "M Navaneeth",
+      "applicantEmail": "m.navaneeth@example.edu.in",
+      "applicantPhone": "+91 98765 43210",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Tailwind CSS"
+      ],
+      "matchScore": 95,
+      "appliedAt": "2026-09-27T17:55:00Z",
+      "status": "Reviewing"
+    }
+  ],
+  "employerJobs": [
+    {
+      "id": "emp-job-1",
+      "title": "Senior Frontend Engineer (React/TypeScript)",
+      "company": "Sahyadri Digital Systems",
+      "district": "Pune",
+      "location": "Hinjawadi Phase 2, Pune",
+      "industry": "Information Technology",
+      "experience": "2–4 years",
+      "salaryMin": 700000,
+      "salaryMax": 950000,
+      "salaryText": "₹7.0L - ₹9.5L",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Next.js",
+        "REST APIs"
+      ],
+      "description": "Lead development of citizen-scale web platforms. Candidates must demonstrate solid expertise in React, TypeScript, and modern state architecture.",
+      "postedDate": "2026-09-24",
+      "status": "Active",
+      "applicantsCount": 6
+    },
+    {
+      "id": "emp-job-2",
+      "title": "Electric Vehicle Diagnostic Technician",
+      "company": "Deccan Mobility Works",
+      "district": "Pune",
+      "location": "Chakan Industrial Zone, Pune",
+      "industry": "Automotive & Clean Energy",
+      "experience": "1–3 years",
+      "salaryMin": 450000,
+      "salaryMax": 600000,
+      "salaryText": "₹4.5L - ₹6.0L",
+      "skills": [
+        "EV Systems",
+        "CAN Bus",
+        "Diagnostics",
+        "Electrical Safety"
+      ],
+      "description": "Perform fault identification and firmware updates across commercial EV fleets. Experience with battery management instrumentation preferred.",
+      "postedDate": "2026-09-22",
+      "status": "Active",
+      "applicantsCount": 11
+    }
+  ],
+  "shortlistedCandidates": [
+    "user-default-candidate"
+  ],
+  "curriculumRecords": [
+    {
+      "id": "curr-copa",
+      "code": "DGT-ITI-COPA-01",
+      "name": "Computer Operator & Programming Assistant (COPA)",
+      "industry": "Information Technology",
+      "totalHours": 1200,
+      "institutesCount": 84,
+      "studentsCount": 6240,
+      "currentPlacementRate": "58%",
+      "lastReviewDate": "2026-07-12",
+      "status": "Under Review",
+      "marketDemandSkills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Programming Logic",
+        "Databases",
+        "Python",
+        "React.js",
+        "AWS Basics",
+        "Git",
+        "REST APIs",
+        "Linux",
+        "Cybersecurity",
+        "Excel",
+        "Power BI",
+        "Networking",
+        "Cloud Concepts",
+        "UI Design",
+        "Testing",
+        "Agile",
+        "Node.js",
+        "TypeScript",
+        "Data Analytics",
+        "SQL",
+        "Java",
+        "Docker"
+      ],
+      "coveredSkills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Programming Logic",
+        "Databases",
+        "Excel",
+        "Networking",
+        "SQL",
+        "Java",
+        "Linux",
+        "Cybersecurity",
+        "UI Design",
+        "Testing",
+        "Git",
+        "Agile"
+      ],
+      "alignmentPercentage": 62,
+      "skillGaps": [
+        {
+          "skill": "React.js",
+          "demand": "High",
+          "coverage": "Not covered",
+          "requiredProficiency": "Intermediate",
+          "gap": "Full gap",
+          "learningTime": "3 months",
+          "estimatedCost": "₹18,000",
+          "priority": "High"
+        },
+        {
+          "skill": "Python",
+          "demand": "High",
+          "coverage": "Foundation only",
+          "requiredProficiency": "Advanced",
+          "gap": "Proficiency gap",
+          "learningTime": "2 months",
+          "estimatedCost": "₹14,000",
+          "priority": "High"
+        },
+        {
+          "skill": "AWS Basics",
+          "demand": "Moderate",
+          "coverage": "Not covered",
+          "requiredProficiency": "Beginner",
+          "gap": "Full gap",
+          "learningTime": "1 month",
+          "estimatedCost": "₹9,000",
+          "priority": "Medium"
+        },
+        {
+          "skill": "REST APIs",
+          "demand": "High",
+          "coverage": "Introductory",
+          "requiredProficiency": "Intermediate",
+          "gap": "Coverage gap",
+          "learningTime": "6 weeks",
+          "estimatedCost": "₹11,000",
+          "priority": "High"
+        },
+        {
+          "skill": "Docker",
+          "demand": "Moderate",
+          "coverage": "Not covered",
+          "requiredProficiency": "Beginner",
+          "gap": "Full gap",
+          "learningTime": "1 month",
+          "estimatedCost": "₹8,500",
+          "priority": "Medium"
+        }
+      ]
+    },
+    {
+      "id": "curr-electrical",
+      "code": "DGT-ITI-ELEC-02",
+      "name": "Electrical Technician & EV Conversion",
+      "industry": "Automotive & Electrical Engineering",
+      "totalHours": 1400,
+      "institutesCount": 112,
+      "studentsCount": 5180,
+      "currentPlacementRate": "71%",
+      "lastReviewDate": "2026-08-08",
+      "status": "Approved",
+      "marketDemandSkills": [
+        "Circuit Analysis",
+        "Motor Drives",
+        "EV Safety",
+        "CAN Bus",
+        "Inverter Testing",
+        "PLC Basics",
+        "High Voltage Isolation"
+      ],
+      "coveredSkills": [
+        "Circuit Analysis",
+        "Motor Drives",
+        "Inverter Testing",
+        "PLC Basics",
+        "High Voltage Isolation"
+      ],
+      "alignmentPercentage": 81,
+      "skillGaps": [
+        {
+          "skill": "EV Safety",
+          "demand": "High",
+          "coverage": "Foundation only",
+          "requiredProficiency": "Intermediate",
+          "gap": "Proficiency gap",
+          "learningTime": "6 weeks",
+          "estimatedCost": "₹12,000",
+          "priority": "High"
+        }
+      ]
+    },
+    {
+      "id": "curr-iot",
+      "code": "DGT-ITI-IOT-03",
+      "name": "Industrial IoT & Smart Automation Technician",
+      "industry": "Advanced Manufacturing",
+      "totalHours": 1100,
+      "institutesCount": 37,
+      "studentsCount": 1960,
+      "currentPlacementRate": "66%",
+      "lastReviewDate": "2026-06-29",
+      "status": "Revision Required",
+      "marketDemandSkills": [
+        "Sensors & Transducers",
+        "Edge Analytics",
+        "MQTT / Modbus",
+        "Microcontroller Programming",
+        "SCADA",
+        "Cloud Telemetry"
+      ],
+      "coveredSkills": [
+        "Sensors & Transducers",
+        "Microcontroller Programming",
+        "MQTT / Modbus",
+        "SCADA"
+      ],
+      "alignmentPercentage": 74,
+      "skillGaps": [
+        {
+          "skill": "Edge Analytics",
+          "demand": "Moderate",
+          "coverage": "Not covered",
+          "requiredProficiency": "Intermediate",
+          "gap": "Full gap",
+          "learningTime": "2 months",
+          "estimatedCost": "₹16,000",
+          "priority": "Medium"
+        }
+      ]
+    }
+  ],
+  "curriculumReviews": [
+    {
+      "id": "rev-1",
+      "courseId": "curr-copa",
+      "courseName": "COPA",
+      "reviewerName": "Dr. Sudhir Deshmukh",
+      "reviewerRole": "Subject Expert Panel Lead",
+      "timestamp": "2026-09-26T14:00:00Z",
+      "status": "Under Review",
+      "comments": "Recommend introducing modern React and Cloud modules into Semester 2."
+    }
+  ],
+  "curriculumSignOffs": {
+    "curr-copa": [
+      {
+        "id": "so-1",
+        "stageName": "Draft",
+        "courseId": "curr-copa",
+        "owner": "Curriculum Analyst",
+        "date": "2026-09-18",
+        "status": "Complete",
+        "comments": "Market demand evidence package compiled.",
+        "officerRole": "Analyst",
+        "auditId": "aud-c1"
+      },
+      {
+        "id": "so-2",
+        "stageName": "Department Review",
+        "courseId": "curr-copa",
+        "owner": "DVET Joint Director",
+        "date": "2026-09-21",
+        "status": "Complete",
+        "comments": "Approved for technical review panel.",
+        "officerRole": "Joint Director",
+        "auditId": "aud-c2"
+      },
+      {
+        "id": "so-3",
+        "stageName": "Technical Review",
+        "courseId": "curr-copa",
+        "owner": "Subject Expert Panel",
+        "date": "2026-09-26",
+        "status": "In review",
+        "comments": "Benchmarking module depth against industry apprenticeships.",
+        "officerRole": "Panelist",
+        "auditId": "aud-c3"
+      }
+    ]
+  },
+  "trainingPlans": [
+    {
+      "id": "tp-pune-2026",
+      "title": "Pune District EV & Green Mobility Workforce Acceleration",
+      "district": "Pune",
+      "institution": "Government ITI Aundh, Pune",
+      "courses": [
+        "EV Diagnostic Technician",
+        "Battery Management Systems"
+      ],
+      "skills": [
+        "EV Systems",
+        "CAN Bus",
+        "Diagnostics",
+        "High Voltage Safety"
+      ],
+      "targetAudience": "Final Year ITI & Polytechnic Trainees",
+      "duration": "16 Weeks",
+      "trainer": "Farhan Shaikh",
+      "startDate": "2026-10-15",
+      "endDate": "2027-02-15",
+      "status": "Scheduled",
+      "progress": 25,
+      "budgetAllocated": 1250000
+    },
+    {
+      "id": "tp-mumbai-2026",
+      "title": "Mumbai Metropolitan Cloud & Modern Web Application Track",
+      "district": "Mumbai",
+      "institution": "Government Technical Institute, Worli",
+      "courses": [
+        "COPA React & Cloud Enrichment"
+      ],
+      "skills": [
+        "React",
+        "Node.js",
+        "AWS Basics",
+        "Docker"
+      ],
+      "targetAudience": "ITI COPA Graduates & Underemployed Youth",
+      "duration": "12 Weeks",
+      "trainer": "Ananya Kulkarni",
+      "startDate": "2026-11-01",
+      "endDate": "2027-01-30",
+      "status": "In Progress",
+      "progress": 40,
+      "budgetAllocated": 950000
+    },
+    {
+      "id": "tp-nashik-2026",
+      "title": "Nashik Industrial Automation & CNC Machining Upskilling",
+      "district": "Nashik",
+      "institution": "Government ITI Satpur, Nashik",
+      "courses": [
+        "CNC Turning & Milling Operation"
+      ],
+      "skills": [
+        "CNC Programming",
+        "Quality Control",
+        "Industrial Safety"
+      ],
+      "targetAudience": "Machinist Trade Apprentices",
+      "duration": "8 Weeks",
+      "trainer": "Suresh Patil",
+      "startDate": "2026-09-15",
+      "endDate": "2026-11-15",
+      "status": "In Progress",
+      "progress": 65,
+      "budgetAllocated": 780000
+    }
+  ],
+  "trainers": [
+    {
+      "id": 1,
+      "name": "Ananya Kulkarni",
+      "institute": "Government ITI Aundh",
+      "district": "Pune",
+      "skills": [
+        "React",
+        "JavaScript",
+        "AWS",
+        "Python"
+      ],
+      "experience": 9,
+      "cert": "Current",
+      "last": "2026-08-18",
+      "qualification": "M.Tech, Computer Science",
+      "levels": [
+        [
+          "JavaScript",
+          88
+        ],
+        [
+          "React",
+          82
+        ],
+        [
+          "AWS",
+          70
+        ],
+        [
+          "Teaching practice",
+          91
+        ]
+      ],
+      "availability": "Available"
+    },
+    {
+      "id": 2,
+      "name": "Suresh Patil",
+      "institute": "Government ITI Pimpri",
+      "district": "Pune",
+      "skills": [
+        "Industrial IoT",
+        "PLC",
+        "SCADA",
+        "Sensors"
+      ],
+      "experience": 12,
+      "cert": "Renewal due",
+      "last": "2026-07-11",
+      "qualification": "B.E., Instrumentation",
+      "levels": [
+        [
+          "Industrial IoT",
+          72
+        ],
+        [
+          "PLC",
+          86
+        ],
+        [
+          "Sensors",
+          79
+        ],
+        [
+          "Teaching practice",
+          84
+        ]
+      ],
+      "availability": "Available"
+    },
+    {
+      "id": 3,
+      "name": "Meera Jadhav",
+      "institute": "Government Polytechnic Pune",
+      "district": "Pune",
+      "skills": [
+        "Python",
+        "Power BI",
+        "SQL",
+        "Data Analytics"
+      ],
+      "experience": 7,
+      "cert": "Current",
+      "last": "2026-09-05",
+      "qualification": "M.E., Computer Engineering",
+      "levels": [
+        [
+          "Python",
+          84
+        ],
+        [
+          "Power BI",
+          78
+        ],
+        [
+          "Data analysis",
+          81
+        ],
+        [
+          "Teaching practice",
+          76
+        ]
+      ],
+      "availability": "On Assignment"
+    },
+    {
+      "id": 4,
+      "name": "Farhan Shaikh",
+      "institute": "Government ITI Worli",
+      "district": "Mumbai",
+      "skills": [
+        "EV Diagnostics",
+        "Electrical Safety",
+        "CAN Bus"
+      ],
+      "experience": 10,
+      "cert": "Development needed",
+      "last": "2026-05-23",
+      "qualification": "B.E., Electrical Engineering",
+      "levels": [
+        [
+          "EV Diagnostics",
+          65
+        ],
+        [
+          "Electrical Safety",
+          89
+        ],
+        [
+          "CAN Bus",
+          58
+        ],
+        [
+          "Teaching practice",
+          82
+        ]
+      ],
+      "availability": "Available"
+    },
+    {
+      "id": 5,
+      "name": "Nisha Pawar",
+      "institute": "Government ITI Nagpur",
+      "district": "Nagpur",
+      "skills": [
+        "Solar PV",
+        "Renewable Tech",
+        "Microgrid Maintenance"
+      ],
+      "experience": 6,
+      "cert": "Current",
+      "last": "2026-08-29",
+      "qualification": "B.Tech, Energy Technology",
+      "levels": [
+        [
+          "Solar PV",
+          85
+        ],
+        [
+          "Inverter Maintenance",
+          80
+        ],
+        [
+          "Safety Protocols",
+          92
+        ],
+        [
+          "Teaching practice",
+          78
+        ]
+      ],
+      "availability": "Available"
+    }
+  ],
+  "equipment": [
+    {
+      "id": 1,
+      "name": "Arduino & Microcontroller Starter Kits",
+      "category": "Embedded / IoT",
+      "required": 30,
+      "available": 18,
+      "shortage": 12,
+      "utilization": 86,
+      "unitCost": 4800,
+      "totalCost": 57600,
+      "institution": "Govt ITI Aundh",
+      "district": "Pune",
+      "maintenanceStatus": "Operational"
+    },
+    {
+      "id": 2,
+      "name": "Electric Vehicle High-Voltage Diagnostic Rig",
+      "category": "Automotive / EV",
+      "required": 14,
+      "available": 8,
+      "shortage": 6,
+      "utilization": 74,
+      "unitCost": 185000,
+      "totalCost": 1110000,
+      "institution": "Govt ITI Pimpri",
+      "district": "Pune",
+      "maintenanceStatus": "Operational"
+    },
+    {
+      "id": 3,
+      "name": "Industrial PLC Trainer & Simulation Rig",
+      "category": "Automation",
+      "required": 25,
+      "available": 22,
+      "shortage": 3,
+      "utilization": 81,
+      "unitCost": 92000,
+      "totalCost": 276000,
+      "institution": "Govt ITI Satpur",
+      "district": "Nashik",
+      "maintenanceStatus": "Operational"
+    },
+    {
+      "id": 4,
+      "name": "CNC 3-Axis Milling Simulator Station",
+      "category": "Mechanical / Machining",
+      "required": 12,
+      "available": 9,
+      "shortage": 3,
+      "utilization": 69,
+      "unitCost": 240000,
+      "totalCost": 720000,
+      "institution": "Govt ITI Kolhapur",
+      "district": "Kolhapur",
+      "maintenanceStatus": "Maintenance Due"
+    },
+    {
+      "id": 5,
+      "name": "Solar PV Grid-Tied Practice Test Bench",
+      "category": "Renewable Energy",
+      "required": 20,
+      "available": 15,
+      "shortage": 5,
+      "utilization": 77,
+      "unitCost": 36000,
+      "totalCost": 180000,
+      "institution": "Govt ITI Nagpur",
+      "district": "Nagpur",
+      "maintenanceStatus": "Operational"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "b-pune-labour",
+      "category": "Curriculum & Modern Lab Infrastructure",
+      "institution": "State Directorate of Vocational Education",
+      "district": "Pune",
+      "financialYear": "2026-2027",
+      "allocated": 4500000,
+      "spent": 3120000,
+      "remaining": 1380000,
+      "status": "Healthy"
+    },
+    {
+      "id": "b-mumbai-it",
+      "category": "High-Tech Digital Training Kits & Cloud Licensing",
+      "institution": "Worli ITI Excellence Centre",
+      "district": "Mumbai",
+      "financialYear": "2026-2027",
+      "allocated": 3800000,
+      "spent": 2950000,
+      "remaining": 850000,
+      "status": "Healthy"
+    },
+    {
+      "id": "b-nashik-auto",
+      "category": "Industrial Robotics & Precision Tooling Upgrades",
+      "institution": "Satpur Advanced Training Hub",
+      "district": "Nashik",
+      "financialYear": "2026-2027",
+      "allocated": 2600000,
+      "spent": 2450000,
+      "remaining": 150000,
+      "status": "Threshold Warning"
+    },
+    {
+      "id": "b-vidarbha-solar",
+      "category": "Solar Energy & Green Tech Field Benches",
+      "institution": "Nagpur ITI Cluster",
+      "district": "Nagpur",
+      "financialYear": "2026-2027",
+      "allocated": 1800000,
+      "spent": 980000,
+      "remaining": 820000,
+      "status": "Healthy"
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "severity": "Critical",
+      "title": "Surging EV diagnostics demand requires immediate lab capacity review",
+      "district": "Pune",
+      "skill": "EV Diagnostics",
+      "period": "Jul–Sep 2026",
+      "evidence": "Mentions increased across 74 verified automotive vacancy records in Chakan & Talegaon corridors.",
+      "action": "Review trainer and diagnostic rig capacity in Government ITI Pimpri.",
+      "status": "New",
+      "read": false,
+      "category": "training_deadline",
+      "timestamp": "2026-09-27T08:30:00Z"
+    },
+    {
+      "id": 2,
+      "severity": "High",
+      "title": "COPA curriculum alignment below 65% state benchmark threshold",
+      "district": "Pune",
+      "skill": "React.js & Cloud Basics",
+      "period": "Apr–Sep 2026",
+      "evidence": "COPA syllabus covers 28 of 45 contemporary market-demand skills in centralized industrial benchmark.",
+      "action": "Open curriculum revision package with subject expert panel.",
+      "status": "Under Review",
+      "read": false,
+      "category": "certification_expiry",
+      "timestamp": "2026-09-26T14:15:00Z"
+    },
+    {
+      "id": 3,
+      "severity": "Medium",
+      "title": "Trainer capacity deficit signal detected for Industrial IoT trades",
+      "district": "Nashik",
+      "skill": "Industrial IoT",
+      "period": "Q3 2026",
+      "evidence": "Synthesized regional plan identifies 11 fewer certified trainers than scheduled scenario demand.",
+      "action": "Validate trainer roster and schedule ToT (Training of Trainers) cohort.",
+      "status": "Action Required",
+      "read": true,
+      "category": "training_deadline",
+      "timestamp": "2026-09-25T11:45:00Z"
+    },
+    {
+      "id": 4,
+      "severity": "Information",
+      "title": "Adzuna Labour Market API synchronization successful",
+      "district": "Statewide",
+      "skill": "All Trades",
+      "period": "Sep 2026",
+      "evidence": "Real-time telemetry validated 59 active vacancies across Maharashtra industrial hubs.",
+      "action": "Retain ingestion records for state audit and decision analysis.",
+      "status": "Resolved",
+      "read": true,
+      "category": "system_error",
+      "timestamp": "2026-09-27T17:48:00Z"
+    }
+  ],
+  "dataQuality": {
+    "overallQualityScore": 92,
+    "totalRecordsChecked": 1485,
+    "missingDistrictsCount": 14,
+    "duplicatesDetectedCount": 6,
+    "invalidLocationsCount": 3,
+    "staleRecordsCount": 22,
+    "extractionConfidenceWarnings": 5,
+    "lastRunTimestamp": "2026-09-27T18:49:34.765Z",
+    "qualityIssues": [
+      {
+        "issue": "Missing district metadata in third-party feeds",
+        "severity": "Medium",
+        "count": "14",
+        "description": "Records lack exact Maharashtra district codes; mapped to state aggregate.",
+        "recommendedAction": "Apply reverse geocoding heuristics based on locality tags."
+      },
+      {
+        "issue": "Duplicate postings detected across sources",
+        "severity": "Low",
+        "count": "6",
+        "description": "Identical title and company postings detected across employer portal and external listings.",
+        "recommendedAction": "Retain the canonical source record with higher evidence score."
+      }
+    ]
+  },
+  "dataSources": [
+    {
+      "id": "src-adzuna",
+      "name": "Adzuna Labour Market Telemetry API",
+      "provider": "Adzuna Ltd.",
+      "url": "https://api.adzuna.com/v1/api/jobs/in/search",
+      "apiStatus": "Active",
+      "lastSuccessfulSync": "2026-09-27T18:49:34.765Z",
+      "lastFailure": null,
+      "updateFrequency": "Real-time On-demand / Hourly Cache",
+      "recordCount": 59,
+      "dataType": "Live Employer Vacancies & Wage Distributions",
+      "reliabilityScore": 98,
+      "notes": "Configured server-side with ADZUNA_APP_ID and ADZUNA_APP_KEY in .env."
+    },
+    {
+      "id": "src-dvet",
+      "name": "Maharashtra DVET ITI Curriculum & Institute Registry",
+      "provider": "Directorate of Vocational Education and Training, Maharashtra",
+      "url": "https://dvet.gov.in",
+      "apiStatus": "Active",
+      "lastSuccessfulSync": "2026-09-26T09:00:00Z",
+      "lastFailure": null,
+      "updateFrequency": "Monthly Scheduled Sync",
+      "recordCount": 418,
+      "dataType": "Standardized Course Syllabus, Approved Seats & Institute Directories",
+      "reliabilityScore": 99,
+      "notes": "Official state vocational standard mapping."
+    },
+    {
+      "id": "src-ncs",
+      "name": "National Career Service (NCS) Public Portal Registry",
+      "provider": "Ministry of Labour & Employment, Govt. of India",
+      "url": "https://www.ncs.gov.in",
+      "apiStatus": "Active",
+      "lastSuccessfulSync": "2026-09-25T12:00:00Z",
+      "lastFailure": null,
+      "updateFrequency": "Daily Periodic Aggregation",
+      "recordCount": 1420,
+      "dataType": "National Occupational Standards (NOS) & Apprenticeship Register",
+      "reliabilityScore": 95,
+      "notes": "Authorized public interface compliance."
+    },
+    {
+      "id": "src-msda",
+      "name": "Maharashtra State Skill Development Society (MSSDS)",
+      "provider": "Skill, Employment, Entrepreneurship & Innovation Dept",
+      "url": "https://www.mahaswayam.gov.in",
+      "apiStatus": "Active",
+      "lastSuccessfulSync": "2026-09-26T16:30:00Z",
+      "lastFailure": null,
+      "updateFrequency": "Weekly Scheduled Sync",
+      "recordCount": 890,
+      "dataType": "Scheme Beneficiaries & District Training Allotments",
+      "reliabilityScore": 96,
+      "notes": "State policy & welfare funding tracker."
+    }
+  ],
+  "reports": [
+    {
+      "id": "rep-state-2026",
+      "title": "Maharashtra Annual Labour Market Intelligence & Skill Outlook 2026-27",
+      "code": "MS-LMIP-ANN-2026",
+      "category": "Statewide Intelligence",
+      "description": "Comprehensive analysis of 120,000+ vacancies, emerging automation trades, wage trends and inter-district labor flows.",
+      "publicationDate": "2026-09-20",
+      "source": "Department of Skill, Employment, Entrepreneurship & Innovation",
+      "fileSize": "4.8 MB",
+      "format": "PDF"
+    },
+    {
+      "id": "rep-pune-skillgap",
+      "title": "Pune District Industrial Corridor Skill Gap & EV Transition Study",
+      "code": "MS-LMI-PUN-SG-01",
+      "category": "District Skill Gap",
+      "district": "Pune",
+      "description": "Empirical assessment of electric vehicle manufacturing and software engineering requirements across Chakan and Hinjawadi clusters.",
+      "publicationDate": "2026-09-15",
+      "source": "Pune District Skill Committee & MIDC Advisory Board",
+      "fileSize": "3.2 MB",
+      "format": "PDF"
+    },
+    {
+      "id": "rep-curriculum-copa",
+      "title": "Curriculum Modernization Whitepaper: Bridging ITI COPA to Modern Cloud & Web Stack",
+      "code": "DVET-CW-2026-03",
+      "category": "Curriculum Review",
+      "description": "Actionable proposal to introduce React, REST APIs, and Cloud fundamentals into the two-semester COPA trade standard.",
+      "publicationDate": "2026-08-30",
+      "source": "DVET State Subject Expert Panel",
+      "fileSize": "2.1 MB",
+      "format": "PDF"
+    },
+    {
+      "id": "rep-trainer-capacity",
+      "title": "Statewide Trainer Competency & Modernization Roster Assessment",
+      "code": "DVET-TR-CAP-2026",
+      "category": "Capacity Planning",
+      "description": "Evaluation of 2,400+ vocational trainers across all 36 Maharashtra districts with upskilling recommendations for Industry 4.0.",
+      "publicationDate": "2026-08-10",
+      "source": "Maharashtra Vocational Training Academy",
+      "fileSize": "5.4 MB",
+      "format": "PDF"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "aud-1790535987542-404",
+      "timestamp": "2026-09-27T19:06:27.542Z",
+      "user": "State Admin",
+      "role": "State Admin",
+      "action": "Assistant Query",
+      "module": "Intelligence Assistant",
+      "entity": "Query: ho...",
+      "previousState": "None",
+      "newState": "Platform Knowledge Response",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-1790535982828-391",
+      "timestamp": "2026-09-27T19:06:22.828Z",
+      "user": "State Admin",
+      "role": "State Admin",
+      "action": "Assistant Query",
+      "module": "Intelligence Assistant",
+      "entity": "Query: hi...",
+      "previousState": "None",
+      "newState": "Platform Knowledge Response",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-1790535006489-132",
+      "timestamp": "2026-09-27T18:50:06.489Z",
+      "user": "Citizen User",
+      "role": "General User",
+      "action": "Assistant Query",
+      "module": "Intelligence Assistant",
+      "entity": "Query: What skills are currently in demand?...",
+      "previousState": "None",
+      "newState": "Platform Knowledge Response",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-1",
+      "timestamp": "2026-09-27T17:48:02Z",
+      "user": "System Service",
+      "role": "System Admin",
+      "action": "Resume Upload & OCR Analysis",
+      "module": "Resume Analyzer",
+      "entity": "M_Navaneeth_Resume.pdf",
+      "previousState": "Unprocessed Document Buffer",
+      "newState": "Structured Candidate Profile Extracted",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-2",
+      "timestamp": "2026-09-27T17:48:12Z",
+      "user": "System Service",
+      "role": "System Admin",
+      "action": "Adzuna Labour Market API Search",
+      "module": "Job Matcher",
+      "entity": "Candidate: M Navaneeth (India/Maharashtra)",
+      "previousState": "Cache Lookup",
+      "newState": "59 Live Vacancies Retrieved & Matched",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-3",
+      "timestamp": "2026-09-27T14:30:00Z",
+      "user": "Asha Patil",
+      "role": "District Officer",
+      "action": "Updated Curriculum Review Stage",
+      "module": "Curriculum Review",
+      "entity": "COPA Enrichment Proposal",
+      "previousState": "Department Review: Complete",
+      "newState": "Technical Review: In review",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-4",
+      "timestamp": "2026-09-26T11:20:00Z",
+      "user": "Rohan Desai",
+      "role": "State Admin",
+      "action": "Created Training Plan",
+      "module": "Training Plans",
+      "entity": "Pune District EV & Green Mobility Workforce Acceleration",
+      "previousState": "None",
+      "newState": "Scheduled",
+      "status": "Completed"
+    },
+    {
+      "id": "aud-5",
+      "timestamp": "2026-09-25T16:45:00Z",
+      "user": "Meera Joshi",
+      "role": "Super Admin",
+      "action": "Data Source Verification Ping",
+      "module": "Data Sources",
+      "entity": "Adzuna Labour Market Telemetry API",
+      "previousState": "Configured",
+      "newState": "Active (Status: 200 OK)",
+      "status": "Completed"
+    }
+  ],
+  "users": [
+    {
+      "id": "u-1",
+      "name": "Rohan Desai",
+      "email": "rohan.desai@maharashtra.gov.in",
+      "role": "State Admin",
+      "permissions": "Statewide analytics, budgets, reports, sign-off approval",
+      "status": "Active",
+      "lastLogin": "2026-09-27T16:40:00Z",
+      "mfa": "Enabled"
+    },
+    {
+      "id": "u-2",
+      "name": "Asha Patil",
+      "email": "asha.patil@dvet.gov.in",
+      "role": "District Officer",
+      "permissions": "District intelligence, local training plans, institute monitoring",
+      "status": "Active",
+      "lastLogin": "2026-09-27T15:20:00Z",
+      "mfa": "Enabled"
+    },
+    {
+      "id": "u-3",
+      "name": "Vijay Sawant",
+      "email": "principal@iti-aundh.edu.in",
+      "role": "ITI Principal",
+      "permissions": "Institute courses, trainers, equipment inventory, student enrollment",
+      "status": "Active",
+      "lastLogin": "2026-09-26T18:10:00Z",
+      "mfa": "Enabled"
+    },
+    {
+      "id": "u-4",
+      "name": "Ananya Kulkarni",
+      "email": "ananya.kulkarni@iti-worli.edu.in",
+      "role": "Trainer",
+      "permissions": "Own profile, class schedules, trainee attendance, skill assessment",
+      "status": "Active",
+      "lastLogin": "2026-09-26T12:08:00Z",
+      "mfa": "Enabled"
+    },
+    {
+      "id": "u-5",
+      "name": "Sahyadri Digital HR",
+      "email": "careers@sahyadridigital.com",
+      "role": "Employer",
+      "permissions": "Post job vacancies, search candidates, shortlist applicants",
+      "status": "Active",
+      "lastLogin": "2026-09-27T11:00:00Z",
+      "mfa": "Enabled"
+    },
+    {
+      "id": "u-6",
+      "name": "M Navaneeth",
+      "email": "m.navaneeth@example.edu.in",
+      "role": "Student",
+      "permissions": "View profile, upload resume, view matching jobs, apply to vacancies",
+      "status": "Active",
+      "lastLogin": "2026-09-27T17:50:00Z",
+      "mfa": "Pending"
+    }
+  ],
+  "assistantChatHistory": [],
+  "linkedinSession": null,
+  "latestResumeAnalysis": {
+    "id": "res-1790531282755",
+    "filename": "M_Navaneeth_Resume.pdf",
+    "analyzedAt": "2026-09-27T17:48:02.755Z",
+    "candidate": {
+      "name": "M Navaneeth",
+      "email": null,
+      "phone": "+9198765 43210",
+      "location": "Vijayawada, Andhra Pradesh, India",
+      "linkedin": "https://linkedin.com/in/m-navaneeth",
+      "github": "https://github.com/navaneethm",
+      "summary": null,
+      "education": [
+        {
+          "degree": "B.Tech in Computer Science and * Deployed using Vercel.",
+          "institution": "SRM Institute of Science and Technology 92022 - 2026",
+          "year": "2026",
+          "cgpa": null
+        }
+      ],
+      "experience": [],
+      "totalExperienceYears": 0,
+      "categorizedSkills": {
+        "programmingLanguages": [
+          "Python",
+          "Java",
+          "JavaScript",
+          "TypeScript"
+        ],
+        "frontend": [
+          "React",
+          "Next.js",
+          "Tailwind CSS",
+          "HTML / CSS"
+        ],
+        "backend": [
+          "Node.js",
+          "Express.js",
+          "Spring Boot",
+          "REST APIs"
+        ],
+        "databases": [
+          "PostgreSQL",
+          "MySQL",
+          "MongoDB"
+        ],
+        "cloud": [
+          "AWS"
+        ],
+        "devops": [
+          "Docker",
+          "Git",
+          "Linux"
+        ],
+        "aiMl": [],
+        "tools": [
+          "VSCode",
+          "Postman",
+          "GitHub"
+        ],
+        "frameworks": [],
+        "other": [
+          "OWASP / Web Security"
+        ]
+      },
+      "technicalSkills": [
+        {
+          "skill": "Python",
+          "evidence": "Python Java JavaScript",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "Java",
+          "evidence": "Python Java JavaScript",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "JavaScript",
+          "evidence": "FULL STACK DEVELOPER « Developed and maintained web applications using React js and Node js.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "TypeScript",
+          "evidence": "TypeScript © sqQL",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "React",
+          "evidence": "FULL STACK DEVELOPER « Developed and maintained web applications using React js and Node js.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "Next.js",
+          "evidence": "Tailwind CSS | | Nextjs React js, TypeScript, Node.js, Express, PostgreSQL",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "Tailwind CSS",
+          "evidence": "« Built responsive and user-friendly interfaces using React js and Tailwind CSS.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "HTML / CSS",
+          "evidence": "« Built responsive and user-friendly interfaces using React js and Tailwind CSS.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "Node.js",
+          "evidence": "FULL STACK DEVELOPER « Developed and maintained web applications using React js and Node js.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "Express.js",
+          "evidence": "Tailwind CSS | | Nextjs React js, TypeScript, Node.js, Express, PostgreSQL",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "Spring Boot",
+          "evidence": "REST APIs Spring Boot «Implemented resume analyser with job recommendations based on candidate skills.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "REST APIs",
+          "evidence": "+9198765 43210 «+ Worked on REST API development and database integration.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "PostgreSQL",
+          "evidence": "Tailwind CSS | | Nextjs React js, TypeScript, Node.js, Express, PostgreSQL",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "MySQL",
+          "evidence": "MySQL Ji{ PostgreSQL }i{EMongobB E-Commerce Web Application Sep 2024 - Dec 2024",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "MongoDB",
+          "evidence": "Tools & Technologies React js, Node.js, MongoDB, Express.js",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "AWS",
+          "evidence": "AWS Cloud Practitioner (In Progress)",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "Docker",
+          "evidence": "g «Gained hands-on experience in Git, Docker, and deployment.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "Git",
+          "evidence": "g «Gained hands-on experience in Git, Docker, and deployment.",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "Linux",
+          "evidence": "VSCode Postman Linux integration (Razorpay).",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "VSCode",
+          "evidence": "VSCode Postman Linux integration (Razorpay).",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "Postman",
+          "evidence": "VSCode Postman Linux integration (Razorpay).",
+          "confidence": 0.91,
+          "level": "Moderate"
+        },
+        {
+          "skill": "GitHub",
+          "evidence": "github.com/navaneethm CodSoft | Remote",
+          "confidence": 0.96,
+          "level": "Strong"
+        },
+        {
+          "skill": "OWASP / Web Security",
+          "evidence": "Eoblemisolvingl) [OWASP Basics Personal Portfolio Website Jul 2024 - Aug 2024",
+          "confidence": 0.91,
+          "level": "Moderate"
+        }
+      ],
+      "softSkills": [
+        "Problem Solving",
+        "Teamwork",
+        "Communication"
+      ],
+      "certifications": [
+        "Python for Everybody - Coursera «Top 5% in NPTEL Python Programming certification.",
+        "AWS Cloud Practitioner (In Progress)",
+        "Java Programming - NPTEL @ INTERESTS"
+      ],
+      "achievements": [
+        "Finalist - Smart India Hackathon 2026 (SIH26134)",
+        "CERTIFICATIONS + Solved 500+ problems on LeetCode, GeeksforGeeks and CodeChef.",
+        "Python for Everybody - Coursera «Top 5% in NPTEL Python Programming certification.",
+        "English Telugu Hindi New Technologies Technical Blogs in Hackathons"
+      ],
+      "projects": [
+        {
+          "title": "Reacts JNEHIMERICES) SkillBridge  Govt. Labour ket Intelligence Platform",
+          "duration": "Mar 2026 - Present",
+          "tech": [
+            "Java",
+            "TypeScript",
+            "React",
+            "Tailwind CSS",
+            "Node.js",
+            "PostgreSQL"
+          ],
+          "description": "Tailwind CSS | | Nextjs React js, TypeScript, Node.js, Express, PostgreSQL"
+        },
+        {
+          "title": "MySQL Ji{ PostgreSQL }i{EMongobB ECommerce Web Application",
+          "duration": "Sep 2024 - Dec 2024",
+          "tech": [
+            "React",
+            "Node.js",
+            "Express.js",
+            "PostgreSQL",
+            "MySQL",
+            "MongoDB",
+            "Docker",
+            "Git",
+            "Linux",
+            "VSCode",
+            "Postman",
+            "GitHub"
+          ],
+          "description": "Tools & Technologies React js, Node.js, MongoDB, Express.js"
+        },
+        {
+          "title": "Eoblemisolvingl) [OWASP Basics Personal Portfolio Website",
+          "duration": "Jul 2024 - Aug 2024",
+          "tech": [
+            "React",
+            "Tailwind CSS"
+          ],
+          "description": "React js, Tailwind CSS"
+        }
+      ],
+      "languages": [
+        "English",
+        "Telugu",
+        "Hindi"
+      ],
+      "detectedRoles": [
+        "Python Developer",
+        "Data Analyst",
+        "Software Engineer",
+        "Java Developer",
+        "Backend Developer",
+        "Frontend Developer",
+        "Full Stack Developer",
+        "Web Developer",
+        "React Developer",
+        "UI Engineer",
+        "Web Designer",
+        "Node.js Developer",
+        "Backend Engineer",
+        "Data Engineer",
+        "Cloud Engineer",
+        "DevOps Engineer",
+        "Solutions Architect",
+        "Systems Administrator",
+        "Security Analyst"
+      ],
+      "extractionMethod": "ocr"
+    },
+    "recommendedJobs": [
+      {
+        "id": "5859162361",
+        "title": "Tech Lead - Python Developer",
+        "company": "Aristocrat",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-28T08:11:35Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5859162361?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=AD828D643C116F0714E92605C3D5AFDB9CC74726",
+        "source": "Adzuna",
+        "description": "This job is with Aristocrat, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. At Aristocrat, excellence isn't just a goal; it's our way of life. Our dedication to innovation and creativity propels us to deliver flawless gaming experiences every day. As a Tech Lead - Python Developer, you will play a pivotal role in driving transformation and crafting the future of our enterprise through mo…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Tech Lead - Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5871846779",
+        "title": "Specialist Platform Engineer - Python Developer",
+        "company": "Novartis",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-05T16:19:51Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5871846779?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=BE0A4BF674B90B8E88AA906D2A8F155100405251",
+        "source": "Adzuna",
+        "description": "This job is with Novartis, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Summary This role is responsible for designing, building, and governing secure, scalable, and compliant enterprise AI platforms on AWS, enabling AI/ML, Generative AI, LLMOps, Agentic AI, and MLOps capabilities while supporting application teams with platform adoption, deployment standards, security controls, and re…",
+        "extractedJobSkills": [
+          "Python",
+          "AWS"
+        ],
+        "matchingSkills": [
+          "Python",
+          "AWS"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, AWS directly satisfy the primary requirements for this Specialist Platform Engineer - Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5896550841",
+        "title": "Python Developer",
+        "company": "Weekday AI",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-24T14:20:13Z",
+        "jobUrl": "https://www.adzuna.in/details/5896550841?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "This role is for one of Weekday’s clients Min Experience: 5 years Location: Bengaluru, Karnataka, India JobType: full-time We are seeking a skilled Python Development Backend Engineer with hands-on experience in Python, FastAPI, and containerized cloud-native environments. You will be responsible for building highly performant services, designing APIs, ensuring reliability, and collaborating across engineering, QA, and DevOps teams. The ideal candidate has strong backend fundamentals, testing d…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5889222919",
+        "title": "Data Analyst",
+        "company": "HT Digital Streams",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-18T17:31:52Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5889222919?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=03EF083DA912BE5EBF0E4FE0CF65CCAF6FDA4830",
+        "source": "Adzuna",
+        "description": "Job Description : Data Analyst – Fintech About Mint Money Mint Money (by HT Media Group) is a mobile-first personal finance marketplace. We empower millions of users to track credit health, discover personalized loans, and access credit cards seamlessly through partnerships with leading RBI-registered NBFCs and banks. Role Overview As a Data Analyst , you will optimize user acquisition, credit matching, and disbursal funnels. Operating at the intersection of product, marketing, and risk, your i…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5892770992",
+        "title": "Data Analyst",
+        "company": "Drave Digitals Recruitment Services",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-21T17:39:06Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5892770992?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=D644AB5D5C1241C76D4155BFF35793D9C6391A7E",
+        "source": "Adzuna",
+        "description": "We are hiring Data Analyst Freshers on behalf of our client companies. The selected candidates will work with business and operations teams to collect, organize, analyze, and interpret data to support business decision-making. This is an excellent opportunity for freshers looking to start their career in Data Analytics, Business Intelligence, and Data-driven Operations. Key Responsibilities Collect, clean, validate, and organize data from different sources. Analyze datasets to identify trends, …",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5900616406",
+        "title": "Data Analyst",
+        "company": "MNC",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-27T18:07:28Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5900616406?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=AB9C67ED297CE516DED5ABF2B5050CE8E38E0264",
+        "source": "Adzuna",
+        "description": "Job Description We are seeking a skilled Data Analyst ,Bangalore, Hyderabad having 4 yrs of experience. About Us CodeVyasa is a mid-sized product engineering company that works with top-tier product and solutions organizations such as McKinsey, Walmart, RazorPay, Swiggy, and others. We are a team of 550 engineers, driving innovation across Product & Data Engineering, focusing on Agentic AI, RPA, Full Stack, and GenAI-based solutions. Key Responsibilities: Design, develop, and maintain interacti…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5889219254",
+        "title": "Data Analyst",
+        "company": "Celestica",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-18T17:29:26Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5889219254?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=F7AFC9AC2D0E9DD4D9D13BF0498E433176A3ACB6",
+        "source": "Adzuna",
+        "description": "Summary The AI Data Analyst will design, develop, document, and maintain data pipelines and architectures, workingclosely with IT, Data Engineering, and Data Science teams to deliver artificial intelligence and machine learningsolutions. Provide technical support on selected AI systems (for example, Generative AI applications, agenticworkflows, and internal data integration tools) and participate in enterprise IT and AI projects. Detailed Description Performs tasks such as, but not limited to, …",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5900616046",
+        "title": "Data Analyst",
+        "company": "Appinventiv",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-27T18:06:07Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5900616046?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=FF977D1A5C362D8F7EC4EDE84B993586FCA0FEF0",
+        "source": "Adzuna",
+        "description": "The ideal candidate will use their passion for big data and analytics to provide insights to the business covering a range of topics. They will be responsible for conducting both recurring and ad hoc analysis for business users. Responsibilities Understand the day-to-day issues that our business faces, which can be better understood with data Compile and analyze data related to business' issues Develop clear visualizations to convey complicated data in a straightforward fashion Qualifications B…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5837139892",
+        "title": "Senior Data Analyst",
+        "company": "Capco",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-12T01:59:43Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5837139892?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=4787DEB72117F1E1AE98E353D8AD9B20E9DD6C9B",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: Data Analyst (Python Pyspark) About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities a…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Senior Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5882592928",
+        "title": "Data Analyst (Remote)",
+        "company": "Hire Feed",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-13T17:18:26Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5882592928?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=426D03DAA6A1A4A9A32863B2C570EE12F5A9B815",
+        "source": "Adzuna",
+        "description": "Role: Data Analyst (Remote) Location: Remote (Work from Anywhere) Role Overview: We are hiring for one of our clients, seeking a Business Analyst (Russian Language) to work on a full-time basis. The ideal candidate must have strong analytical and comprehension skills, with the ability to read, summarize, and break down large content into smaller logical blocks. The role involves conducting online research, validating claims, and collaborating with large language models to solve analytical puzzl…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst (Remote) role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5900616306",
+        "title": "Marketing Data Analyst",
+        "company": "FREED",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-27T18:06:59Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5900616306?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=C1664D8AEAA5C1115CBF1878D52B66ECB91C0772",
+        "source": "Adzuna",
+        "description": "About FREED FREED is India's first comprehensive debt relief platform, built on the belief that financial freedom is a right, not a privilege. Since 2020, we have helped thousands of individuals take control of their financial lives, with ₹1,500 Crore in debt enrolled, 30,000 customers served, and 10,000 accounts resolved. Founded by Ritesh Srivastava and backed by leading investors, FREED is a fast-growing, purpose-driven fintech organisation on a mission that matters. About the Role Marketing…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Marketing Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5900616370",
+        "title": "Master Data Analyst",
+        "company": "Selections HR Services Private Limited",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-27T18:07:23Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5900616370?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=28F115B0599CEE3B3945E1CB4533AF3E3BDC0F25",
+        "source": "Adzuna",
+        "description": "Manage and maintain Master Data across ERP systems. Create, update and validate Customer, Vendor, Material/Product Master Data . Perform data cleansing, validation and quality checks. Ensure data accuracy, completeness and compliance with defined standards. Handle master data requests, corrections and workflow approvals. Coordinate with business, procurement, finance and other teams to resolve data issues. Maintain data records and prepare MIS/reports using Excel . Follow SOPs, controls and SLA…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 97,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Master Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5896964322",
+        "title": "Python Developer",
+        "company": "Capco",
+        "location": "Mumbai, Maharashtra",
+        "district": "Mumbai",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-24T20:32:32Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5896964322?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=9AF4CEE57CC5FB946B45DC21E28137FC89150BB9",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: Python Developer About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount. With our presence across 32 cities across globe, w…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 96,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5876645051",
+        "title": "Data Analyst",
+        "company": "Cornerstone OnDemand",
+        "location": "Pune, Maharashtra",
+        "district": "Pune",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-09T10:19:37Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5876645051?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=631925FDE58F85DB10B5F3F2B9DA1B57320F62F0",
+        "source": "Adzuna",
+        "description": "This job is with Cornerstone OnDemand, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Data Analyst - Enterprise Data Management Location: Hyderabad, India About the Role: We are seeking an experienced Data Analyst to join our Enterprise Data Management team , with a core focus on Data Quality, Data Governance, and Master Data Management (MDM). In this role, you will be responsible for an…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 96,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5886604204",
+        "title": "Junior Data Analyst",
+        "company": "indē wild",
+        "location": "Mumbai, Maharashtra",
+        "district": "Mumbai",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-17T01:15:11Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5886604204?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=1011DC7FE92A65F6251862E9A31632D7012D9929",
+        "source": "Adzuna",
+        "description": "About Us: Join our dynamic and innovative startup skincare brand that is committed to redefining beauty standards with clean, effective, and sustainable products. Founded by beauty influencer Diipa Büller-Khosla, the brand emphasizes authenticity, and transparency, offering vegan and cruelty-free products that cater to diverse skin types while celebrating cultural heritage. We believe in empowering our customers with science-backed skincare solutions, and we're looking for a data-driven problem…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 96,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Junior Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5865064516",
+        "title": "Python Ansible Developer",
+        "company": "Capco",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-01T22:16:05Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5865064516?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=9C69C5C44A3F49B7C57E39E10053BF888636B19E",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Location Pune / Bangalore Experience 7 to 12 Years Job Summary We are seeking a highly skilled Python Engineer with hands-on experience in Ansible automation , REST API development/integration , and scripting for enterprise applications. The ideal candidate will be responsible for developing automation solutions, inte…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 95,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Ansible Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5896964089",
+        "title": "Python Full Stack Developer",
+        "company": "Capco",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-24T20:32:21Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5896964089?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=4BF88B6FADCA863446AE50AC0E7D6730C34DDCC8",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: Python Full Stack Developer About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities acr…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 95,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Full Stack Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5867114856",
+        "title": "Python Developer - HR Strat/Engineer",
+        "company": "Capco",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-02T18:15:22Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5867114856?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=BD8D20EEC0EAA3AE3E75CE578CD589B28992DA78",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: Python Developer - HR Strat/Engineer Location - Bangalore Experience - 7 years About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar &…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer - HR Strat/Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "4686702979",
+        "title": "Python Developer",
+        "company": "Confidential Employer",
+        "location": "Warangal, Telangana",
+        "district": "Telangana",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2024-05-10T07:38:36Z",
+        "jobUrl": "https://www.adzuna.in/details/4686702979?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "Python Developer Job Description: Python Developer duties and responsibilities: -Write reusable, testable, and efficient code -Design and implement of low-latency, high-availability, and performance applications -Integration of user-facing elements developed by front-end developers with server side logic -Implementation of security and data protection -Integration of data storage solutions -Performance tuning, improvement, balancing, usability, automation -Work collaboratively with design team …",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5863016077",
+        "title": "Python Developer",
+        "company": "Vrinda International",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": 1700000,
+        "salaryMax": 1700000,
+        "salaryText": "₹17.0L – ₹17.0L/yr",
+        "postedDate": "2026-08-31T21:10:31Z",
+        "jobUrl": "https://www.adzuna.in/details/5863016077?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "HIRING: Python Developer – Associate Manager Location: Bengaluru Experience: 6-8 years Role: Python Developer Level: Associate Manager Role Overview We are looking for an experienced Python Developer / Associate Manager with strong expertise in Python programming and software development. The ideal candidate should have solid hands-on experience in designing, developing, enhancing, and maintaining scalable applications. Key Responsibilities Develop, enhance, and maintain applications using Pyth…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5485049501",
+        "title": "Python Developer/ Senior Python Developer",
+        "company": "APT Research",
+        "location": "Delhi, India",
+        "district": "Delhi",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2025-11-07T16:04:38Z",
+        "jobUrl": "https://www.adzuna.in/details/5485049501?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "About APT Research Pvt. Ltd. APT Research is the research and data analytics arm of APT Portfolio, a quantitative investment firm that thrives on cutting-edge technology, scientific thinking, and deep market insight. We are a team of scientists, engineers, and innovators powering algorithmic trading and financial research at scale. Learn more at www.aptportfolio.com. The Data Management & Research (DMR) team plays a pivotal role in building high-performance systems, storage, distributed computi…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer/ Senior Python Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5874134576",
+        "title": "Data Analyst",
+        "company": "KRFS",
+        "location": "Karnataka, India",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-07T18:37:51Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5874134576?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=C577AE65604914B37179B4F8E139D9AF02F18B8E",
+        "source": "Adzuna",
+        "description": "We are looking for a Data Analyst who can collect, analyze, interpret, and visualize business and financial data to support strategic decision-making. The ideal candidate should have strong analytical skills, attention to detail, and the ability to convert complex data into meaningful business insights. Key Responsibilities Collect, clean, validate, and analyze data from multiple sources. Prepare regular and ad-hoc business performance reports. Develop dashboards and data visualizations for man…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5864437013",
+        "title": "Data Analyst",
+        "company": "Midtown Software",
+        "location": "Chandigarh, India",
+        "district": "Chandigarh",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-01T16:22:33Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5864437013?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=73B93ADD4FC40B21FE02ED63887439AAE12218B7",
+        "source": "Adzuna",
+        "description": "The ideal candidate will use their passion for big data and analytics to provide insights to the business covering a range of topics. The main field of Analysis will be the data on NatGasHub.com and the Energy Industry of the US and Canada. Timings-9:00 am to 6:00 pm Direct exposure to working with U.S. and Canadian clients. Responsibilities Understand the day-to-day issues that our business faces, which can be better understood with data Coordinate with the team to complete tasks Making sure t…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5882861190",
+        "title": "Senior Data Analyst",
+        "company": "Kamakhya Analytics Private Limited",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-14T01:11:06Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5882861190?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=3F4E1282AEE628212FB0C68C1A0A7BC1BFA2E50F",
+        "source": "Adzuna",
+        "description": "JOB DESCRIPTION - SENIOR DATA ANALYST Location: Bangalore-Hybrid Department : Analytics Team : Survey Insights and Reporting About the Company: Kamakhya Analytics is a technology-driven research and consulting organisation helping leaders, parties, and institutions decode India’s political and policy landscape. We bring together survey science, data analytics, and strategic insight to answer complex questions about public opinion, governance, and performance. From ground-level fieldwork to adva…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Senior Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5864426328",
+        "title": "Senior Data Analyst",
+        "company": "Epsilon",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-01T16:20:46Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5864426328?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=D5165DAA2EE49F3BC50281F72D56B81CB9E01104",
+        "source": "Adzuna",
+        "description": "Senior Data Analyst Data Analytics Overview About Business Unit: Powerful predictors of the future - our Analytics team seamlessly blends data science and business intelligence to provide unparalleled foresight for our platform offerings. They turn insights into actionable results for our clients by collaborating with senior team members and staying ahead of market trends, powered by our data assets. By using new-age analytic tools and emerging technologies, the team cultivates a dynamic learni…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Senior Data Analyst role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5855006986",
+        "title": "Data Analyst / Engineer",
+        "company": "Kyndryl",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-25T10:07:51Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5855006986?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=50928F1DF3A77604ABD13B60B38BFF40A97E4833",
+        "source": "Adzuna",
+        "description": "This job is with Kyndryl, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Who We Are At Kyndryl, we run and reimagine the mission-critical technology systems that drive advantage for the world's leading businesses. We are at the heart of progress; with proven expertise and a continuous flow of AI-powered insight, enabling smarter decisions, faster innovation, and a lasting competitive edg…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst / Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5872825731",
+        "title": "Data Analyst / Engineer",
+        "company": "Kyndryl",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-06T12:17:19Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5872825731?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=6A3630DB00B42B55FC02DEDCBB442C341FF10528",
+        "source": "Adzuna",
+        "description": "This job is with Kyndryl, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Who We Are At Kyndryl, we run and reimagine the mission-critical technology systems that drive advantage for the world's leading businesses. We are at the heart of progress; with proven expertise and a continuous flow of AI-powered insight, enabling smarter decisions, faster innovation, and a lasting competitive edg…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 94,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Analyst / Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5898533937",
+        "title": "Fullstack consultant",
+        "company": "Olive Green Consulting",
+        "location": "Thane, Maharashtra",
+        "district": "Thane",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-25T22:02:55Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5898533937?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=50E09F9D7DE0DB834AE6F3D5CE7A23DB38FB1B6C",
+        "source": "Adzuna",
+        "description": "Hiring: Full Stack Consultant – Java & Python Location: Thane Experience: 7–15 Years Employment Type: 6-Month Contract ⏳ Notice Period: Immediate / Short Notice Preferred We are looking for an experienced Full Stack Consultant with strong hands-on expertise in Java Python backend development and React.js or Angular frontend development. The role involves designing, developing, integrating, and deploying scalable enterprise applications and APIs , while working closely with engineering, pro…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "React"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "React"
+        ],
+        "missingSkills": [],
+        "matchScore": 93,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, React directly satisfy the primary requirements for this Fullstack consultant role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5865064497",
+        "title": "Python Ansible Developer",
+        "company": "Capco",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-01T22:16:04Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5865064497?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=1F3D9ED800D018A6FAD041A84D98DDDDA4F55406",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: Python Engineer About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities across globe, w…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 91,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Ansible Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5851435786",
+        "title": "Senior Python Full Stack Developer",
+        "company": "RWS",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-22T02:05:56Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5851435786?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=7941B8EFB7997AD853AE0ADD2CA940980DFD89B3",
+        "source": "Adzuna",
+        "description": "This job is with RWS, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Senior Python Full Stack Developer Job LocationsIN-BangalorePosted Date2 weeks ago(09/09/2026 10:46)Job ID2026-6467 of Openings1CategoryInformation TechnologyBanding5 Job Purpose Job Purpose We have an exciting opportunity for a Senior Python Full Stack Developer to join our team in expanding our core product offering a…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 91,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Senior Python Full Stack Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5869485084",
+        "title": "Python with Spark Developer (5.1-7 years)-Chennai",
+        "company": "Capco",
+        "location": "Chennai, Tamil Nadu",
+        "district": "Tamil Nadu",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-04T00:32:08Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5869485084?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=71FADDCB0487A7B084619542254E9B204567F156",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities across globe, we support 100 clients acros…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 91,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python with Spark Developer (5.1-7 years)-Chennai role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5857251211",
+        "title": "Java Full Stack Developer - Pune/ Bengaluru/ Chennai/ Mumbai/ Gurugram/ Hyderabad",
+        "company": "Capco",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-27T02:10:40Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5857251211?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=182C7F72178A2B8EE5BD625E5160C56836BDE817",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: Java Full Stack Developer About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities acros…",
+        "extractedJobSkills": [
+          "Java"
+        ],
+        "matchingSkills": [
+          "Java"
+        ],
+        "missingSkills": [],
+        "matchScore": 91,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Java directly satisfy the primary requirements for this Java Full Stack Developer - Pune/ Bengaluru/ Chennai/ Mumbai/ Gurugram/ Hyderabad role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5884159402",
+        "title": "Full-Stack Development Intern",
+        "company": "Rustic Wisdom",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-15T07:08:35Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5884159402?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=50E6F425B10361C4097A50383717E990A36313CC",
+        "source": "Adzuna",
+        "description": "Full-Stack Development Intern (Web Mobile) — 6 to 9 Months Rustic Wisdom · Bengaluru (HSR Layout) . Internship . Work From Office About us Rustic Wisdom is a health and wellness company blending ancient Indian practices with modern nutrition science by using technological advancements and platforms. We have helped thousands of people across 70 countries with weight management, thyroid care, hormonal balance, diabetes and more. Our platform spans a public website, a coach portal, and mobile app…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 91,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Full-Stack Development Intern role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5837139879",
+        "title": "AI Engineer",
+        "company": "Capco",
+        "location": "Pune, Maharashtra",
+        "district": "Pune",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-12T01:59:43Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5837139879?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=4FA42B1D1023E22F4C86456DE8F7475C671CCA5C",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Title: GenAI Developer/ Engineer About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities acros…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 90,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this AI Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5846723264",
+        "title": "Foreign Exchange Production Engineering Lead",
+        "company": "Deutsche Bank",
+        "location": "Pune, Maharashtra",
+        "district": "Pune",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-18T18:03:36Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5846723264?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=EFE7678979545426B284D2C20EBA1DF7A18E9922",
+        "source": "Adzuna",
+        "description": "This job is with Deutsche Bank, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Position Overview Role Description WWe are seeking an experienced and highly capable Production Engineering Lead to support the Foreign Exchange businesses. This role is pivotal in ensuring the reliability, performance, and scalability of our real-time trading platforms. You will apply SRE principles to proact…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 90,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Foreign Exchange Production Engineering Lead role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5864435757",
+        "title": "Golang & Python Backend Developer",
+        "company": "ACL Digital",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-01T16:22:23Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5864435757?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=E8087969730FEBFE69B9500DD42ABE0D47B05E1B",
+        "source": "Adzuna",
+        "description": "Dear All, Greetings of the day… ACL Digital is actively seeking for experienced Golang & Python Backend Developer with Networking/Telecom domain to join our dynamic team. Job Description : - Golang & Python Backend Developer with Networking/Telecom domain Work Location - WFO (Mahadevapura, Bengaluru) Experience: Minimum of 3 years of experience in software development with significant expertise in Golang. Technical Skills: Must have coding experience in Go Language, Python (Java knowledge desir…",
+        "extractedJobSkills": [
+          "Python",
+          "Java"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 85,
+          "locationMatch": 65,
+          "experienceMatch": 50
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java directly satisfy the primary requirements for this Golang & Python Backend Developer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5888968631",
+        "title": "Data Engineer (7.1-9 years)",
+        "company": "Capco",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-18T14:36:20Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5888968631?se=RNnDk5u68RGCw6kuTDrJlg&utm_medium=api&utm_source=06b1203e&v=1D9AB32174F6E1781BAC2FC07AAAC488B1C59C67",
+        "source": "Adzuna",
+        "description": "This job is with Capco, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. About Us “Capco, a Wipro company, is a global technology and management consulting firm. Awarded with Consultancy of the year in the British Bank Award and has been ranked Top 100 Best Companies for Women in India 2022 by Avtar & Seramount . With our presence across 32 cities across globe, we support 100 clients acros…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Data Engineer (7.1-9 years) role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5881763237",
+        "title": "Walkin Drive-19 Sep-Chennai -Pyspark Data Engineer",
+        "company": "Tata Consultancy Services",
+        "location": "Chennai, Tamil Nadu",
+        "district": "Tamil Nadu",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-13T01:08:05Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5881763237?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=B3A81FA6580A4790E1AED03D64D99DE6C761A09A",
+        "source": "Adzuna",
+        "description": "Inviting Application for Walkin Interview Drive-19 Sept-Chennai Role: Pyspark Data Engineer Exp: 4-15 years Registration Time: 9:30-12:30pm Location: TCS -Magnum Block IT SEZ Phase-2, 200 Feet Radial Road, MCN Nagar Extension,Thoraipakkam, Chennai - 600097 Role & responsibilities PySpark: In-depth knowledge of PySpark, Apache Spark, and Python. Data Processing: Strong understanding of data processing concepts, including data ingestion, data transformation, and data storage. Cloud Experience: Ex…",
+        "extractedJobSkills": [
+          "Python"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Walkin Drive-19 Sep-Chennai -Pyspark Data Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5898128169",
+        "title": "GCP Data Engineer – Terraform",
+        "company": "Teamware Solutions",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-25T15:23:03Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5898128169?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=BAF10FB8BD17B4D5D4755F35671254715AF8E573",
+        "source": "Adzuna",
+        "description": "About the Company Greetings from Teamware Solutions a division of Quantum Leap Consulting Pvt. Ltd Teamware Solutions (a division of Quantum Leap Consulting Pvt. Ltd.) is a 20 year industry leader providing IT staffing and consulting services, supporting 4000 professionals across India, the USA, the Middle East, and APAC for leading GCC clients. About the Role We are hiring a GCP Data Engineer – Terraform Locations: Bangalore Work Model: Hybrid Experience: 5 to 7 years Notice Period: Immediate …",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this GCP Data Engineer – Terraform role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5841509271",
+        "title": "Senior Data Engineer",
+        "company": "Cornerstone OnDemand",
+        "location": "Hyderabad, Telangana",
+        "district": "Telangana",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-14T14:19:22Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5841509271?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=79C7894BF01ADAAC3675B837FB4EFBB73CE628B1",
+        "source": "Adzuna",
+        "description": "This job is with Cornerstone OnDemand, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. We are seeking a talented Senior Data Engineer in India. The right candidate has strong communication skills, passion for solving business problems with data and has domain knowledge in Finance, Human Resources, and Customer Success. You have empathy, curiosity and desire to improve and constantly learn…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Senior Data Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5865064689",
+        "title": "Lead AI Ops Engineer- India and China",
+        "company": "Standard Chartered Bank",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-01T22:16:13Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5865064689?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=85DFC5556CEA83E96F32EDCE64F1E279C2E9FD94",
+        "source": "Adzuna",
+        "description": "This job is with Standard Chartered Bank, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Summary This role could be based in India or China. When you start the application process you will be presented with a drop down menu showing all countries, please ensure that you select a country where the role is based We are hiring a Lead AI Ops engineer lead who will play a critical role in …",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Lead AI Ops Engineer- India and China role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5868794384",
+        "title": "Senior Data Engineer",
+        "company": "KANINI",
+        "location": "Chennai, Tamil Nadu",
+        "district": "Tamil Nadu",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-03T16:50:33Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5868794384?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=AFA4157AE5BE25F767F1B0F96A598A58AB351E35",
+        "source": "Adzuna",
+        "description": "Job Summary We are looking for a skilled Data Engineer with a strong background in building scalable, high-performance data pipelines on Google Cloud Platform (GCP) . The ideal candidate will have hands-on experience with BigQuery , Airflow , and cloud-based ETL workflows , along with solid programming expertise in Java or Python . Experience: 8 Years Location: Chennai, Pune, Coimbatore and Bangalore Primary Skills Google Cloud Platform (GCP): Hands-on experience with BigQuery, Cloud Storage, D…",
+        "extractedJobSkills": [
+          "Python",
+          "Java"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java directly satisfy the primary requirements for this Senior Data Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5837139112",
+        "title": "Software Architect",
+        "company": "Cornerstone OnDemand",
+        "location": "Hyderabad, Telangana",
+        "district": "Telangana",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-12T01:59:27Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5837139112?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=57EB50B536F590E9E7F7EC463D27F3B8C163B69F",
+        "source": "Adzuna",
+        "description": "This job is with Cornerstone OnDemand, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. We are seeking a highly experienced Architect to lead the design and delivery of scalable, high-performance platforms across backend engineering, data engineering, and AI/ML solutions. This role will define architecture strategy, guide engineering teams, and drive innovation in data-driven and AI-enable…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Software Architect role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5837138686",
+        "title": "Senior Systems Engineer",
+        "company": "Cornerstone OnDemand",
+        "location": "Hyderabad, Telangana",
+        "district": "Telangana",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-12T01:59:13Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5837138686?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=E9286FDC309D22F36BAFC8398B7A3C31F7CEA478",
+        "source": "Adzuna",
+        "description": "This job is with Cornerstone OnDemand, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Sr. System Engineer - Workforce AI Company: Cornerstone OnDemand India Team: Workforce AI Location: Hyderabad, India Employment type: Full-time (permanent) Level: Sr. System Engineer (mapped to experience) Experience: 3-5 years of relevant experience Reports to: [Engineering Manager, Workforce AI] Shift…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Senior Systems Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5888967480",
+        "title": "Sr. Analyst, Production Eng, WRB Tech",
+        "company": "Standard Chartered Bank",
+        "location": "Chennai, Tamil Nadu",
+        "district": "Tamil Nadu",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-18T14:35:27Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5888967480?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=575A61A9FCE94E1E27B773FEC4A7F34EE4E47481",
+        "source": "Adzuna",
+        "description": "This job is with Standard Chartered Bank, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Job Summary • Serve as gatekeeper of production, ensuring only quality, tested, and approved changes reach production environments • Ensure production meets quality standards, maintaining high standards of system reliability, performance, and security • Support maintenance of application BAU activiti…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Sr. Analyst, Production Eng, WRB Tech role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5896613644",
+        "title": "Senior Data Engineer",
+        "company": "Tenarai",
+        "location": "Noida, Ghaziabad",
+        "district": "Uttar Pradesh",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-24T15:18:22Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5896613644?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=62AECD339F4BD619C06248FA675B9D3955C792D6",
+        "source": "Adzuna",
+        "description": "Backend / Data Engineer Job Description Role: Backend / Data Engineer Experience: 8 Years Location: Noida, Mumbai, Pune, Bangalore, Kochi Employment Type: Full-time Role Overview We are looking for a skilled Backend/Data Engineer to design, migrate, develop, and operate scalable batch data pipelines. The role involves end-to-end ownership of ETL workflows, data transformations, backend services, and data processing using modern engineering practices. Key Responsibilities Migrate and modernize e…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Senior Data Engineer role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5837843617",
+        "title": "Staff Data Scientist (Growth & ML), Hyderabad",
+        "company": "Warner Bros. Discovery",
+        "location": "Hyderabad, Telangana",
+        "district": "Telangana",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-12T11:59:36Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5837843617?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=F8E1EFEC007F68DA2C9DD2662FEA174A42B0BC35",
+        "source": "Adzuna",
+        "description": "This job is with Warner Bros. Discovery, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Welcome to Warner Bros. Discovery… the stuff dreams are made of. Who We Are… When we say, “the stuff dreams are made of,” we’re not just referring to the world of wizards, dragons and superheroes, or even to the wonders of Planet Earth. Behind WBD’s vast portfolio of iconic content and beloved brands,…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Staff Data Scientist (Growth & ML), Hyderabad role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5639356983",
+        "title": "Backend Engineer (Go / Python / Java)",
+        "company": "NeoGenCode Technologies Pvt Ltd",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": 1000000,
+        "salaryMax": 2500000,
+        "salaryText": "₹10.0L – ₹25.0L/yr",
+        "postedDate": "2026-02-21T11:30:18Z",
+        "jobUrl": "https://www.adzuna.in/details/5639356983?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "Job Title : Backend Engineer (Go / Python / Java) Experience : 3 Years Location : Bangalore (Client Location – Work From Office) Notice Period : Immediate to 15 Days Open Positions : 4 Working Days : 6 Days a Week Job Summary : We are looking for a highly skilled Backend Engineer to build scalable, reliable, and high-performance systems in a fast-paced product environment. You will own large features end-to-end — from design and development to deployment and monitoring — while collaborating c…",
+        "extractedJobSkills": [
+          "Python",
+          "Java"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java"
+        ],
+        "missingSkills": [],
+        "matchScore": 88,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java directly satisfy the primary requirements for this Backend Engineer (Go / Python / Java) role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5710913309",
+        "title": "Python Developer",
+        "company": "Deqode",
+        "location": "Mumbai, Maharashtra",
+        "district": "Mumbai",
+        "salaryMin": 500000,
+        "salaryMax": 1000000,
+        "salaryText": "₹5.0L – ₹10.0L/yr",
+        "postedDate": "2026-04-26T11:55:03Z",
+        "jobUrl": "https://www.adzuna.in/details/5710913309?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "Hiring: Python Developer ⭐ Experience: 2 Years Location: Mumbai ⭐ Work Mode:- 5 Days Work From Office ⏱️ Notice Period: Immediate Joiners (Only immediate joiners & candidates serving notice period) Looking for a skilled Python Developer with experience in Django / FastAPI and MongoDB / PostgreSQL. ⭐ Must-Have Skills: - ✅ 2 years of professional experience as a Python Developer ✅Proficient in Django or FastAPI ✅Hands-on with MongoDB & PostgreSQL ✅Strong understanding of REST APIs & Git Skills:…",
+        "extractedJobSkills": [
+          "Python",
+          "Django",
+          "REST APIs",
+          "PostgreSQL",
+          "MongoDB",
+          "Git"
+        ],
+        "matchingSkills": [
+          "Python",
+          "REST APIs",
+          "PostgreSQL",
+          "MongoDB",
+          "Git"
+        ],
+        "missingSkills": [
+          "Django"
+        ],
+        "matchScore": 86,
+        "matchBreakdown": {
+          "skillMatch": 83,
+          "roleMatch": 95,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, REST APIs, PostgreSQL directly satisfy the primary requirements for this Python Developer role. 1 skill(s) (Django) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "Django",
+            "courseName": "Django Competency & Industry Application",
+            "provider": "State Vocational Digital Academy",
+            "level": "Intermediate",
+            "sourceType": "Reference Catalog"
+          }
+        ]
+      },
+      {
+        "id": "5785773131",
+        "title": "Senior Associate Tester",
+        "company": "RWS",
+        "location": "Mumbai, Maharashtra",
+        "district": "Mumbai",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-07-03T00:54:32Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5785773131?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=B4FDC9F7A6CA3CD8B6DDB523F80AFB7EC035B50D",
+        "source": "Adzuna",
+        "description": "This job is with RWS, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Senior Associate Tester Job LocationsIN-MumbaiPosted Date1 month ago(17/08/2026 08:52)Job ID2025-5174 of Openings3Banding2 Job Purpose We are looking for a proactive and detail-oriented Automation Tester to join our QA team. The ideal candidate will be responsible for designing and maintaining robust automation framewor…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "JavaScript"
+        ],
+        "missingSkills": [],
+        "matchScore": 85,
+        "matchBreakdown": {
+          "skillMatch": 100,
+          "roleMatch": 50,
+          "locationMatch": 85,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, JavaScript directly satisfy the primary requirements for this Senior Associate Tester role.",
+        "learningRecommendations": []
+      },
+      {
+        "id": "5867446976",
+        "title": "Python Developer",
+        "company": "CCTECH",
+        "location": "Ambawadi Vistar, Ahmedabad",
+        "district": "Gujarat",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-02T23:43:13Z",
+        "jobUrl": "https://www.adzuna.in/details/5867446976?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "We are hiring a Python Developer to build the backend services powering enterprise construction management and renewable-energy platforms- REST APIs, integrations with enterprise systems such as Primavera P6 and SAP, and the automation, reporting and workflow layers our clients rely on daily. Key Responsibilities: • Design, develop and maintain backend applications and REST APIs using Python (FastAPI/Django). • Design and maintain PostgreSQL databases -schemas, performant queries, versioned mig…",
+        "extractedJobSkills": [
+          "Python",
+          "Django",
+          "REST APIs",
+          "PostgreSQL"
+        ],
+        "matchingSkills": [
+          "Python",
+          "REST APIs",
+          "PostgreSQL"
+        ],
+        "missingSkills": [
+          "Django"
+        ],
+        "matchScore": 80,
+        "matchBreakdown": {
+          "skillMatch": 75,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, REST APIs, PostgreSQL directly satisfy the primary requirements for this Python Developer role. 1 skill(s) (Django) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "Django",
+            "courseName": "Django Competency & Industry Application",
+            "provider": "State Vocational Digital Academy",
+            "level": "Intermediate",
+            "sourceType": "Reference Catalog"
+          }
+        ]
+      },
+      {
+        "id": "5860534520",
+        "title": "SDET_Automation Engineer (Python/Java)",
+        "company": "Nutanix",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-08-29T07:40:08Z",
+        "jobUrl": "https://www.adzuna.in/details/5860534520?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "that mimic customer environments and workloads to ensure performance and scalability baselines. Your Role: Executing large-scale customer deployment scenario tests (ex: Oracle RAC, VDI, Exchange Server, etc. ) Developing and Executing manual and automated tests to find bugs, and ensuring that automated tests are run regularly to catch regressions. Developing a skillset and hands-on implementation on cloud native technologies like Kubernetes, Docker, Open Shift, virtualization and containers, Mi…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "Docker",
+          "Kubernetes"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java",
+          "Docker"
+        ],
+        "missingSkills": [
+          "Kubernetes"
+        ],
+        "matchScore": 74,
+        "matchBreakdown": {
+          "skillMatch": 75,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java, Docker directly satisfy the primary requirements for this SDET_Automation Engineer (Python/Java) role. 1 skill(s) (Kubernetes) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "Kubernetes",
+            "courseName": "Production Container Orchestration (K8s)",
+            "provider": "DVET Industry Upskilling Roster",
+            "level": "Advanced",
+            "sourceType": "Government ITI Standard"
+          }
+        ]
+      },
+      {
+        "id": "5895257308",
+        "title": "Python Developer",
+        "company": "Weekday AI",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-23T20:13:08Z",
+        "jobUrl": "https://www.adzuna.in/details/5895257308?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "This role is for one of Weekday’s clients Salary range: Rs 500000 - Rs 2500000 (ie INR 5 - 25 LPA) Min Experience: 5 years Location: Bengaluru JobType: full-time We are looking for an experienced Python Developer with 5–8 years of hands-on experience in designing, developing, and maintaining scalable backend applications and APIs. The ideal candidate should have strong expertise in Python, FastAPI, and Kubernetes , along with a solid understanding of modern backend engineering practices, micros…",
+        "extractedJobSkills": [
+          "Python",
+          "Kubernetes"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [
+          "Kubernetes"
+        ],
+        "matchScore": 70,
+        "matchBreakdown": {
+          "skillMatch": 50,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer role. 1 skill(s) (Kubernetes) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "Kubernetes",
+            "courseName": "Production Container Orchestration (K8s)",
+            "provider": "DVET Industry Upskilling Roster",
+            "level": "Advanced",
+            "sourceType": "Government ITI Standard"
+          }
+        ]
+      },
+      {
+        "id": "5865295416",
+        "title": "GCP Data Engineering",
+        "company": "Tata Consultancy Services",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-02T02:24:25Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5865295416?se=TFRslZu68RGGQ9u1mQKVdw&utm_medium=api&utm_source=06b1203e&v=00236539EBCBDCBBB9A741497899576694C38587",
+        "source": "Adzuna",
+        "description": "Role : GCP Data Engineer Exp range: 6-8 years Location: Pan India Virtual Interview Date: 02-Sep-26 Job Description: Required Technical Skills Google Cloud Platform (GCP) Dataproc Dataflow Pub/Sub Cloud Functions Cloud Composer BigQuery BigTable Google Cloud Storage Compute Engine Cloud SQL IAM Python / PySpark / Java / Scala / SQL Hadoop, Hive, Sqoop, Spark Terraform (preferred) [JD_GCP Data Engineer | Word] Key Responsibilities Design, develop, and maintain scalable data pipelines on GCP. Bui…",
+        "extractedJobSkills": [
+          "Python",
+          "Java",
+          "SQL"
+        ],
+        "matchingSkills": [
+          "Python",
+          "Java"
+        ],
+        "missingSkills": [
+          "SQL"
+        ],
+        "matchScore": 69,
+        "matchBreakdown": {
+          "skillMatch": 67,
+          "roleMatch": 70,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, Java directly satisfy the primary requirements for this GCP Data Engineering role. 1 skill(s) (SQL) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "SQL",
+            "courseName": "Database Management Systems & SQL Proficiency",
+            "provider": "COPA Core Syllabus (NSQF Level 4)",
+            "level": "Beginner",
+            "sourceType": "Government ITI Standard"
+          }
+        ]
+      },
+      {
+        "id": "5897259487",
+        "title": "Python Developer",
+        "company": "Acme Services Private Limited",
+        "location": "Yerwada, Pune",
+        "district": "Pune",
+        "salaryMin": 2000000,
+        "salaryMax": 2100000,
+        "salaryText": "₹20.0L – ₹21.0L/yr",
+        "postedDate": "2026-09-24T23:46:01Z",
+        "jobUrl": "https://www.adzuna.in/details/5897259487?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "Job Description: strong experience in Python development. Good experience in Data Pipeline / ETL development. Hands-on exposure to AI/ML concepts and implementations. Strong knowledge of Python frameworks and libraries. Experience working with SQL and databases. Understanding of data processing and transformation. Good problem-solving and debugging skills. Experience with REST APIs and system integration. Exposure to cloud platforms and CI/CD would be an added advantage.",
+        "extractedJobSkills": [
+          "Python",
+          "REST APIs",
+          "SQL",
+          "CI/CD"
+        ],
+        "matchingSkills": [
+          "Python",
+          "REST APIs"
+        ],
+        "missingSkills": [
+          "SQL",
+          "CI/CD"
+        ],
+        "matchScore": 66,
+        "matchBreakdown": {
+          "skillMatch": 50,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python, REST APIs directly satisfy the primary requirements for this Python Developer role. 2 skill(s) (SQL, CI/CD) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "SQL",
+            "courseName": "Database Management Systems & SQL Proficiency",
+            "provider": "COPA Core Syllabus (NSQF Level 4)",
+            "level": "Beginner",
+            "sourceType": "Government ITI Standard"
+          },
+          {
+            "skill": "CI/CD",
+            "courseName": "Continuous Integration & Deployment Pipelines",
+            "provider": "Centre for Excellence in Emerging Tech",
+            "level": "Intermediate",
+            "sourceType": "Reference Catalog"
+          }
+        ]
+      },
+      {
+        "id": "4686707565",
+        "title": "Python Developer",
+        "company": "Confidential Employer",
+        "location": "Hyderabad, Telangana",
+        "district": "Telangana",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2024-05-10T07:39:10Z",
+        "jobUrl": "https://www.adzuna.in/details/4686707565?utm_medium=api&utm_source=06b1203e",
+        "source": "Adzuna",
+        "description": "Blue Bird Solutions is a technology consulting and services company, helping enterprises in solving complex technology challenges with cutting edge technologies. We specialize in niche hard to find skills in technologies including Mobile Development, Big Data Analytics, Data Sciences, Cyber Security, IoT, Cloud, Machine Learning, DevOps, Data Base and Artificial Intelligence. Blue Bird has the following opportunity for our on-going engagement on Full Time basis Position Title: Python Developer …",
+        "extractedJobSkills": [
+          "Python",
+          "Machine Learning"
+        ],
+        "matchingSkills": [
+          "Python"
+        ],
+        "missingSkills": [
+          "Machine Learning"
+        ],
+        "matchScore": 66,
+        "matchBreakdown": {
+          "skillMatch": 50,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Python directly satisfy the primary requirements for this Python Developer role. 1 skill(s) (Machine Learning) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "Machine Learning",
+            "courseName": "Applied Machine Learning & Predictive Modeling",
+            "provider": "Centre for Excellence in Emerging Tech",
+            "level": "Advanced",
+            "sourceType": "Reference Catalog"
+          }
+        ]
+      },
+      {
+        "id": "5898129792",
+        "title": "Data Analyst",
+        "company": "Tata Consultancy Services",
+        "location": "Bangalore, Karnataka",
+        "district": "Karnataka",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-25T15:24:08Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5898129792?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=64AE30074388AF5F3E58EA892531BD888D52FB26",
+        "source": "Adzuna",
+        "description": "We are hiring for a DATA ANALYST with the skillsets of Oracle pl/sql, unix. JD: Analyze large volumes of data and generate meaningful business insights. Develop, optimize, and maintain complex Oracle SQL/PLSQL queries, procedures, packages, and functions. Perform data extraction, validation, reconciliation, and quality analysis. Utilize Unix/Linux commands and shell scripting for data processing and automation. Investigate data issues, perform root cause analysis, and provide resolutions. Creat…",
+        "extractedJobSkills": [
+          "SQL",
+          "Linux"
+        ],
+        "matchingSkills": [
+          "Linux"
+        ],
+        "missingSkills": [
+          "SQL"
+        ],
+        "matchScore": 66,
+        "matchBreakdown": {
+          "skillMatch": 50,
+          "roleMatch": 95,
+          "locationMatch": 65,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Verified candidate skills in Linux directly satisfy the primary requirements for this Data Analyst role. 1 skill(s) (SQL) were not detected in your resume.",
+        "learningRecommendations": [
+          {
+            "skill": "SQL",
+            "courseName": "Database Management Systems & SQL Proficiency",
+            "provider": "COPA Core Syllabus (NSQF Level 4)",
+            "level": "Beginner",
+            "sourceType": "Government ITI Standard"
+          }
+        ]
+      },
+      {
+        "id": "5867037378",
+        "title": "Lead Data Analyst",
+        "company": "Nexus Corporation",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-02T16:43:29Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5867037378?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=D38BC373E82768E501803326FB67E87EAEDD75B7",
+        "source": "Adzuna",
+        "description": "To begin with this role will be a 1 year contract. We are looking for an experienced Data Analyst Lead to drive data analysis initiatives, generate actionable insights, and support business decision-making. The ideal candidate should have strong analytical skills, experience working with large datasets, and the ability to lead a team of analysts. The role involves data modeling, reporting, dashboard development, stakeholder management, and ensuring data quality across projects. Key Responsibili…",
+        "extractedJobSkills": [
+          "Data Analysis"
+        ],
+        "matchingSkills": [],
+        "missingSkills": [
+          "Data Analysis"
+        ],
+        "matchScore": 42,
+        "matchBreakdown": {
+          "skillMatch": 0,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Role profile and domain alignment match candidate's background; core technical requirements require skill development.",
+        "learningRecommendations": [
+          {
+            "skill": "Data Analysis",
+            "courseName": "Data Analysis Competency & Industry Application",
+            "provider": "State Vocational Digital Academy",
+            "level": "Intermediate",
+            "sourceType": "Reference Catalog"
+          }
+        ]
+      },
+      {
+        "id": "5898533446",
+        "title": "Senior Data Analyst",
+        "company": "System Soft Technologies",
+        "location": "India",
+        "district": "India",
+        "salaryMin": null,
+        "salaryMax": null,
+        "salaryText": "Not disclosed",
+        "postedDate": "2026-09-25T22:00:59Z",
+        "jobUrl": "https://www.adzuna.in/land/ad/5898533446?se=Qjr_lJu68RG3jpCv9xpWmA&utm_medium=api&utm_source=06b1203e&v=C9529557111C1AE95E15FB737F5EBCA5DC887A24",
+        "source": "Adzuna",
+        "description": "Job Summary: We are seeking a skilled Data Analyst with expertise in Microsoft Dynamics 365, Power Platform, Dataverse, and Power BI to support enterprise reporting, analytics, and business intelligence initiatives. The ideal candidate will be responsible for gathering, analyzing, and visualizing data from Dynamics 365 and related systems to provide actionable insights that drive business decisions. The successful candidate will collaborate with business stakeholders, functional teams, and tech…",
+        "extractedJobSkills": [
+          "Power BI"
+        ],
+        "matchingSkills": [],
+        "missingSkills": [
+          "Power BI"
+        ],
+        "matchScore": 42,
+        "matchBreakdown": {
+          "skillMatch": 0,
+          "roleMatch": 95,
+          "locationMatch": 100,
+          "experienceMatch": 85
+        },
+        "whyItMatches": "Role profile and domain alignment match candidate's background; core technical requirements require skill development.",
+        "learningRecommendations": [
+          {
+            "skill": "Power BI",
+            "courseName": "Business Intelligence & Dashboarding (Power BI)",
+            "provider": "DVET Data Analytics Specialization",
+            "level": "Intermediate",
+            "sourceType": "Government ITI Standard"
+          }
+        ]
+      }
+    ],
+    "totalJobsScanned": 59,
+    "status": "Connected",
+    "dataSource": "Adzuna Labour Market API"
+  },
+  "lastUpdated": "2026-09-27T19:06:27.545Z",
+  "alertStatuses": {},
+  "validatedExtracts": {},
+  "editedExtracts": {},
+  "customJobs": [],
+  "approvalStagesStatus": {
+    "2": {
+      "name": "Technical Review",
+      "owner": "Subject Expert Panel",
+      "date": "27 Sep 2026",
+      "status": "In review",
+      "comments": "Technical review opened by authorized subject expert."
+    }
+  },
+  "readNotifications": []
+}

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { CanvasChart } from '../components/common/CanvasChart';
 import { EvidencePanel } from '../components/common/EvidencePanel';
-import { FileEdit, ShieldAlert, CheckCircle2, Clock, ArrowRight, ExternalLink } from 'lucide-react';
+import { FileEdit, ShieldAlert, CheckCircle2, Clock, ArrowRight, ExternalLink, Award, FileCheck, X } from 'lucide-react';
 import { 
   PageHeader, Card, CardHeader, CardTitle, CardDescription, 
   CardContent, CardFooter, Button, Badge, Alert 
 } from '../components/ui';
+import { CurriculumService, CurriculumSignOffRecord } from '../services/dataService';
 
 export const CurriculumReviewPage: React.FC = () => {
   const { 
@@ -19,6 +20,45 @@ export const CurriculumReviewPage: React.FC = () => {
   } = useApp();
 
   const sparkData = [41, 43, 47, 49, 58, 65, 72, 81];
+
+  // Sign-off modal state
+  const [showSignOffModal, setShowSignOffModal] = useState(false);
+  const [signOffs, setSignOffs] = useState<CurriculumSignOffRecord[]>([]);
+  const [signOffStatus, setSignOffStatus] = useState<'Approved' | 'Under Review' | 'Revision Required' | 'Rejected'>('Approved');
+  const [reviewerName, setReviewerName] = useState('Dr. S. R. Patil, DVET Directorate');
+  const [signOffComments, setSignOffComments] = useState('Industry curriculum board has completed market review. Modernized syllabus meets current state requirements.');
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    CurriculumService.getSignOffs()
+      .then(res => setSignOffs(res))
+      .catch(() => {});
+  }, []);
+
+  const handleRecordSignOff = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const res = await CurriculumService.submitSignOff({
+        curriculumId: 'CUR-2026-081',
+        courseName: 'COPA Core Java Module',
+        reviewer: reviewerName,
+        role: 'Board Reviewer',
+        status: signOffStatus,
+        comments: signOffComments,
+        action: `Statutory decision: ${signOffStatus}`
+      });
+      if (res.signOff) {
+        setSignOffs(prev => [res.signOff, ...prev]);
+      }
+      showToast(`Sign-off recorded: ${signOffStatus} for CUR-2026-081`);
+      setShowSignOffModal(false);
+    } catch {
+      showToast('Error recording sign-off to audit ledger.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="space-y-5">
@@ -175,6 +215,16 @@ export const CurriculumReviewPage: React.FC = () => {
             >
               Request Industry Review
             </Button>
+
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => setShowSignOffModal(true)}
+              className="bg-emerald-700 hover:bg-emerald-800 text-white"
+            >
+              <FileCheck className="w-3.5 h-3.5 mr-1" />
+              Official Sign-Off Decision
+            </Button>
           </div>
 
           <Button
@@ -187,6 +237,68 @@ export const CurriculumReviewPage: React.FC = () => {
           </Button>
         </CardFooter>
       </Card>
+
+      {/* Statutory Sign-off Ledger */}
+      {signOffs.length > 0 && (
+        <Card>
+          <CardHeader>
+            <div>
+              <CardTitle>Statutory Sign-Off Audit Ledger</CardTitle>
+              <CardDescription>
+                Persistent digital sign-offs recorded by designated government and academic officers
+              </CardDescription>
+            </div>
+            <Badge variant="success" size="xs">{signOffs.length} Recorded</Badge>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-200 dark:border-slate-700 text-slate-500 font-bold uppercase text-[10px]">
+                    <th className="p-2.5">Case / Course</th>
+                    <th className="p-2.5">Reviewer &amp; Role</th>
+                    <th className="p-2.5">Decision</th>
+                    <th className="p-2.5">Comments</th>
+                    <th className="p-2.5 text-right">Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                  {signOffs.map((s, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                      <td className="p-2.5 font-bold text-slate-900 dark:text-slate-100">
+                        {s.courseName || s.curriculumId}
+                        <span className="block text-[10px] text-slate-500 font-normal">{s.curriculumId}</span>
+                      </td>
+                      <td className="p-2.5 text-slate-700 dark:text-slate-300">
+                        <strong>{s.reviewer}</strong>
+                        <span className="block text-[10px] text-slate-500">{s.role}</span>
+                      </td>
+                      <td className="p-2.5">
+                        <Badge
+                          variant={
+                            s.status === 'Approved' ? 'success' :
+                            s.status === 'Rejected' ? 'danger' :
+                            s.status === 'Revision Required' ? 'saffron' : 'warning'
+                          }
+                          size="xs"
+                        >
+                          {s.status}
+                        </Badge>
+                      </td>
+                      <td className="p-2.5 text-slate-600 dark:text-slate-400 max-w-xs truncate">
+                        {s.comments}
+                      </td>
+                      <td className="p-2.5 text-right text-[11px] text-slate-500">
+                        {new Date(s.timestamp).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* 8-Stage Visual Approval Workflow */}
       <Card>
@@ -252,6 +364,99 @@ export const CurriculumReviewPage: React.FC = () => {
           <span className="font-mono text-[10px]">AUDIT LEVEL: TIER-1</span>
         </CardFooter>
       </Card>
+
+      {/* Official Sign-Off Modal */}
+      {showSignOffModal && (
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl max-w-lg w-full p-5 space-y-4 text-xs">
+            <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
+                  Statutory Curriculum Sign-Off
+                </h3>
+                <p className="text-[11px] text-slate-500">
+                  Case Ref: CUR-2026-081 • COPA Core Java Module
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowSignOffModal(false)}
+                className="p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleRecordSignOff} className="space-y-3">
+              <div>
+                <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  Reviewer Name &amp; Designation *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={reviewerName}
+                  onChange={e => setReviewerName(e.target.value)}
+                  className="w-full p-2 border border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  Statutory Decision *
+                </label>
+                <select
+                  value={signOffStatus}
+                  onChange={e => setSignOffStatus(e.target.value as any)}
+                  className="w-full p-2 border border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 font-semibold"
+                >
+                  <option value="Approved">Approved (Statutory clearance for rollout)</option>
+                  <option value="Under Review">Under Review (Forwarded to Board Committee)</option>
+                  <option value="Revision Required">Revision Required (Feedback returned to institute)</option>
+                  <option value="Rejected">Rejected (Incompatible with curriculum framework)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  Official Observations / Statutory Remarks *
+                </label>
+                <textarea
+                  required
+                  rows={3}
+                  value={signOffComments}
+                  onChange={e => setSignOffComments(e.target.value)}
+                  className="w-full p-2 border border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100"
+                />
+              </div>
+
+              <div className="p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 rounded text-amber-900 dark:text-amber-200 text-[11px]">
+                <strong>Audit Compliance:</strong> This sign-off will be recorded with an immutable SHA-256 hash in the system audit log.
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => setShowSignOffModal(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="sm"
+                  disabled={submitting}
+                  className="bg-emerald-700 hover:bg-emerald-800 text-white"
+                >
+                  {submitting ? 'Recording...' : 'Commit Sign-Off Decision'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

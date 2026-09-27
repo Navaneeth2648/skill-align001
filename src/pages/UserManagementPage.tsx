@@ -1,15 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DEMO_USERS_DATA } from '../data/mockData';
-import { Users, Search, ShieldCheck } from 'lucide-react';
+import { Users, Search, ShieldCheck, UserCheck, UserX, Plus } from 'lucide-react';
+import { useApp } from '../context/AppContext';
+import { UserService, PlatformUser } from '../services/dataService';
 
 export const UserManagementPage: React.FC = () => {
+  const { showToast } = useApp();
+  const [users, setUsers] = useState<PlatformUser[]>([]);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('All roles');
   const [statusFilter, setStatusFilter] = useState('All statuses');
 
-  const filteredUsers = DEMO_USERS_DATA.filter(u => {
+  useEffect(() => {
+    UserService.getUsers()
+      .then(res => {
+        if (res && res.length > 0) {
+          setUsers(res);
+        } else {
+          // fallback to seed
+          setUsers(DEMO_USERS_DATA.map((u, idx) => ({
+            id: String(idx + 1),
+            name: u.name,
+            email: `${u.name.toLowerCase().replace(/[^a-z]/g, '')}@maharashtra.gov.in`,
+            role: u.role as any,
+            permissions: [u.permissions],
+            status: u.status as any,
+            lastLogin: u.lastLogin,
+            mfaEnabled: u.mfa === 'Enabled'
+          })));
+        }
+      })
+      .catch(() => {
+        setUsers(DEMO_USERS_DATA.map((u, idx) => ({
+          id: String(idx + 1),
+          name: u.name,
+          email: `${u.name.toLowerCase().replace(/[^a-z]/g, '')}@maharashtra.gov.in`,
+          role: u.role as any,
+          permissions: [u.permissions],
+          status: u.status as any,
+          lastLogin: u.lastLogin,
+          mfaEnabled: u.mfa === 'Enabled'
+        })));
+      });
+  }, []);
+
+  const handleToggleStatus = async (user: PlatformUser) => {
+    try {
+      const res = await UserService.toggleUserStatus(user.id);
+      setUsers(prev => prev.map(u => u.id === user.id ? { ...u, status: res.status } : u));
+      showToast(`User ${user.name} is now ${res.status}.`);
+    } catch {
+      const next = user.status === 'Active' ? 'Suspended' : 'Active';
+      setUsers(prev => prev.map(u => u.id === user.id ? { ...u, status: next } : u));
+      showToast(`User ${user.name} status updated locally to ${next}.`);
+    }
+  };
+
+  const filteredUsers = users.filter(u => {
     const q = search.toLowerCase();
-    const matchesSearch = !q || u.name.toLowerCase().includes(q) || u.role.toLowerCase().includes(q);
+    const matchesSearch = !q || u.name.toLowerCase().includes(q) || u.role.toLowerCase().includes(q) || u.email.toLowerCase().includes(q);
     const matchesRole = roleFilter === 'All roles' || u.role === roleFilter;
     const matchesStatus = statusFilter === 'All statuses' || u.status === statusFilter;
     return matchesSearch && matchesRole && matchesStatus;
@@ -22,14 +71,14 @@ export const UserManagementPage: React.FC = () => {
         <div>
           <h1 className="text-2xl font-extrabold text-[#102c49] dark:text-white tracking-tight flex items-center gap-2">
             <Users className="w-5 h-5 text-amber-500" />
-            <span>User Directory &amp; Access Controls</span>
+            <span>User Directory &amp; Role-Based Access Control</span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Super Admin administration view of demonstration stakeholder accounts and role authorization rules.
+            Administration of statewide stakeholder accounts, security roles, permissions scopes, and status toggles.
           </p>
         </div>
-        <span className="self-start sm:self-auto text-[10px] font-bold text-amber-700 bg-amber-50 dark:bg-amber-950 px-2.5 py-1 rounded border border-amber-300 dark:border-amber-800">
-          DEMO USERS
+        <span className="self-start sm:self-auto text-[10px] font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-950 px-2.5 py-1 rounded border border-emerald-300 dark:border-emerald-800">
+          RBAC ACTIVE • {users.length} REGISTERED USERS
         </span>
       </div>
 
@@ -43,7 +92,7 @@ export const UserManagementPage: React.FC = () => {
               type="search"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Search by user name or assigned role..."
+              placeholder="Search by user name, email or role..."
               className="w-full pl-8 pr-3 py-1.5 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
             />
           </div>
@@ -57,10 +106,13 @@ export const UserManagementPage: React.FC = () => {
             className="p-2 border rounded bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700"
           >
             <option>All roles</option>
-            <option>State Admin</option>
-            <option>District Officer</option>
-            <option>ITI Principal</option>
+            <option>Admin</option>
+            <option>Government Officer</option>
+            <option>Institution</option>
+            <option>Employer</option>
             <option>Trainer</option>
+            <option>Student</option>
+            <option>State Admin</option>
             <option>Super Admin</option>
           </select>
         </div>
@@ -86,20 +138,26 @@ export const UserManagementPage: React.FC = () => {
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-800/60 border-b text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                <th className="p-3">User Name</th>
+                <th className="p-3">User &amp; Email</th>
                 <th className="p-3">Role</th>
-                <th className="p-3">Permissions Scope Summary</th>
+                <th className="p-3">Permissions Scope</th>
                 <th className="p-3">Account Status</th>
-                <th className="p-3">Last Active Login</th>
-                <th className="p-3 text-right">MFA Authentication</th>
+                <th className="p-3">Last Login</th>
+                <th className="p-3">MFA</th>
+                <th className="p-3 text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-              {filteredUsers.map((u, i) => (
-                <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                  <td className="p-3 font-bold text-slate-900 dark:text-slate-100">{u.name}</td>
+              {filteredUsers.map((u) => (
+                <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                  <td className="p-3">
+                    <strong className="block text-slate-900 dark:text-slate-100">{u.name}</strong>
+                    <span className="text-[10px] text-slate-400 font-mono">{u.email}</span>
+                  </td>
                   <td className="p-3 font-semibold text-[#173a5e] dark:text-sky-300">{u.role}</td>
-                  <td className="p-3 text-slate-600 dark:text-slate-400">{u.permissions}</td>
+                  <td className="p-3 text-slate-600 dark:text-slate-400">
+                    {Array.isArray(u.permissions) ? u.permissions.join(', ') : u.permissions}
+                  </td>
                   <td className="p-3">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                       u.status === 'Active' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
@@ -108,12 +166,25 @@ export const UserManagementPage: React.FC = () => {
                     </span>
                   </td>
                   <td className="p-3 text-slate-500 whitespace-nowrap">{u.lastLogin}</td>
-                  <td className="p-3 text-right">
+                  <td className="p-3">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                      u.mfa === 'Enabled' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
+                      u.mfaEnabled ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
                     }`}>
-                      {u.mfa}
+                      {u.mfaEnabled ? 'Enabled' : 'Disabled'}
                     </span>
+                  </td>
+                  <td className="p-3 text-right">
+                    <button
+                      type="button"
+                      onClick={() => handleToggleStatus(u)}
+                      className={`px-2.5 py-1 rounded text-[11px] font-semibold transition-colors cursor-pointer ${
+                        u.status === 'Active'
+                          ? 'border border-amber-300 text-amber-800 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/40'
+                          : 'bg-emerald-700 text-white hover:bg-emerald-800'
+                      }`}
+                    >
+                      {u.status === 'Active' ? 'Suspend' : 'Activate'}
+                    </button>
                   </td>
                 </tr>
               ))}

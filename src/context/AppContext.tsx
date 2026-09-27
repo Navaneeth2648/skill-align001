@@ -58,6 +58,14 @@ interface AppContextType {
   // Selected detail filters
   selectedSkillName: string;
   setSelectedSkillName: (name: string) => void;
+  // Modals & Assistant
+  isAssistantOpen: boolean;
+  openAssistant: () => void;
+  closeAssistant: () => void;
+  toggleAssistant: () => void;
+  isLinkedInModalOpen: boolean;
+  openLinkedInModal: () => void;
+  closeLinkedInModal: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -86,6 +94,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isNotifOpen, setIsNotifOpen] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
+  const [isAssistantOpen, setIsAssistantOpen] = useState<boolean>(false);
+  const [isLinkedInModalOpen, setIsLinkedInModalOpen] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastTimer, setToastTimer] = useState<NodeJS.Timeout | null>(null);
 
@@ -109,12 +119,55 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     } catch (_) {}
   }, [language]);
 
-  const [jobs, setJobs] = useState<JobRecord[]>(INITIAL_JOBS);
+  const [jobs, setJobs] = useState<JobRecord[]>(() => {
+    try {
+      const saved = localStorage.getItem('ms_lmip_jobs');
+      if (saved) return JSON.parse(saved);
+    } catch (_) {}
+    return INITIAL_JOBS;
+  });
   const [selectedJobId, setSelectedJobId] = useState<number | null>(1);
-  const [alerts, setAlerts] = useState<AlertRecord[]>(INITIAL_ALERTS);
-  const [approvalStages, setApprovalStages] = useState<ApprovalStage[]>(INITIAL_APPROVAL_STAGES);
-  const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
+  const [alerts, setAlerts] = useState<AlertRecord[]>(() => {
+    try {
+      const saved = localStorage.getItem('ms_lmip_alerts');
+      if (saved) return JSON.parse(saved);
+    } catch (_) {}
+    return INITIAL_ALERTS;
+  });
+  const [approvalStages, setApprovalStages] = useState<ApprovalStage[]>(() => {
+    try {
+      const saved = localStorage.getItem('ms_lmip_approvals');
+      if (saved) return JSON.parse(saved);
+    } catch (_) {}
+    return INITIAL_APPROVAL_STAGES;
+  });
+  const [notifications, setNotifications] = useState<NotificationItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('ms_lmip_notifs');
+      if (saved) return JSON.parse(saved);
+    } catch (_) {}
+    return INITIAL_NOTIFICATIONS;
+  });
   const [selectedSkillName, setSelectedSkillName] = useState<string>('React');
+
+  // Hydrate persistent state from server on mount
+  useEffect(() => {
+    fetch('/api/state')
+      .then(res => res.ok ? res.json() : null)
+      .then(state => {
+        if (!state) return;
+        if (state.alertStatuses && Object.keys(state.alertStatuses).length > 0) {
+          setAlerts(prev => prev.map(a => state.alertStatuses[a.id] ? { ...a, status: state.alertStatuses[a.id] as any } : a));
+        }
+        if (state.approvalStagesStatus && Object.keys(state.approvalStagesStatus).length > 0) {
+          setApprovalStages(prev => prev.map((s, idx) => state.approvalStagesStatus[idx] ? { ...s, ...state.approvalStagesStatus[idx] } : s));
+        }
+        if (state.readNotifications && state.readNotifications.length > 0) {
+          setNotifications(prev => prev.map(n => state.readNotifications.includes(n.id) ? { ...n, read: true } : n));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Sync hash on mount and change
   useEffect(() => {
@@ -231,35 +284,80 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSearchOpen, isNotifOpen, isProfileOpen, isPresentation]);
 
+  const openAssistant = () => setIsAssistantOpen(true);
+  const closeAssistant = () => setIsAssistantOpen(false);
+  const toggleAssistant = () => setIsAssistantOpen(p => !p);
+
+  const openLinkedInModal = () => setIsLinkedInModalOpen(true);
+  const closeLinkedInModal = () => setIsLinkedInModalOpen(false);
+
   const validateJobExtract = (jobId: number, extractIndex: number) => {
-    setJobs(prev => prev.map(j => {
-      if (j.id !== jobId) return j;
-      const newExtracts = [...j.extracts];
-      // Mark as validated
-      return { ...j, extracts: newExtracts };
-    }));
+    setJobs(prev => {
+      const updated = prev.map(j => {
+        if (j.id !== jobId) return j;
+        const newExtracts = [...j.extracts];
+        return { ...j, extracts: newExtracts };
+      });
+      try {
+        localStorage.setItem('ms_lmip_jobs', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ validatedExtracts: { [`${jobId}_${extractIndex}`]: true } }),
+      }).catch(() => {});
+      return updated;
+    });
     showToast('AI skill extraction validated by human reviewer.');
   };
 
   const editJobExtract = (jobId: number, extractIndex: number, newSkill: string) => {
-    setJobs(prev => prev.map(j => {
-      if (j.id !== jobId) return j;
-      const newExtracts = [...j.extracts];
-      if (newExtracts[extractIndex]) {
-        newExtracts[extractIndex] = [newSkill, newExtracts[extractIndex][1], newExtracts[extractIndex][2], newExtracts[extractIndex][3]];
-      }
-      return { ...j, extracts: newExtracts };
-    }));
+    setJobs(prev => {
+      const updated = prev.map(j => {
+        if (j.id !== jobId) return j;
+        const newExtracts = [...j.extracts];
+        if (newExtracts[extractIndex]) {
+          newExtracts[extractIndex] = [newSkill, newExtracts[extractIndex][1], newExtracts[extractIndex][2], newExtracts[extractIndex][3]];
+        }
+        return { ...j, extracts: newExtracts };
+      });
+      try {
+        localStorage.setItem('ms_lmip_jobs', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ editedExtracts: { [`${jobId}_${extractIndex}`]: newSkill } }),
+      }).catch(() => {});
+      return updated;
+    });
     showToast(`Reviewer edit saved: ${newSkill}`);
   };
 
   const addJob = (job: JobRecord) => {
-    setJobs(prev => [job, ...prev]);
+    setJobs(prev => {
+      const updated = [job, ...prev];
+      try {
+        localStorage.setItem('ms_lmip_jobs', JSON.stringify(updated));
+      } catch (_) {}
+      return updated;
+    });
     showToast(`Job posting "${job.title}" created in this demo session.`);
   };
 
   const updateAlertStatus = (id: number, status: AlertRecord['status']) => {
-    setAlerts(prev => prev.map(a => a.id === id ? { ...a, status } : a));
+    setAlerts(prev => {
+      const updated = prev.map(a => a.id === id ? { ...a, status } : a);
+      try {
+        localStorage.setItem('ms_lmip_alerts', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ alertStatuses: { [id]: status } }),
+      }).catch(() => {});
+      return updated;
+    });
     showToast(`Alert status updated to ${status}.`);
   };
 
@@ -270,10 +368,18 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         updated[2] = {
           ...updated[2],
           status: 'In review',
-          date: '26 Sep 2026',
+          date: '27 Sep 2026',
           comments: 'Technical review opened by authorized subject expert.'
         };
       }
+      try {
+        localStorage.setItem('ms_lmip_approvals', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ approvalStagesStatus: { 2: updated[2] } }),
+      }).catch(() => {});
       return updated;
     });
     showToast('Recommendation opened for human technical review.');
@@ -286,10 +392,18 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         updated[3] = {
           ...updated[3],
           status: 'In review',
-          date: '26 Sep 2026',
+          date: '27 Sep 2026',
           comments: 'Industry advisory review requested; no approval implied.'
         };
       }
+      try {
+        localStorage.setItem('ms_lmip_approvals', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ approvalStagesStatus: { 3: updated[3] } }),
+      }).catch(() => {});
       return updated;
     });
     showToast('Industry review request queued in the workflow.');
@@ -306,22 +420,53 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
           comments: 'Queued for authorized executive sign-off once reviews complete.'
         };
       }
+      try {
+        localStorage.setItem('ms_lmip_approvals', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ approvalStagesStatus: { 4: updated[4] } }),
+      }).catch(() => {});
       return updated;
     });
     showToast('Approval step queued. Curriculum remains unchanged until authorized.');
   };
 
   const markNotification = (id: number) => {
-    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+    setNotifications(prev => {
+      const updated = prev.map(n => n.id === id ? { ...n, read: true } : n);
+      try {
+        localStorage.setItem('ms_lmip_notifs', JSON.stringify(updated));
+      } catch (_) {}
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ readNotifications: [id] }),
+      }).catch(() => {});
+      return updated;
+    });
   };
 
   const markAllNotificationsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+    setNotifications(prev => {
+      const updated = prev.map(n => ({ ...n, read: true }));
+      try {
+        localStorage.setItem('ms_lmip_notifs', JSON.stringify(updated));
+      } catch (_) {}
+      return updated;
+    });
     showToast('All notifications marked as read.');
   };
 
   const clearNotification = (id: number) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
+    setNotifications(prev => {
+      const updated = prev.filter(n => n.id !== id);
+      try {
+        localStorage.setItem('ms_lmip_notifs', JSON.stringify(updated));
+      } catch (_) {}
+      return updated;
+    });
     showToast('Notification cleared.');
   };
 
@@ -334,6 +479,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setTheme('light');
     setIsPresentation(false);
     setIsLargeText(false);
+    try {
+      localStorage.removeItem('ms_lmip_jobs');
+      localStorage.removeItem('ms_lmip_alerts');
+      localStorage.removeItem('ms_lmip_approvals');
+      localStorage.removeItem('ms_lmip_notifs');
+    } catch (_) {}
     document.body.classList.remove('theme-dark', 'presentation-mode', 'large-text');
     showToast('Demo session reset. Data, filters and preferences restored.');
   };
@@ -368,6 +519,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         isProfileOpen,
         toggleProfile,
         closeProfile,
+        isAssistantOpen,
+        openAssistant,
+        closeAssistant,
+        toggleAssistant,
+        isLinkedInModalOpen,
+        openLinkedInModal,
+        closeLinkedInModal,
         toastMessage,
         showToast,
         jobs,

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { CANDIDATES_DATA } from '../data/mockData';
-import { Building2, Plus, Users, Award, MessageSquare, Briefcase, CheckCircle2, ChevronRight, ArrowRight } from 'lucide-react';
+import { Building2, Plus, Users, Award, MessageSquare, Briefcase, CheckCircle2, ChevronRight, ArrowRight, Share2 } from 'lucide-react';
 import { JobRecord } from '../types';
 import { 
   PageHeader, Card, CardHeader, CardTitle, CardDescription, 
   CardContent, CardFooter, Button, Badge, Tabs 
 } from '../components/ui';
 import { AnimatedNumber } from '../components/common/AnimatedNumber';
+import { EmployerService } from '../services/dataService';
 
 export const EmployerPortalPage: React.FC = () => {
-  const { addJob, showToast, navigate } = useApp();
+  const { addJob, showToast, navigate, openLinkedInModal } = useApp();
   const [activeTab, setActiveTab] = useState<'overview' | 'post' | 'candidates' | 'partners' | 'apprentice' | 'feedback'>('overview');
 
   // Post Job Wizard State
@@ -35,6 +36,18 @@ export const EmployerPortalPage: React.FC = () => {
     quality: '4.0/5',
     hired: '68%'
   });
+  const [shortlistedIds, setShortlistedIds] = useState<string[]>([]);
+
+  const handleShortlist = async (candidateId: string, candidateName: string) => {
+    try {
+      await EmployerService.shortlistCandidate(candidateId);
+      setShortlistedIds(prev => [...prev, candidateId]);
+      showToast(`Candidate ${candidateName} added to Employer Shortlist.`);
+    } catch {
+      setShortlistedIds(prev => [...prev, candidateId]);
+      showToast(`Candidate ${candidateName} shortlisted.`);
+    }
+  };
 
   const filteredCandidates = CANDIDATES_DATA.filter(c => {
     const q = candidateSearch.toLowerCase();
@@ -73,7 +86,7 @@ export const EmployerPortalPage: React.FC = () => {
     showToast(`${validated.length} skills confirmed by employer.`);
   };
 
-  const handlePublishJob = () => {
+  const handlePublishJob = async () => {
     const validatedSkills = extractedSkills.filter(s => s.checked).map(s => s.skill);
     const newRecord: JobRecord = {
       id: Date.now(),
@@ -91,6 +104,23 @@ export const EmployerPortalPage: React.FC = () => {
       description: jobDescription || 'Newly published synthetic position by employer.',
       extracts: validatedSkills.map((s, i) => [s, 'Intermediate', 92 - i * 2, 'Employer validated requirement'])
     };
+
+    try {
+      await EmployerService.postJob({
+        title: jobTitle || 'Frontend Developer',
+        company: 'Sahyadri Digital Systems',
+        district: jobDistrict || 'Pune',
+        description: jobDescription || 'Newly published position.',
+        skills: validatedSkills,
+        employmentType: 'Full-time',
+        salary: jobSalary || '₹6–8L',
+        experience: jobExperience || '2–4 years',
+        status: 'Active'
+      });
+      showToast('Job requirement persisted to database and state vacancy board.');
+    } catch {
+      showToast('Job requirement posted locally.');
+    }
 
     addJob(newRecord);
     setWizardStage(3);
@@ -128,6 +158,14 @@ export const EmployerPortalPage: React.FC = () => {
               onClick={() => navigate('jobintel')}
             >
               Job Market Engine →
+            </Button>
+            <Button
+              variant="outline"
+              size="xs"
+              onClick={openLinkedInModal}
+              leftIcon={<Share2 className="w-3.5 h-3.5 text-[#0a66c2]" />}
+            >
+              LinkedIn OAuth
             </Button>
             <Button
               variant="primary"
@@ -568,37 +606,56 @@ export const EmployerPortalPage: React.FC = () => {
                   <th className="p-3">District</th>
                   <th className="p-3">Declared Skills</th>
                   <th className="p-3">Verified Projects</th>
-                  <th className="p-3 text-right">Availability</th>
+                  <th className="p-3">Availability</th>
+                  <th className="p-3 text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                {filteredCandidates.map((c, i) => (
-                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
-                    <td className="p-3">
-                      <strong className="block text-slate-900 dark:text-slate-100 font-bold">{c.name}</strong>
-                      <span className="text-[10px] text-amber-600 font-semibold">DEMO PROFILE</span>
-                    </td>
-                    <td className="p-3 text-slate-600 dark:text-slate-400">{c.education}</td>
-                    <td className="p-3 text-slate-600 dark:text-slate-400">{c.district}</td>
-                    <td className="p-3">
-                      <div className="flex flex-wrap gap-1">
-                        {c.skills.map((s, idx) => (
-                          <span key={idx} className="px-1.5 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 border text-slate-700 dark:text-slate-300">
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="p-3 text-slate-600 dark:text-slate-400">{c.projects}</td>
-                    <td className="p-3 text-right">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                        c.availability === 'Available' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
-                      }`}>
-                        {c.availability}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                {filteredCandidates.map((c, i) => {
+                  const candidateId = String((c as any).id || i);
+                  const isShortlisted = shortlistedIds.includes(candidateId);
+                  return (
+                    <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                      <td className="p-3">
+                        <strong className="block text-slate-900 dark:text-slate-100 font-bold">{c.name}</strong>
+                        <span className="text-[10px] text-amber-600 font-semibold">DEMO PROFILE</span>
+                      </td>
+                      <td className="p-3 text-slate-600 dark:text-slate-400">{c.education}</td>
+                      <td className="p-3 text-slate-600 dark:text-slate-400">{c.district}</td>
+                      <td className="p-3">
+                        <div className="flex flex-wrap gap-1">
+                          {c.skills.map((s, idx) => (
+                            <span key={idx} className="px-1.5 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 border text-slate-700 dark:text-slate-300">
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                      <td className="p-3 text-slate-600 dark:text-slate-400">{c.projects}</td>
+                      <td className="p-3">
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                          c.availability === 'Available' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'
+                        }`}>
+                          {c.availability}
+                        </span>
+                      </td>
+                      <td className="p-3 text-right">
+                        <button
+                          type="button"
+                          onClick={() => handleShortlist(candidateId, c.name)}
+                          disabled={isShortlisted}
+                          className={`px-3 py-1 rounded text-[11px] font-semibold transition-colors ${
+                            isShortlisted
+                              ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 cursor-default'
+                              : 'bg-[#173a5e] text-white hover:bg-[#102c49]'
+                          }`}
+                        >
+                          {isShortlisted ? '✓ Shortlisted' : 'Shortlist'}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

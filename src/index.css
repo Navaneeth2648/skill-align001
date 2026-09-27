@@ -43,6 +43,14 @@
     --radius-lg: 8px;
   }
 
+  html {
+    scroll-padding-top: 134px;
+  }
+
+  #main-content {
+    scroll-margin-top: 134px;
+  }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: var(--gov-text-primary);

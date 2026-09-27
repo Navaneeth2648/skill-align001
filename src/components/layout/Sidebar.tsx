@@ -6,7 +6,7 @@ import {
   BookOpen, FileEdit, Users, Wrench, Building2, GraduationCap, 
   MapPin, Calendar, DollarSign, Sliders, FileBarChart, Bell, 
   ShieldAlert, Activity, HeartPulse, Bot, Database, BookCheck, 
-  ChevronLeft, ChevronRight, X, ShieldCheck
+  ChevronLeft, ChevronRight, X, ShieldCheck, FileText
 } from 'lucide-react';
 
 interface NavSection {
@@ -69,6 +69,7 @@ export const Sidebar: React.FC = () => {
     {
       title: t('secStakeholders'),
       items: [
+        { id: 'resumeanalyzer', label: t('menuResumeAnalyzer'), icon: <FileText className="w-4 h-4 shrink-0" />, badge: 'AI Match' },
         { id: 'employerportal', label: t('menuEmployerPortal'), icon: <Building2 className="w-4 h-4 shrink-0" /> },
         { id: 'studentportal', label: t('menuStudentPortal'), icon: <GraduationCap className="w-4 h-4 shrink-0" /> },
         { id: 'institutes', label: t('menuInstitutes'), icon: <Building2 className="w-4 h-4 shrink-0" /> },
@@ -100,14 +101,14 @@ export const Sidebar: React.FC = () => {
       {/* Mobile Backdrop */}
       {isMobileRailOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-2xs md:hidden"
+          className="fixed top-[134px] inset-x-0 bottom-0 z-30 bg-slate-950/60 backdrop-blur-2xs md:hidden"
           onClick={closeMobileRail}
           aria-hidden="true"
         />
       )}
 
       <aside 
-        className={`fixed md:sticky top-0 md:top-[98px] bottom-0 left-0 z-40 bg-[#0c1e33] text-slate-200 border-r border-[#1e3957] transition-all duration-200 flex flex-col md:h-[calc(100vh-98px)] shrink-0 overflow-hidden ${
+        className={`fixed md:sticky top-[134px] bottom-0 left-0 z-30 bg-[#0c1e33] text-slate-200 border-r border-[#1e3957] transition-all duration-200 flex flex-col h-[calc(100vh-134px)] md:h-[calc(100vh-134px)] shrink-0 overflow-hidden ${
           isSidebarCollapsed ? 'w-16' : 'w-64'
         } ${
           isMobileRailOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'

@@ -43,7 +43,10 @@ export type RouteId =
   | 'faq'
   | 'contact'
   | 'login'
-  | 'districtintel';
+  | 'districtintel'
+  | 'resumeanalyzer';
+
+export * from './resume';
 
 export interface JobExtract {
   skill: string;
@@ -68,6 +71,30 @@ export interface JobRecord {
   status: 'Review' | 'Validated' | 'Published';
   description: string;
   extracts: [string, string, number, string][];
+}
+
+export interface AdzunaJob {
+  id: string;
+  source: string;
+  sourceJobId: string;
+  title: string;
+  company: string;
+  location: string;
+  district: string;
+  description: string;
+  salaryMin: number | null;
+  salaryMax: number | null;
+  postedDate: string;
+  jobUrl: string;
+  collectedAt: string;
+}
+
+export interface AdzunaJobsResponse {
+  jobs: AdzunaJob[];
+  total: number;
+  page: number;
+  source: string;
+  lastUpdated: string;
 }
 
 export interface CourseData {

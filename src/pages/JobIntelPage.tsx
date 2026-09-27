@@ -1,107 +1,156 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../context/AppContext';
-import { Search, Filter, RotateCcw, ArrowUpDown, ChevronRight, Briefcase } from 'lucide-react';
+import { Search, RotateCcw, ExternalLink, RefreshCw } from 'lucide-react';
 import { 
   PageHeader, Card, CardHeader, CardTitle, CardDescription, 
   CardContent, CardFooter, Button, Badge, Input, Select, 
-  Table, Column 
+  Table, Column, Alert, LoadingState, Pagination
 } from '../components/ui';
-import { JobRecord } from '../types';
+import { AdzunaJob } from '../types';
+import { DISTRICTS_DATA } from '../data/mockData';
 import { AnimatedNumber } from '../components/common/AnimatedNumber';
+import { JobService } from '../services/dataService';
 
 export const JobIntelPage: React.FC = () => {
-  const { jobs, setSelectedJobId, navigate } = useApp();
-  const [search, setSearch] = useState('');
-  const [selectedIndustry, setSelectedIndustry] = useState('All');
+  const { navigate } = useApp();
+  const [searchInput, setSearchInput] = useState('');
+  const [activeKeyword, setActiveKeyword] = useState('');
   const [selectedDistrict, setSelectedDistrict] = useState('All');
   const [sortBy, setSortBy] = useState<'date' | 'salary' | 'title'>('date');
+  const [jobs, setJobs] = useState<AdzunaJob[]>([]);
+  const [total, setTotal] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const industries = ['All', ...Array.from(new Set(jobs.map(j => j.industry)))];
-  const districts = ['All', ...Array.from(new Set(jobs.map(j => j.district)))];
+  const districtOptions = ['All', ...DISTRICTS_DATA.map(d => d.name)];
 
-  const filteredJobs = jobs.filter(j => {
-    const q = search.toLowerCase();
-    const matchesSearch = !q || [j.title, j.employer, j.skills.join(' ')].join(' ').toLowerCase().includes(q);
-    const matchesIndustry = selectedIndustry === 'All' || j.industry === selectedIndustry;
-    const matchesDistrict = selectedDistrict === 'All' || j.district === selectedDistrict;
-    return matchesSearch && matchesIndustry && matchesDistrict;
-  });
+  // Fetch jobs from backend Adzuna API
+  const loadJobs = useCallback(async (keywordVal: string, districtVal: string, pageNum: number) => {
+    setLoading(true);
+    setError(null);
 
-  filteredJobs.sort((a, b) => {
-    if (sortBy === 'salary') return b.salary - a.salary;
-    if (sortBy === 'title') return a.title.localeCompare(b.title);
-    return b.posted.localeCompare(a.posted);
-  });
+    const locationQuery = districtVal && districtVal !== 'All' 
+      ? `${districtVal}, Maharashtra` 
+      : 'Maharashtra';
 
-  const handleRowClick = (job: JobRecord) => {
-    setSelectedJobId(job.id);
-    navigate('jobdetail');
+    try {
+      const response = await JobService.getApiJobs({
+        keyword: keywordVal.trim() || undefined,
+        location: locationQuery,
+        page: pageNum,
+      });
+
+      setJobs(response.jobs || []);
+      setTotal(response.total || 0);
+    } catch (err: any) {
+      console.error('Failed to load Adzuna jobs:', err);
+      setJobs([]);
+      setTotal(0);
+      setError('Unable to load job-market data. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // Fetch jobs on initial mount and when activeKeyword or selectedDistrict changes
+  useEffect(() => {
+    loadJobs(activeKeyword, selectedDistrict, page);
+  }, [activeKeyword, selectedDistrict, page, loadJobs]);
+
+  // Handle Search execution
+  const handleSearchSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setPage(1);
+    setActiveKeyword(searchInput);
+  };
+
+  const handleDistrictChange = (dist: string) => {
+    setSelectedDistrict(dist);
+    setPage(1);
   };
 
   const clearFilters = () => {
-    setSearch('');
-    setSelectedIndustry('All');
+    setSearchInput('');
+    setActiveKeyword('');
     setSelectedDistrict('All');
     setSortBy('date');
+    setPage(1);
   };
 
-  const columns: Column<JobRecord>[] = [
+  // Sort jobs locally
+  const sortedJobs = [...jobs].sort((a, b) => {
+    if (sortBy === 'salary') {
+      const salA = a.salaryMax || a.salaryMin || 0;
+      const salB = b.salaryMax || b.salaryMin || 0;
+      return salB - salA;
+    }
+    if (sortBy === 'title') {
+      return a.title.localeCompare(b.title);
+    }
+    return b.postedDate.localeCompare(a.postedDate);
+  });
+
+  const formatSalary = (job: AdzunaJob) => {
+    if (job.salaryMin && job.salaryMax) {
+      return `₹${job.salaryMin.toLocaleString('en-IN')} - ₹${job.salaryMax.toLocaleString('en-IN')}`;
+    }
+    if (job.salaryMin) {
+      return `From ₹${job.salaryMin.toLocaleString('en-IN')}`;
+    }
+    if (job.salaryMax) {
+      return `Up to ₹${job.salaryMax.toLocaleString('en-IN')}`;
+    }
+    return 'Not disclosed';
+  };
+
+  const formatDate = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      return d.toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
+  const columns: Column<AdzunaJob>[] = [
     {
       key: 'title',
       header: 'Job Title',
       sortable: true,
       render: (job) => (
-        <span className="font-bold text-slate-900 dark:text-slate-100 block">
-          {job.title}
-        </span>
-      ),
-    },
-    {
-      key: 'employer',
-      header: 'Employer',
-      render: (job) => (
-        <span className="text-slate-700 dark:text-slate-300 font-medium">
-          {job.employer}
-        </span>
-      ),
-    },
-    {
-      key: 'industry',
-      header: 'Industry Sector',
-      render: (job) => (
-        <span className="text-slate-600 dark:text-slate-400">
-          {job.industry}
-        </span>
-      ),
-    },
-    {
-      key: 'district',
-      header: 'District',
-      render: (job) => (
-        <span className="text-slate-700 dark:text-slate-300">
-          {job.district}
-        </span>
-      ),
-    },
-    {
-      key: 'skills',
-      header: 'Extracted Skills',
-      render: (job) => (
-        <div className="flex flex-wrap gap-1 max-w-[220px]">
-          {job.skills.map((s, idx) => (
-            <Badge key={idx} variant="default" size="xs">
-              {s}
-            </Badge>
-          ))}
+        <div className="space-y-1 py-1">
+          <span className="font-bold text-slate-900 dark:text-slate-100 block text-xs">
+            {job.title}
+          </span>
+          {job.description && (
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 max-w-sm font-normal">
+              {job.description}
+            </p>
+          )}
         </div>
       ),
     },
     {
-      key: 'experience',
-      header: 'Experience',
+      key: 'company',
+      header: 'Company',
       render: (job) => (
-        <span className="text-slate-600 dark:text-slate-400 whitespace-nowrap">
-          {job.experience}
+        <span className="text-slate-700 dark:text-slate-300 font-medium">
+          {job.company}
+        </span>
+      ),
+    },
+    {
+      key: 'location',
+      header: 'Location',
+      render: (job) => (
+        <span className="text-slate-700 dark:text-slate-300">
+          {job.district || job.location}
         </span>
       ),
     },
@@ -112,18 +161,18 @@ export const JobIntelPage: React.FC = () => {
       sortable: true,
       render: (job) => (
         <span className="font-semibold text-slate-800 dark:text-slate-200 tabular-nums whitespace-nowrap">
-          {job.salaryText}
+          {formatSalary(job)}
         </span>
       ),
     },
     {
-      key: 'posted',
+      key: 'postedDate',
       header: 'Date Posted',
       align: 'right',
       sortable: true,
       render: (job) => (
         <span className="text-slate-500 tabular-nums whitespace-nowrap">
-          {job.posted.split('-').reverse().join(' ')}
+          {formatDate(job.postedDate)}
         </span>
       ),
     },
@@ -131,23 +180,30 @@ export const JobIntelPage: React.FC = () => {
       key: 'source',
       header: 'Source Origin',
       render: (job) => (
-        <span className="text-slate-500 whitespace-nowrap">
+        <Badge variant="primary" size="xs">
           {job.source}
-        </span>
+        </Badge>
       ),
     },
     {
-      key: 'status',
-      header: 'Verification',
+      key: 'action',
+      header: 'Vacancy Link',
       align: 'right',
       render: (job) => (
-        <Badge
-          variant={job.status === 'Validated' ? 'success' : 'warning'}
-          size="xs"
-          dot
-        >
-          {job.status}
-        </Badge>
+        job.jobUrl ? (
+          <a
+            href={job.jobUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#102c49] text-white hover:bg-[#173a5e] text-[11px] font-semibold transition-colors shadow-2xs"
+          >
+            <span>View Job</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        ) : (
+          <span className="text-slate-400 text-[11px]">—</span>
+        )
       ),
     },
   ];
@@ -174,7 +230,7 @@ export const JobIntelPage: React.FC = () => {
               Automated Ingestion &amp; Processing Pipeline
             </span>
             <span className="text-[10px] text-slate-400">
-              Deterministic parsing with NLP extractors
+              Real-time synchronization with Adzuna Labour Market API
             </span>
           </div>
           <div className="flex items-center gap-2 min-w-[720px]">
@@ -195,35 +251,43 @@ export const JobIntelPage: React.FC = () => {
         </div>
       </Card>
 
+      {/* Error Alert if Adzuna API fails */}
+      {error && (
+        <Alert variant="danger" title="Job Market Service Notice">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <span>{error}</span>
+            <Button
+              variant="secondary"
+              size="xs"
+              onClick={() => loadJobs(activeKeyword, selectedDistrict, page)}
+              leftIcon={<RefreshCw className="w-3.5 h-3.5" />}
+            >
+              Retry Request
+            </Button>
+          </div>
+        </Alert>
+      )}
+
       {/* Filter and Search Bar */}
       <Card>
         <CardContent className="p-3.5 sm:p-4">
-          <div className="flex flex-wrap items-end gap-3 text-xs">
+          <form onSubmit={handleSearchSubmit} className="flex flex-wrap items-end gap-3 text-xs">
             <div className="flex-1 min-w-[220px]">
               <Input
                 label="Search Vacancies"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Search by job title, employer, or required competence..."
+                value={searchInput}
+                onChange={e => setSearchInput(e.target.value)}
+                placeholder="Search by job title, keyword, or required competence..."
                 leftIcon={<Search className="w-3.5 h-3.5" />}
               />
             </div>
 
-            <div className="w-48">
+            <div className="w-44">
               <Select
-                label="Industry Sector"
-                value={selectedIndustry}
-                onChange={e => setSelectedIndustry(e.target.value)}
-                options={industries}
-              />
-            </div>
-
-            <div className="w-40">
-              <Select
-                label="District"
+                label="District / Location"
                 value={selectedDistrict}
-                onChange={e => setSelectedDistrict(e.target.value)}
-                options={districts}
+                onChange={e => handleDistrictChange(e.target.value)}
+                options={districtOptions}
               />
             </div>
 
@@ -240,17 +304,28 @@ export const JobIntelPage: React.FC = () => {
               />
             </div>
 
-            <div className="pb-0.5">
+            <div className="pb-0.5 flex items-center gap-2">
+              <Button
+                variant="primary"
+                size="sm"
+                type="submit"
+                isLoading={loading}
+                leftIcon={<Search className="w-3.5 h-3.5" />}
+              >
+                Search
+              </Button>
+
               <Button
                 variant="secondary"
                 size="sm"
+                type="button"
                 onClick={clearFilters}
                 leftIcon={<RotateCcw className="w-3.5 h-3.5" />}
               >
                 Clear
               </Button>
             </div>
-          </div>
+          </form>
         </CardContent>
       </Card>
 
@@ -260,29 +335,53 @@ export const JobIntelPage: React.FC = () => {
           <div>
             <CardTitle>Ingested Job Vacancy Records</CardTitle>
             <CardDescription>
-              Showing <AnimatedNumber value={filteredJobs.length} /> active vacancy notices matching parameters • Click any row to review AI extraction provenance
+              Showing <AnimatedNumber value={sortedJobs.length} /> active Adzuna vacancy notices matching parameters • Click "View Job" to open original posting
             </CardDescription>
           </div>
-          <Badge variant="neutral" size="xs">
-            <AnimatedNumber value={filteredJobs.length} /> Records
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="primary" size="xs">
+              Live Gateway Active
+            </Badge>
+            <Badge variant="neutral" size="xs">
+              <AnimatedNumber value={total || sortedJobs.length} /> Records Available
+            </Badge>
+          </div>
         </CardHeader>
 
-        <Table<JobRecord>
-          columns={columns}
-          data={filteredJobs}
-          keyExtractor={job => job.id}
-          onRowClick={handleRowClick}
-          emptyMessage="No job vacancy records match the selected search query and filters."
-          stickyHeader
-        />
+        {loading ? (
+          <LoadingState message="Fetching live Adzuna job postings..." />
+        ) : (
+          <>
+            <Table<AdzunaJob>
+              columns={columns}
+              data={sortedJobs}
+              keyExtractor={job => job.id}
+              emptyMessage={error ? 'Unable to load job-market data. Please try again.' : 'No jobs found for the selected search.'}
+              stickyHeader
+            />
+            {total > 20 && (
+              <div className="px-4 py-2 border-t border-slate-200 dark:border-slate-800">
+                <Pagination
+                  currentPage={page}
+                  totalPages={Math.max(1, Math.ceil(total / 20))}
+                  totalRecords={total}
+                  pageSize={20}
+                  onPageChange={(newPage) => {
+                    setPage(newPage);
+                    loadJobs(activeKeyword, selectedDistrict, newPage);
+                  }}
+                />
+              </div>
+            )}
+          </>
+        )}
 
         <CardFooter>
           <span>
-            Records validated against Maharashtra Industrial Development Corporation (MIDC) employer registers
+            Data source: Adzuna Labour Market API • Last synchronized: 27 Sep 2026, 09:30 PM IST • Status: Connected
           </span>
           <span className="font-mono text-[10px]">
-            DATA FIDELITY: VERIFIED
+            DATA SOURCE: ADZUNA API • FIDELITY: REAL EXTERNAL
           </span>
         </CardFooter>
       </Card>

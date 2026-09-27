@@ -636,7 +636,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     contactTitle: 'Contact',
 
     // Header & Brand
-    govTitle: 'महाराष्ट्र शासन • Government of Maharashtra',
+    govTitle: 'Government of Maharashtra',
     deptTitle: 'Skill, Employment, Entrepreneurship & Innovation Department • LMI Cell',
     subDeptTitle: 'कौशल्य विकास व रोजगार विभाग',
     platformName: 'Maharashtra Skill & Labour Market Intelligence Platform',
@@ -676,6 +676,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     menuScenarioSim: 'Scenario Simulator',
     menuEmployerPortal: 'Employer Portal',
     menuStudentPortal: 'Student Portal',
+    menuResumeAnalyzer: 'Resume Analyzer',
     menuInstitutes: 'Institutional Pages',
     menuAlertCentre: 'Alert Centre',
     menuDataQuality: 'Data Quality',
@@ -726,7 +727,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     contactTitle: 'संपर्क',
 
     // Header & Brand
-    govTitle: 'महाराष्ट्र शासन • Government of Maharashtra',
+    govTitle: 'Government of Maharashtra',
     deptTitle: 'कौशल्य, रोजगार, उद्योजकता आणि नाविन्यता विभाग • LMI कक्ष',
     subDeptTitle: 'कौशल्य विकास व रोजगार विभाग',
     platformName: 'महाराष्ट्र कौशल्य व श्रम बाजार बुद्धिमत्ता मंच',
@@ -766,6 +767,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     menuScenarioSim: 'परिदृश्य सिम्युलेटर',
     menuEmployerPortal: 'नियोक्ता पोर्टल',
     menuStudentPortal: 'विद्यार्थी पोर्टल',
+    menuResumeAnalyzer: 'बायोडेटा विश्लेषण प्रणाली',
     menuInstitutes: 'संस्थात्मक पृष्ठे',
     menuAlertCentre: 'सूचना केंद्र',
     menuDataQuality: 'डेटा गुणवत्ता',
@@ -816,7 +818,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     contactTitle: 'संपर्क',
 
     // Header & Brand
-    govTitle: 'महाराष्ट्र शासन • Government of Maharashtra',
+    govTitle: 'Government of Maharashtra',
     deptTitle: 'कौशल, रोजगार, उद्यमिता एवं नवाचार विभाग • LMI सेल',
     subDeptTitle: 'कौशल विकास व रोजगार विभाग',
     platformName: 'महाराष्ट्र कौशल एवं श्रम बाजार इंटेलिजेंस मंच',
@@ -856,6 +858,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     menuScenarioSim: 'परिदृश्य सिम्युलेटर',
     menuEmployerPortal: 'नियोक्ता पोर्टल',
     menuStudentPortal: 'छात्र पोर्टल',
+    menuResumeAnalyzer: 'बायोडाटा विश्लेषक',
     menuInstitutes: 'संस्थात्मक पृष्ठ',
     menuAlertCentre: 'सतर्कता केंद्र',
     menuDataQuality: 'डेटा गुणवत्ता',
@@ -925,11 +928,13 @@ export const ROUTE_TITLES: Record<RouteId, string> = {
   about: 'About Platform',
   faq: 'Frequently Asked Questions',
   contact: 'Contact',
-  login: 'Sign In / Demonstration Role'
+  login: 'Sign In / Demonstration Role',
+  resumeanalyzer: 'Career / AI Resume Analyzer'
 };
 
 export const SEARCH_INDEX: [string, string, RouteId][] = [
   ['Go to Dashboard', 'Command', 'dashboard'],
+  ['Go to Resume Analyzer', 'Command', 'resumeanalyzer'],
   ['Go to Skills', 'Command', 'skills'],
   ['Go to Jobs', 'Command', 'jobintel'],
   ['Go to Courses', 'Command', 'coursealignment'],

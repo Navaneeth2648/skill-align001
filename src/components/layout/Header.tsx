@@ -3,7 +3,7 @@ import { useApp } from '../../context/AppContext';
 import { ROUTE_TITLES } from '../../data/mockData';
 import { 
   Search, Bell, Menu, HelpCircle, ChevronRight, User, 
-  Sun, Moon, Shield, ExternalLink, BookmarkCheck
+  Sun, Moon, Shield, ExternalLink, BookmarkCheck, Sparkles
 } from 'lucide-react';
 import { Badge } from '../ui/Badge';
 
@@ -15,10 +15,11 @@ export const Header: React.FC = () => {
     language, 
     setLanguage, 
     t, 
-    theme,
-    toggleTheme,
+    theme, 
+    toggleTheme, 
     openSearch, 
     openNotif, 
+    openAssistant,
     notifications, 
     toggleProfile, 
     toggleMobileRail 
@@ -27,11 +28,11 @@ export const Header: React.FC = () => {
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <header className="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-2xs">
+    <header className="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-2xs">
       {/* Official Government of Maharashtra Banner Bar */}
       <div className="bg-[#0b1c2f] text-slate-100 border-b border-white/10 text-xs">
-        <div className="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between gap-3">
-          {/* Government Emblem & Bilingual Department Title */}
+        <div className="w-full px-4 sm:px-6 py-2.5 sm:py-[11px] min-h-[54px] flex items-center justify-between gap-3">
+          {/* Government Emblem & Department Title */}
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded border border-amber-400/50 bg-[#102c49] flex flex-col items-center justify-center font-extrabold text-amber-300 text-[11px] shrink-0 tracking-tight select-none shadow-2xs">
               <span>MH</span>
@@ -39,7 +40,7 @@ export const Header: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-slate-100 text-xs uppercase tracking-wide">
-                  {t('govTitle')}
+                  GOVERNMENT OF MAHARASHTRA
                 </span>
               </div>
               <p className="text-[10px] text-sky-200/80 leading-tight">
@@ -93,7 +94,7 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between min-h-[50px] gap-3">
+      <div className="w-full px-4 sm:px-6 flex items-center justify-between min-h-[52px] h-[52px] gap-3">
         <div className="flex items-center gap-3">
           {/* Mobile navigation rail toggle */}
           <button
@@ -166,6 +167,18 @@ export const Header: React.FC = () => {
             </kbd>
           </button>
 
+          {/* Intelligence Assistant */}
+          <button
+            type="button"
+            onClick={openAssistant}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded border border-amber-500/50 dark:border-amber-400/40 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-sky-500/10 hover:from-amber-500/20 hover:to-sky-500/20 text-[#102c49] dark:text-amber-300 text-xs font-semibold shadow-2xs cursor-pointer transition-all"
+            aria-label="Open Intelligence Assistant"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
+            <span className="hidden sm:inline text-[11px]">Intelligence Assistant</span>
+            <span className="sm:hidden text-[11px]">Assistant</span>
+          </button>
+
           {/* Alert & Notification Tray */}
           <button
             type="button"
@@ -205,11 +218,11 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Synchronized Government Evidence Snapshot Bar */}
-      <div className="bg-slate-100/80 dark:bg-slate-950/80 border-t border-slate-200 dark:border-slate-800/80 px-4 py-1 text-[11px] text-slate-600 dark:text-slate-400 flex items-center justify-between">
+      <div className="bg-slate-100/80 dark:bg-slate-950/80 border-t border-slate-200 dark:border-slate-800/80 px-4 sm:px-6 min-h-[28px] h-[28px] text-[11px] text-slate-600 dark:text-slate-400 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block shrink-0" aria-hidden="true" />
           <span>
-            <strong className="font-semibold text-slate-700 dark:text-slate-300">{t('evidenceSnapshot')}</strong> 26 September 2026, 18:30 IST • {t('districtsStatus')}
+            <strong className="font-semibold text-slate-700 dark:text-slate-300">{t('evidenceSnapshot')}</strong> 27 September 2026, 09:30 PM IST • {t('districtsStatus')}
           </span>
         </div>
       </div>

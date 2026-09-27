@@ -341,6 +341,15 @@ export const DashboardPage: React.FC = () => {
             >
               Reset
             </Button>
+
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => navigate('resumeanalyzer')}
+              leftIcon={<FileText className="w-3.5 h-3.5" />}
+            >
+              Resume Analyzer
+            </Button>
           </div>
         }
       />
